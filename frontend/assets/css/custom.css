@@ -1,0 +1,771 @@
+/* Custom Footer Styles for Kashmir Yatra */
+
+.footer-section.dark-theme {
+    background-color: #0a0b10 !important;
+    background-image: none !important;
+    color: #ffffff;
+    padding-top: 80px;
+}
+
+.footer-section.dark-theme .footer-newsletter-items {
+    display: none;
+    /* Hide for cleaner look as per reference */
+}
+
+.footer-section.dark-theme .widget-title h3 {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.footer-section.dark-theme .widget-title h3::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #007bff;
+    /* Blue indicator line */
+}
+
+.footer-section.dark-theme .widget-title h3::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 45px;
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+}
+
+.footer-section.dark-theme .list-items li {
+    margin-bottom: 12px;
+}
+
+.footer-section.dark-theme .list-items li a {
+    color: #a0a0a0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.footer-section.dark-theme .list-items li a i {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+.footer-section.dark-theme .list-items li a:hover {
+    color: #ffffff;
+    padding-left: 5px;
+}
+
+.footer-section.dark-theme .footer-content p {
+    color: #a0a0a0;
+    line-height: 1.8;
+}
+
+.footer-section.dark-theme .social-icon {
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.footer-section.dark-theme .social-icon a {
+    width: 40px;
+    height: 40px;
+    background-color: #1a1c23;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.footer-section.dark-theme .social-icon a:hover {
+    background-color: #007bff;
+    transform: translateY(-3px);
+}
+
+.footer-section.dark-theme .contact-info-list {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section.dark-theme .contact-info-list li {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #a0a0a0;
+}
+
+.footer-section.dark-theme .contact-info-list li i {
+    width: 35px;
+    height: 35px;
+    background-color: #1a1c23;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    color: #007bff;
+    flex-shrink: 0;
+}
+
+.footer-section.dark-theme .map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.footer-bottom-1.dark-bottom {
+    background-color: #07080c !important;
+    border-top: 1px solid #1a1c23;
+}
+
+/* Floating Social Icons Bar */
+.floating-social-bar {
+    position: fixed;
+    top: 45%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    transition: all 0.3s ease;
+}
+
+.floating-social-bar .social-item {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 22px;
+    background-color: #333;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    border-radius: 50%;
+    margin-bottom: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-right: 20px;
+}
+
+.floating-social-bar .social-item.whatsapp {
+    background-color: #25D366;
+}
+
+.floating-social-bar .social-item.instagram {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.floating-social-bar .social-item.email {
+    background-color: #ffffff;
+    color: #EA4335;
+    border: 1px solid #f0f0f0;
+}
+
+.floating-social-bar .social-item:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.floating-social-bar .social-item i {
+    transition: transform 0.3s ease;
+}
+
+.floating-social-bar .social-item:hover i {
+    transform: scale(1.15);
+}
+
+/* Hide existing single whatsapp float to avoid duplication */
+.whatsapp-float {
+    display: none !important;
+}
+
+/* Back to Top Adjustment */
+#back-top {
+    bottom: 30px;
+}
+
+/* Subscribe Section */
+.subscribe-section {
+    padding: 80px 0;
+    background-color: #1a1c23;
+    /* Lighter dark than footer */
+    position: relative;
+    z-index: 10;
+}
+
+.subscribe-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.subscribe-content {
+    max-width: 500px;
+}
+
+.subscribe-content h2 {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.subscribe-content p {
+    color: #a0a0a0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.subscribe-form {
+    flex-grow: 1;
+    max-width: 600px;
+    position: relative;
+}
+
+.subscribe-form input {
+    width: 100%;
+    height: 60px;
+    background-color: #2a2d39;
+    border: 1px solid #3a3d4d;
+    border-radius: 50px;
+    padding: 0 180px 0 30px;
+    color: #ffffff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.subscribe-form input:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #2f3242;
+}
+
+.subscribe-form .subscribe-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    padding: 0 40px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.subscribe-form .subscribe-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.02);
+}
+
+@media (max-width: 991px) {
+    .subscribe-wrapper {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .subscribe-content {
+        max-width: 100%;
+    }
+
+    .subscribe-form {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .subscribe-form input {
+        padding: 0 20px 0 20px;
+        height: 120px;
+        border-radius: 15px;
+        text-align: center;
+    }
+
+    .subscribe-form .subscribe-btn {
+        position: relative;
+        width: 100%;
+        margin-top: 15px;
+        right: 0;
+        top: 0;
+    }
+}
+
+/* Screen reader only class for accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Tour Card Custom Styles - Refined for Template Consistency */
+
+/* Ensure equal height columns for tour cards */
+.tour-section .row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tour-section .row>[class*="col-"] {
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-box-items {
+    transition: all 0.4s ease-in-out;
+    border-radius: 28px !important;
+    overflow: hidden;
+    text-align: left;
+    background: #fff;
+    box-shadow: 10px 9px 106.6px 55px rgba(5, 6, 60, 0.04) !important;
+    margin-bottom: 30px;
+    border: 1px solid rgba(21, 20, 21, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tour-box-items:hover {
+    transform: translateY(-10px);
+    box-shadow: 10px 15px 120px 60px rgba(5, 6, 60, 0.08) !important;
+}
+
+.tour-box-items .thumb {
+    position: relative;
+    overflow: visible;
+    height: 250px;
+}
+
+.tour-box-items .thumb img {
+    border-radius: 28px 28px 0 0 !important;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Luxury Price Badge / Symbol */
+.tour-box-items .price-badge {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    width: 90px;
+    height: 45px;
+    border-radius: 45px 45px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.tour-box-items .price-badge span {
+    color: var(--theme-color);
+    font-size: 26px;
+    font-weight: 900;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.tour-box-items .content {
+    padding: 35px 25px 30px !important;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.tour-box-items .content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px !important;
+    color: var(--header);
+    font-family: "Prompt", sans-serif;
+    line-height: 1.4;
+    min-height: 56px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tour-box-items .tour-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.tour-box-items .tour-info-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #616161;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.tour-box-items .tour-info-list li .icon-wrapper {
+    width: 32px;
+    height: 32px;
+    background: rgba(77, 64, 202, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-color);
+    font-size: 14px;
+}
+
+.tour-box-items .divider {
+    border-top: 1px dashed rgba(21, 20, 21, 0.15);
+    margin: 20px 0;
+    width: 100%;
+    margin-top: auto;
+}
+
+/* Full width theme-btn override inside cards */
+.tour-box-items .theme-btn {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px 10px 30px !important;
+    background: linear-gradient(to right, var(--theme-color), var(--theme-color-2));
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(77, 64, 202, 0.3);
+    border: none;
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tour-box-items .theme-btn span {
+    margin-right: 0;
+    font-size: 16px;
+    font-weight: 800;
+    color: #ffffff !important;
+    /* Explicitly white */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 999;
+    /* Ensure it's above pseudo-elements */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.tour-box-items .theme-btn i {
+    width: 44px;
+    height: 44px;
+    line-height: 44px;
+    font-size: 17px;
+    background-color: #ffffff;
+    color: var(--theme-color);
+    border-radius: 50%;
+    text-align: center;
+    position: relative;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tour-box-items .theme-btn:hover {
+    background: linear-gradient(to right, var(--theme-color-2), var(--theme-color));
+    box-shadow: 0 10px 25px rgba(77, 64, 202, 0.45);
+    transform: translateY(-3px) scale(1.01);
+}
+
+.tour-box-items .theme-btn:hover i {
+    color: var(--theme-color-2);
+    transform: scale(1.1);
+}
+
+/* Tour Category Group Styles */
+.category-group {
+    position: relative;
+    padding: 40px 0;
+    border-bottom: 2px solid rgba(21, 20, 21, 0.03);
+}
+
+.category-group:last-child {
+    border-bottom: none;
+}
+
+.category-group .section-title span {
+    color: var(--theme-color-2) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.category-group .section-title h2 {
+    font-size: 38px;
+    margin-top: 10px;
+    color: var(--header);
+    font-weight: 800;
+}
+
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 4px 15px rgba(77, 64, 202, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 4px 25px rgba(77, 64, 202, 0.6);
+    }
+
+    100% {
+        box-shadow: 0 4px 15px rgba(77, 64, 202, 0.3);
+    }
+}
+
+.tour-box-items .theme-btn {
+    animation: buttonPulse 3s infinite ease-in-out;
+}
+
+/* Professional Destination Card Styles - Clean & Modern */
+
+/* Main card wrapper with elevation */
+.trending-destinations-card-items {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: #ffffff;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.trending-destinations-card-items:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Image container */
+.trending-destinations-card-items .destinations-img {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+    flex-shrink: 0;
+}
+
+.trending-destinations-card-items .destinations-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.trending-destinations-card-items:hover .destinations-img img {
+    transform: scale(1.08);
+}
+
+/* Arrow icon - top right corner */
+.trending-destinations-card-items .destinations-img .icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateX(10px);
+    transition: all 0.3s ease;
+}
+
+.trending-destinations-card-items:hover .destinations-img .icon {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.trending-destinations-card-items .destinations-img .icon a {
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--theme-color, #4D40CA);
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.trending-destinations-card-items .destinations-img .icon a:hover {
+    background: var(--theme-color, #4D40CA);
+    color: #ffffff;
+    transform: rotate(45deg) scale(1.1);
+}
+
+/* Content area - clean white background */
+.trending-destinations-card-items .destinations-content {
+    padding: 25px;
+    background: #ffffff;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Title styling */
+.trending-destinations-card-items .destinations-content .title {
+    margin: 0;
+    padding: 0;
+}
+
+.trending-destinations-card-items .destinations-content .title a {
+    color: var(--header, #1a1a1a);
+    font-size: 22px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: block;
+    line-height: 1.3;
+    font-family: "Prompt", sans-serif;
+}
+
+.trending-destinations-card-items .destinations-content .title a:hover {
+    color: var(--theme-color, #4D40CA);
+}
+
+/* Description text */
+.trending-destinations-card-items .destinations-content .destination-info {
+    margin: 0;
+    padding: 0;
+}
+
+.trending-destinations-card-items .destinations-content .destination-info p {
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Meta information (time & distance) */
+.trending-destinations-card-items .destinations-content .destination-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px 0;
+    margin: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.trending-destinations-card-items .destinations-content .destination-meta span {
+    color: #555555;
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.trending-destinations-card-items .destinations-content .destination-meta span i {
+    color: var(--theme-color, #4D40CA);
+    font-size: 15px;
+}
+
+/* Highlight badges */
+.trending-destinations-card-items .destinations-content .destination-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 0;
+}
+
+.trending-destinations-card-items .destinations-content .destination-highlights .badge {
+    background: rgba(77, 64, 202, 0.08);
+    border: 1px solid rgba(77, 64, 202, 0.2);
+    color: var(--theme-color, #4D40CA);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+}
+
+.trending-destinations-card-items:hover .destinations-content .destination-highlights .badge {
+    background: var(--theme-color, #4D40CA);
+    color: #ffffff;
+    border-color: var(--theme-color, #4D40CA);
+    transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 991px) {
+    .trending-destinations-card-items .destinations-img {
+        height: 250px;
+    }
+
+    .trending-destinations-card-items .destinations-content {
+        padding: 20px;
+    }
+
+    .trending-destinations-card-items .destinations-content .title a {
+        font-size: 20px;
+    }
+
+    .trending-destinations-card-items .destinations-content .destination-info p {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+        line-clamp: 2;
+    }
+}
+
+@media (max-width: 575px) {
+    .trending-destinations-card-items .destinations-img {
+        height: 220px;
+    }
+
+    .trending-destinations-card-items .destinations-content {
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .trending-destinations-card-items .destinations-content .title a {
+        font-size: 18px;
+    }
+
+    .trending-destinations-card-items .destinations-content .destination-meta {
+        flex-direction: column;
+        gap: 10px;
+        padding: 12px 0;
+    }
+
+    .trending-destinations-card-items .destinations-content .destination-highlights .badge {
+        font-size: 10px;
+        padding: 5px 12px;
+    }
+}
