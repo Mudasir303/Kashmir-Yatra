@@ -589,10 +589,24 @@
 
     //>> Prealoader Start <<//
     function loader() {
+        // Lock horizontal overflow early to prevent layout shift while the preloader is visible
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                document.documentElement.style.overflowX = 'hidden';
+                document.body.style.overflowX = 'hidden';
+            } catch (e) {}
+        });
+
         $(window).on('load', function() {
             // Animate loader off screen
             $(".preloader").addClass('loaded');                    
-            $(".preloader").delay(600).fadeOut();                       
+            $(".preloader").delay(600).fadeOut(function() {
+                // restore overflow after preloader is removed
+                try {
+                    document.documentElement.style.overflowX = '';
+                    document.body.style.overflowX = '';
+                } catch (e) {}
+            });                       
         });
     }
 

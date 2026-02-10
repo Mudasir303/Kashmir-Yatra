@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Kashmir Yatra</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <img src="assets/img/logo kashmir yatra.png" alt="Logo" class="brand-logo">
+            </div>
+
+            <ul class="nav-links">
+                <li class="active" data-target="dashboard">
+                    <a href="#"><i class="fa-solid fa-table-columns"></i> <span>Dashboard</span></a>
+                </li>
+                <li data-target="tours">
+                    <a href="#"><i class="fa-solid fa-plane-departure"></i> <span>My Tours</span></a>
+                </li>
+                <li data-target="blogs">
+                    <a href="#"><i class="fa-solid fa-feather-pointed"></i> <span>Blogs</span></a>
+                </li>
+                <li data-target="messages">
+                    <a href="#"><i class="fa-regular fa-envelope"></i> <span>Messages</span></a>
+                </li>
+                <li data-target="messages">
+                    <a href="#"><i class="fa-regular fa-envelope"></i> <span>Messages</span></a>
+                </li>
+            </ul>
+
+            <div class="logout-section">
+                <a href="#" id="logoutBtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span></a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="header-brand">
+                    <h2>Overview</h2>
+                </div>
+
+                <div class="header-actions">
+                    <div class="user-profile">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="Admin">
+                        <div class="user-info">
+                            <h4>Admin</h4>
+                            <p>Traveler Pro</p>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <div id="dashboard-section" class="content-view active">
+                <div class="welcome-text">
+                    <h1>Hello Admin!</h1>
+                    <p>Welcome back and explore the world.</p>
+                </div>
+
+                <!-- Stats Row (Restored Logic) -->
+                <div class="stats-overview" style="display: flex; gap: 20px; margin-bottom: 30px;">
+                    <div class="stat-card"
+                        style="background: var(--bg-dark); padding: 20px; border-radius: 15px; flex: 1; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px;">Total Tours
+                            </h3>
+                            <p id="totalTours" style="font-size: 1.5rem; font-weight: 700; margin: 0;">...</p>
+                        </div>
+                        <i class="fa-solid fa-plane" style="font-size: 2rem; color: var(--primary-lime);"></i>
+                    </div>
+                    <div class="stat-card"
+                        style="background: var(--bg-dark); padding: 20px; border-radius: 15px; flex: 1; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px;">Total Blogs
+                            </h3>
+                            <p id="totalBlogs" style="font-size: 1.5rem; font-weight: 700; margin: 0;">...</p>
+                        </div>
+                        <i class="fa-solid fa-feather" style="font-size: 2rem; color: #ff7675;"></i>
+                    </div>
+                    <div class="stat-card"
+                        style="background: var(--bg-dark); padding: 20px; border-radius: 15px; flex: 1; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <h3 style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px;">Messages
+                            </h3>
+                            <p id="totalMessages" style="font-size: 1.5rem; font-weight: 700; margin: 0;">...</p>
+                        </div>
+                        <i class="fa-regular fa-envelope" style="font-size: 2rem; color: #74b9ff;"></i>
+                    </div>
+                </div>
+
+                <!-- Featured / Easy Visa Destinations -->
+                <!-- Recent Activity Section -->
+                <div class="row mt-4">
+                    <div class="col-lg-8">
+                        <div class="card bg-dark-custom">
+                            <div class="card-header border-0 bg-transparent">
+                                <h3 class="mb-0 text-white">Recent Tours</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush table-dark-custom">
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">Tour Name</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Location</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="recentToursTableBody">
+                                            <!-- Dynamic Content -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card bg-dark-custom">
+                            <div class="card-header border-0 bg-transparent">
+                                <h3 class="mb-0 text-white">Tour Breakdown</h3>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush bg-transparent" id="tourBreakdown">
+                                    <li
+                                        class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-0">
+                                        Domestic
+                                        <span class="badge badge-success badge-pill" id="domesticCount">0</span>
+                                    </li>
+                                    <li
+                                        class="list-group-item bg-transparent text-white d-flex justify-content-between align-items-center border-0">
+                                        International
+                                        <span class="badge badge-info badge-pill" id="internationalCount">0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tours Section (Grid View) -->
+            <div id="tours-section" class="content-view">
+                <div class="section-head">
+                    <h3>Manage Tours</h3>
+                    <button class="btn-lime" onclick="openAddTourModal()"><i class="fa-solid fa-plus"></i> Add
+                        New</button>
+                </div>
+                <div class="card-grid" id="toursTableBody"></div>
+            </div>
+
+            <!-- Blogs Section -->
+            <div id="blogs-section" class="content-view">
+                <div class="section-head">
+                    <h3>Manage Blogs</h3>
+                    <button class="btn-lime" onclick="openAddBlogModal()"><i class="fa-solid fa-plus"></i> Add
+                        New</button>
+                </div>
+                <div class="card-grid" id="blogsTableBody"></div>
+            </div>
+
+            <!-- Messages Section -->
+            <div id="messages-section" class="content-view">
+                <h3>Messages</h3>
+                <div class="messages-list" id="messagesTableBody"></div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Modals (Re-styled via CSS) -->
+    <!-- Add Tour Modal -->
+    <div id="tourModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="tourModalTitle">Add New Tour</h3>
+                <span class="close" onclick="closeModal('tourModal')">&times;</span>
+            </div>
+            <form id="tourForm">
+                <input type="hidden" id="tourId">
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control-custom" id="tourTitle" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Location</label>
+                        <input type="text" class="form-control-custom" id="tourLocation" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Category</label>
+                        <select class="form-control-custom" id="tourCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Domestic">Domestic</option>
+                            <option value="International">International</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Sub Category</label>
+                        <select class="form-control-custom" id="tourSubCategory">
+                            <option value="">Select Sub Category</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Price</label>
+                        <input type="number" class="form-control-custom" id="tourPrice" required>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Duration</label>
+                        <input type="text" class="form-control-custom" id="tourDuration" placeholder="3 Days / 2 Nights"
+                            required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <!-- Quill Editor for Tour -->
+                    <div id="tour-editor-container" style="height: 200px;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Tour Images</label>
+                    <input type="file" class="form-control-custom" id="tourImageInput" multiple accept="image/*">
+                    <small>Upload up to 5 images</small>
+                </div>
+
+                <div class="form-group">
+                    <label>Is Featured?</label>
+                    <select class="form-control-custom" id="tourFeatured">
+                        <option value="false">No</option>
+                        <option value="true">Yes</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Save Tour</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Blog Modal -->
+    <div id="blogModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3 id="blogModalTitle">Add New Blog</h3>
+                <span class="close" onclick="closeModal('blogModal')">&times;</span>
+            </div>
+            <form id="blogForm">
+                <input type="hidden" id="blogId">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" class="form-control-custom" id="blogTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Cover Image</label>
+                    <div class="file-upload-wrapper">
+                        <input type="file" id="blogImage" accept="image/*">
+                        <div class="file-custom-label">Choose File...</div>
+                    </div>
+                    <img id="blogImagePreview" src=""
+                        style="display:none; width: 100px; margin-top: 10px; border-radius: 8px;">
+                </div>
+                <div class="form-group">
+                    <label>Content</label>
+                    <!-- Quill Editor Container -->
+                    <div id="editor-container" style="height: 300px;"></div>
+                </div>
+                <div class="form-group">
+                    <label>Tags (comma separated)</label>
+                    <input type="text" class="form-control-custom" id="blogTags" placeholder="Travel, Kashmir, Guide">
+                </div>
+                <button type="submit" class="btn-submit">Save Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Message Modal -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('messageModal')">&times;</span>
+            <h3>Message Details</h3>
+            <div class="msg-detail-box">
+                <p><strong>From:</strong> <span id="msgFrom"></span></p>
+                <p><strong>Email:</strong> <span id="msgEmail"></span></p>
+                <p><strong>Subject:</strong> <span id="msgSubject"></span></p>
+                <div class="msg-body" id="msgBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Action Successful!</div>
+
+    <!-- JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/admin.js"></script>
+    <script>
+        // Initialize Quill
+        var quill = new Quill('#editor-container', {
+            theme: 'snow',
+            placeholder: 'Compose an epic blog post...'
+        });
+    </script>
+</body>
+
+</html>

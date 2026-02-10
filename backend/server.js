@@ -8,8 +8,12 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 
 app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/tours", require("./routes/tourRoutes"));
+app.use("/api/messages", require("./routes/messageRoutes"));
+app.use("/api/blogs", require("./routes/blogRoutes"));
 
 app.get("/", (req, res) => {
    res.send("Kashmir Yatra Backend Running");

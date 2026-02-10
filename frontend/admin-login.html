@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Kashmir Yatra</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/admin-login.css">
+</head>
+
+<body>
+
+    <div class="login-page-wrapper">
+        <div class="login-card">
+            <!-- Left Side (Image) -->
+            <div class="login-card-left">
+                <div class="overlay-content">
+                    <img src="assets/img/logo kashmir yatra.png" alt="Kashmir Yatra" class="card-logo">
+                    <h2>Kashmir Yatra</h2>
+                    <p>Discover the Paradise on Earth, One Journey at a Time.</p>
+                </div>
+            </div>
+
+            <!-- Right Side (Form) -->
+            <div class="login-card-right">
+                <div class="form-header">
+                    <h3>Welcome</h3>
+                    <p>Login with Email</p>
+                </div>
+
+                <form id="loginForm">
+                    <div class="input-group-custom">
+                        <label>Email Id</label>
+                        <div class="input-field">
+                            <i class="far fa-envelope"></i>
+                            <input type="email" id="email" placeholder="admin@kashmiryatra.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group-custom">
+                        <label>Password</label>
+                        <div class="input-field">
+                            <i class="far fa-lock"></i>
+                            <input type="password" id="password" placeholder="••••••••••••" required>
+                        </div>
+                    </div>
+
+                    <div class="forgot-pass-container" style="display: none;">
+                        <a href="#">Forgot your password?</a>
+                    </div>
+
+                    <button type="submit" class="btn-login-card">LOGIN</button>
+                </form>
+                <div id="errorMessage" class="text-danger text-center mt-3" style="display: none;"></div>
+            </div>
+
+            <!-- City Graphics (Decorative) -->
+            <div class="city-graphic-right"></div>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/admin-login.js"></script>
+</body>
+
+</html>

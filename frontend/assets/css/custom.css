@@ -133,7 +133,7 @@
     top: 45%;
     right: 0;
     transform: translateY(-50%);
-    z-index: 1000;
+    z-index: 99999;
     display: flex;
     flex-direction: column;
     gap: 0;
@@ -169,6 +169,11 @@
     background-color: #ffffff;
     color: #EA4335;
     border: 1px solid #f0f0f0;
+}
+
+.floating-social-bar .social-item.google {
+    background-color: #4285F4;
+    color: #ffffff;
 }
 
 .floating-social-bar .social-item:hover {
@@ -451,7 +456,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 10px 10px 30px !important;
-    background: linear-gradient(to right, var(--theme-color), var(--theme-color-2));
+    /* background: linear-gradient(to right, var(--theme-color), var(--theme-color-2)); */
     border-radius: 50px;
     box-shadow: 0 4px 15px rgba(77, 64, 202, 0.3);
     border: none;
@@ -502,7 +507,7 @@
 /* Tour Category Group Styles */
 .category-group {
     position: relative;
-    padding: 40px 0;
+    padding: 10px 0;
     border-bottom: 2px solid rgba(21, 20, 21, 0.03);
 }
 
@@ -767,5 +772,362 @@
     .trending-destinations-card-items .destinations-content .destination-highlights .badge {
         font-size: 10px;
         padding: 5px 12px;
+    }
+}
+
+/* Hero Static Overlay Styles */
+.hero-section.hero-4 {
+    position: relative;
+    overflow: hidden;
+    min-height: 800px;
+    /* Prevent collapse */
+    background-color: #000;
+    /* Fallback for when background images are loading */
+}
+
+.hero-slider,
+.hero-slider .swiper-wrapper,
+.hero-slider .swiper-slide,
+.hero-items {
+    height: 100% !important;
+    min-height: 800px;
+}
+
+.hero-static-overlay {
+    position: absolute;
+    top: 40%;
+    /* Slight offset for header */
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.hero-static-overlay .container {
+    pointer-events: all;
+}
+
+.hero-static-overlay .hero-content {
+    text-align: left;
+}
+
+.hero-static-overlay .hero-content h1,
+.hero-static-overlay .hero-content p {
+    color: #ffffff !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    /* Improved readability */
+}
+
+.hero-static-overlay .hero-content h6 {
+    color: #FB5B32 !important;
+    /* Original Orange Color */
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.hero-static-overlay .hero-content h1 {
+    font-size: 70px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero-static-overlay .hero-content h1 .shape-text {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-static-overlay .hero-content h1 .shape-text::before {
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    z-index: -1;
+    right: 0;
+    content: "";
+    width: 100%;
+    height: 32px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../img/hero/new/line-2.png);
+    background-position: center;
+}
+
+.hero-static-overlay .hero-content p {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 991px) {
+    .hero-section.hero-4 {
+        height: auto;
+        min-height: auto;
+        padding: 100px 0;
+    }
+
+    .hero-static-overlay {
+        position: relative;
+        top: 0;
+        transform: none;
+        padding-top: 50px;
+        z-index: 11;
+    }
+
+    .hero-slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100% !important;
+    }
+
+    .hero-static-overlay .hero-content h1 {
+        font-size: 40px;
+    }
+}
+
+/* Alignment and Sync Fixes */
+.hero-static-overlay .container>.row {
+    display: flex;
+    align-items: stretch;
+}
+
+.hero-static-overlay .hero-content,
+.hero-static-overlay .contact-form-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.hero-static-overlay .hero-button,
+.hero-static-overlay .contact-form-hero-button-wrapper {
+    margin-top: auto;
+    padding-top: 20px;
+}
+
+.hero-static-overlay .hero-content h1 {
+    margin-bottom: 30px;
+}
+
+.hero-static-overlay .hero-content p {
+    margin-bottom: 40px;
+}
+
+.hero-static-overlay .section-title {
+    text-align: left;
+}
+
+.hero-static-overlay .text1 {
+    display: block;
+    margin-bottom: 5px;
+    padding-left: 0 !important;
+}
+
+/* Unified Hero Button Sizes, Alignment & Icon Style Refinement */
+.hero-static-overlay .theme-btn {
+    min-width: 190px;
+    height: 55px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 25px !important;
+    text-align: center;
+    border-radius: 72px;
+}
+
+.hero-static-overlay .theme-btn span {
+    margin-right: 0 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.hero-static-overlay .theme-btn i {
+    position: static;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    background-color: transparent !important;
+    border-radius: 0;
+    color: inherit;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.hero-static-overlay .container>.row {
+    display: flex;
+    align-items: stretch;
+}
+
+.hero-static-overlay .hero-content,
+.hero-static-overlay .contact-form-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.hero-static-overlay .hero-button,
+.hero-static-overlay .contact-form-hero-button-wrapper {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hero-static-overlay .hero-content {
+    text-align: left;
+}
+
+.hero-static-overlay .hero-button {
+    justify-content: flex-start;
+}
+
+/* Preloader Logo Styling */
+.preloader .logo-loading {
+    margin-bottom: 20px;
+    animation: pulseLogo 2s infinite ease-in-out;
+}
+
+.preloader .logo-loading img {
+    max-width: 550px;
+    height: auto;
+}
+
+@keyframes pulseLogo {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+/* Glassmorphism Form Styles */
+.glass-form {
+    background: rgba(255, 255, 255, 0.00) !important;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 20px !important;
+    padding: 40px !important;
+    box-shadow: none !important;
+}
+
+.glass-form .section-title h2 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.glass-form .form-clt input,
+.glass-form .form-clt textarea {
+    background: rgba(114, 92, 92, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 4px !important;
+    color: #ffffff !important;
+    padding: 5px !important;
+    width: 100% !important;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+}
+
+.glass-form .form-clt textarea {
+    height: 120px !important;
+    resize: none !important;
+}
+
+.glass-form .form-clt input::placeholder,
+.glass-form .form-clt textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.glass-form .form-clt input:focus,
+.glass-form .form-clt textarea:focus {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    outline: none;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.glass-form .theme-btn-2 {
+    background: #ffffff !important;
+    color: var(--theme-color) !important;
+    border: none !important;
+    font-weight: 700 !important;
+    transition: all 0.3s ease !important;
+}
+
+.glass-form .theme-btn-2:hover {
+    background: var(--theme-color) !important;
+    color: #ffffff !important;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Mobile Responsiveness for Preloader & Hero */
+
+@media (max-width: 767px) {
+
+    /* Preloader Mobile Fix */
+    .preloader .logo-loading img {
+        max-width: 80%;
+        /* Reduced from 550px/full width */
+        height: auto;
+    }
+
+    /* Hero Section Mobile Adjustments */
+    .hero-static-overlay .hero-content h1 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .hero-static-overlay .hero-content p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .hero-static-overlay .contact-form-box.glass-form {
+        padding: 25px !important;
+        margin-top: 30px;
+    }
+
+    .hero-static-overlay .hero-button {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .hero-static-overlay .hero-button .theme-btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .hero-static-overlay .contact-form-hero-button-wrapper .theme-btn {
+        width: 100%;
+        margin: 0 !important;
+    }
+
+    .hero-section.hero-4 {
+        min-height: auto;
+        padding-bottom: 50px;
+    }
+}
+
+@media (max-width: 575px) {
+    .hero-static-overlay .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .glass-form .section-title h2 {
+        font-size: 24px;
     }
 }

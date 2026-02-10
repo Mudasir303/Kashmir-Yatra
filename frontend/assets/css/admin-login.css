@@ -1,0 +1,207 @@
+/* --- Centered Card Login UI --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #00a8ff;
+    /* Bright Blue Background */
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.login-page-wrapper {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* --- Card Container --- */
+.login-card {
+    width: 900px;
+    height: 550px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    display: flex;
+    overflow: hidden;
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Left Side (Image) --- */
+.login-card-left {
+    flex: 1;
+    background: url('../img/hero/03.jpg') no-repeat center center/cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+    color: white;
+    text-align: center;
+}
+
+.login-card-left::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    /* Light overlay for "transparency" feel */
+    backdrop-filter: blur(2px);
+    /* meaningful blur */
+}
+
+.overlay-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px;
+}
+
+.card-logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+    /* Removed filter to keep original colors */
+}
+
+.overlay-content h2 {
+    font-family: 'Dancing Script', cursive;
+    /* Or similar fancy font if available, fallback to sans */
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.overlay-content p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+/* --- Right Side (Form) --- */
+.login-card-right {
+    flex: 1;
+    padding: 40px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-header h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #00a8ff;
+    margin-bottom: 5px;
+}
+
+.form-header p {
+    font-size: 0.9rem;
+    color: #b2bec3;
+}
+
+/* --- Inputs --- */
+.input-group-custom {
+    margin-bottom: 20px;
+}
+
+.input-group-custom label {
+    display: block;
+    font-size: 0.8rem;
+    color: #00a8ff;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.input-field {
+    position: relative;
+    border: 1px solid #dfe6e9;
+    border-radius: 5px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.input-field:focus-within {
+    border-color: #00a8ff;
+    box-shadow: 0 0 0 3px rgba(0, 168, 255, 0.1);
+}
+
+.input-field i {
+    color: #b2bec3;
+    margin-right: 10px;
+    font-size: 1rem;
+}
+
+.input-field input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.9rem;
+    color: #2d3436;
+    font-family: inherit;
+}
+
+/* --- Button --- */
+.btn-login-card {
+    width: 100%;
+    padding: 12px;
+    background: #00a8ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0, 168, 255, 0.3);
+}
+
+.btn-login-card:hover {
+    background: #0097e6;
+    transform: translateY(-1px);
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .login-card {
+        width: 90%;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .login-card-left {
+        height: 200px;
+        padding: 20px;
+    }
+
+    .overlay-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .card-logo {
+        max-width: 80px;
+    }
+
+    .login-card-right {
+        padding: 30px;
+    }
+}
