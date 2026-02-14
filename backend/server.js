@@ -1,4 +1,5 @@
 const express = require("express");
+const connectDB = require("./config/db");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
@@ -21,12 +22,11 @@ app.get("/", (req, res) => {
    res.send("Kashmir Yatra Backend Running");
 });
 
-mongoose
-   .connect(process.env.MONGO_URI)
-   .then(() => console.log("MongoDB connected"))
-   .catch((err) => console.log(err));
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-   console.log(`Server running on port ${PORT}`);
+
+// Connect to Database and Start Server
+connectDB().then(() => {
+   app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+   });
 });

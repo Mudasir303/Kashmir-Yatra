@@ -30,7 +30,8 @@ exports.createBlog = async (req, res) => {
 // @access  Public
 exports.getAllBlogs = async (req, res) => {
     try {
-        const blogs = await Blog.find().sort({ createdAt: -1 });
+        const limit = req.query.limit ? parseInt(req.query.limit) : 0;
+        const blogs = await Blog.find().sort({ createdAt: -1 }).limit(limit);
         res.json(blogs);
     } catch (error) {
         res.status(500).json({ message: error.message });
