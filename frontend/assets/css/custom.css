@@ -1041,7 +1041,7 @@
 }
 
 .glass-form .form-clt textarea {
-    height: 120px !important;
+    height: 70px !important;
     resize: none !important;
 }
 
@@ -1130,4 +1130,109 @@
     .glass-form .section-title h2 {
         font-size: 24px;
     }
+}
+
+/* Toast Notification System */
+#toast-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast-item {
+    background: #fff;
+    color: #333;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 300px;
+    transform: translateX(-120%);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    border-left: 5px solid #4D40CA;
+}
+
+.toast-item.show {
+    transform: translateX(0);
+}
+
+.toast-item.success {
+    border-left-color: #28a745;
+}
+
+.toast-item.error {
+    border-left-color: #dc3545;
+}
+
+.toast-item.info {
+    border-left-color: #4D40CA;
+}
+
+.toast-item i {
+    font-size: 20px;
+}
+
+.toast-item.success i {
+    color: #28a745;
+}
+
+.toast-item.error i {
+    color: #dc3545;
+}
+
+.toast-item.info i {
+    color: #4D40CA;
+}
+
+.toast-message {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.toast-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+}
+
+/* Booking Form Enhancements */
+.tour-booking-section.glass-form {
+    background: #f8f9fa;
+    border: 1px solid #eee !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.tour-booking-section .form-label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 8px;
+}
+
+.tour-booking-section .form-clt input,
+.tour-booking-section .form-clt textarea {
+    border-radius: 6px !important;
+    border: 1px solid #ddd !important;
+    padding: 12px 15px !important;
+    background: #fff !important;
+    color: #333 !important;
+}
+
+.tour-booking-section .form-clt input::placeholder {
+    color: #aaa !important;
+}
+
+.tour-booking-section .theme-btn {
+    padding: 15px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
 }

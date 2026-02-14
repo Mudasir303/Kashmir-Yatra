@@ -6,11 +6,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="modinatheme">
+    <meta name="author" content="Kashmir Yatra">
     <meta name="description"
-        content="Discover the beauty of Kashmir with Kashmir Yatra. We offer affordable tour packages, houseboat stays, and spiritual journeys to Amarnath & Vaishno Devi.">
+        content="Experience the magic of Kashmir with Kashmir Yatra. Book best-value tour packages for Srinagar, Gulmarg, Pahalgam, and Sonamarg. Authentic local experiences, houseboats, and spiritual journeys.">
+    <meta name="keywords"
+        content="Kashmir Yatra, Kashmir tour packages, Srinagar travel, Gulmarg skiing, Pahalgam valley, Kashmir houseboats, best travel agency in Kashmir, Amarnath Yatra, Vaishno Devi tour">
+    <link rel="canonical" href="https://www.kashmiryatra.com/index.html">
     <!-- ======== Page title ============ -->
-    <title>Kashmir Yatra - Best Tour & Travel Agency in Kashmir</title>
+    <title>Kashmir Yatra - Best Tour & Travel Agency in Kashmir | Heaven on Earth</title>
+
     <!--<< Favicon >>-->
     <link rel="shortcut icon" href="assets/img/favicon.svg">
     <!--<< Bootstrap min.css >>-->
@@ -35,8 +39,55 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!--<< Custom.css >>-->
     <link rel="stylesheet" href="assets/css/custom.css">
+    <!--<< Toast.css >>-->
+    <link rel="stylesheet" href="assets/css/toast.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Kashmir Yatra",
+      "url": "https://www.kashmiryatra.com/",
+      "logo": "https://www.kashmiryatra.com/assets/img/logo%20kashmir%20yatra.png",
+      "image": "https://www.kashmiryatra.com/assets/img/hero/hero-bg.jpg",
+      "description": "Experience the magic of Kashmir with Kashmir Yatra. Book best-value tour packages for Srinagar, Gulmarg, Pahalgam, and Sonamarg.",
+      "telephone": "+91-9149851190",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Barbar Shah",
+        "addressLocality": "Srinagar",
+        "addressRegion": "JK",
+        "postalCode": "190001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 34.0836,
+        "longitude": 74.8194
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday"
+        ],
+        "opens": "09:00",
+        "closes": "20:00"
+      },
+      "sameAs": [
+        "https://www.facebook.com/people/Kashmir-Yatra/100068596967208/",
+        "https://www.instagram.com/kashmir_yatra/"
+      ]
+    }
+    </script>
 </head>
 
 <body>
@@ -71,6 +122,9 @@
     <button id="back-top" class="back-to-top">
         <i class="fas fa-long-arrow-up"></i>
     </button>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
     <!-- Offcanvas Area Start -->
     <div class="fix-area">
         <div class="offcanvas__info">
@@ -183,7 +237,7 @@
                                                 <a href="index.html">Home</a>
                                             </li>
                                             <li>
-                                                <a href="tour-details.html">
+                                                <a href="tour.html">
                                                     Tours
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -195,7 +249,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="destination-details.html">
+                                                <a href="destination.html">
                                                     Destinations
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -254,7 +308,7 @@
                             </div>
                             <div class="contact-items">
                                 <div class="icon">
-                                    <img src="assets/img/call.png" alt="img">
+                                    <img src="assets/img/call.png" alt="Kashmir Yatra Logo">
                                 </div>
                                 <div class="content">
                                     <span>Call Us</span>
@@ -349,6 +403,11 @@
                                     </div>
                                     <div class="col-lg-12">
                                         <div class="form-clt">
+                                            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="form-clt">
                                             <textarea name="message" placeholder="Your Message" required></textarea>
                                         </div>
                                     </div>
@@ -370,10 +429,10 @@
                 <div class="swiper-slide">
                     <div class="hero-items">
                         <div class="plane-shape">
-                            <img src="assets/img/hero/new/plane-2.png" alt="img">
+                            <img src="assets/img/hero/new/plane-2.png" alt="Kashmir Yatra Logo">
                         </div>
                         <div class="plane-shape-2">
-                            <img src="assets/img/hero/new/plane-3.png" alt="img">
+                            <img src="assets/img/hero/new/plane-3.png" alt="Kashmir Yatra Logo">
                         </div>
                         <div class="hero-bg bg-cover"
                             style="background-image: url('assets/img/hero/new/11550728-flowers-wallpaper-tulip-garden.jpg');">
@@ -383,10 +442,10 @@
                 <div class="swiper-slide">
                     <div class="hero-items">
                         <div class="plane-shape">
-                            <img src="assets/img/hero/new/plane-2.png" alt="img">
+                            <img src="assets/img/hero/new/plane-2.png" alt="Kashmir Yatra Logo">
                         </div>
                         <div class="plane-shape-2">
-                            <img src="assets/img/hero/new/plane-3.png" alt="img">
+                            <img src="assets/img/hero/new/plane-3.png" alt="Kashmir Yatra Logo">
                         </div>
                         <div class="hero-bg bg-cover"
                             style="background-image: url('assets/img/hero/new/11550725-snow-covered-house-himalayas-kashmir.jpg');">
@@ -399,7 +458,7 @@
             <div class="booking-list-area-1">
                 <div class="booking-list">
                     <div class="icon">
-                        <img src="assets/img/hero/location.png" alt="img">
+                        <img src="assets/img/hero/location.png" alt="Kashmir Yatra Logo">
                     </div>
                     <div class="content">
                         <h5>Destination</h5>
@@ -418,7 +477,7 @@
                 </div>
                 <div class="booking-list">
                     <div class="icon">
-                        <img src="assets/img/hero/location.png" alt="img">
+                        <img src="assets/img/hero/location.png" alt="Kashmir Yatra Logo">
                     </div>
                     <div class="content">
                         <h5>All Activity</h5>
@@ -436,7 +495,7 @@
                 </div>
                 <div class="booking-list">
                     <div class="icon">
-                        <img src="assets/img/hero/location.png" alt="img">
+                        <img src="assets/img/hero/location.png" alt="Kashmir Yatra Logo">
                     </div>
                     <div class="content">
                         <h5>Departure Date</h5>
@@ -450,7 +509,7 @@
                 </div>
                 <div class="booking-list">
                     <div class="icon">
-                        <img src="assets/img/hero/location.png" alt="img">
+                        <img src="assets/img/hero/location.png" alt="Kashmir Yatra Logo">
                     </div>
                     <div class="content">
                         <h5>Guest</h5>
@@ -475,14 +534,14 @@
     <!-- About Section Start -->
     <section class="about-section section-padding sect-bg">
         <div class="shape-1">
-            <img src="assets/img/about/dot-shape.png" alt="img">
+            <img src="assets/img/about/dot-shape.png" alt="Kashmir Yatra Logo">
         </div>
         <div class="container">
             <div class="about-wrapper">
                 <div class="row g-4 align-items-center">
                     <div class="col-lg-5">
                         <div class="about-image wow img-custom-anim-left">
-                            <img src="assets/img/about/03.jpg" alt="img">
+                            <img src="assets/img/about/03.jpg" alt="Kashmir Yatra Logo">
                             <!-- <div class="about-box float-bob-y">
                                 <h2><span class="odometer" data-count="6">00</span>+</h2>
                                 <p>YEARS OF EXPERIENCE</p>
@@ -584,7 +643,7 @@
                                     <span>More About Us</span> <i class="far fa-long-arrow-right"></i>
                                 </a>
                                 <div class="group-image wow fadeInUp" data-wow-delay=".5s">
-                                    <img src="assets/img/about/group.png" alt="img">
+                                    <img src="assets/img/about/group.png" alt="Kashmir Yatra Logo">
                                 </div>
                             </div>
                         </div>
@@ -1086,32 +1145,32 @@
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/01.png" alt="img">
+                            <img src="assets/img/brand/01.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/02.png" alt="img">
+                            <img src="assets/img/brand/02.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/03.png" alt="img">
+                            <img src="assets/img/brand/03.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/04.png" alt="img">
+                            <img src="assets/img/brand/04.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/05.png" alt="img">
+                            <img src="assets/img/brand/05.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="brand-img text-center">
-                            <img src="assets/img/brand/06.png" alt="img">
+                            <img src="assets/img/brand/06.png" alt="Kashmir Yatra Logo">
                         </div>
                     </div>
                 </div>
@@ -1262,7 +1321,7 @@
                                 <div class="swiper-slide">
                                     <div class="tour-card-item">
                                         <div class="tour-image">
-                                            <img src="assets/img/tour/30.jpg" alt="img">
+                                            <img src="assets/img/tour/30.jpg" alt="Kashmir Yatra Logo">
                                         </div>
                                         <div class="tour-content">
                                             <h6>From <span>$270</span> $399</h6>
@@ -1299,7 +1358,7 @@
                                 <div class="swiper-slide">
                                     <div class="tour-card-item">
                                         <div class="tour-image">
-                                            <img src="assets/img/tour/31.jpg" alt="img">
+                                            <img src="assets/img/tour/31.jpg" alt="Kashmir Yatra Logo">
                                         </div>
                                         <div class="tour-content">
                                             <h6>From <span>$270</span> $399</h6>
@@ -1419,31 +1478,31 @@
                 <div class="swiper-wrapper slide-transtion">
                     <div class="swiper-slide brand-slide-element">
                         <div class="marque-text">
-                            <img src="assets/img/marque.png" alt="img">
+                            <img src="assets/img/marque.png" alt="Kashmir Yatra Logo">
                             <h3>Mobile-Friendly Platform</h3>
                         </div>
                     </div>
                     <div class="swiper-slide brand-slide-element">
                         <div class="marque-text">
-                            <img src="assets/img/marque.png" alt="img">
+                            <img src="assets/img/marque.png" alt="Kashmir Yatra Logo">
                             <h3>Eco-Friendly Travel Options</h3>
                         </div>
                     </div>
                     <div class="swiper-slide brand-slide-element">
                         <div class="marque-text">
-                            <img src="assets/img/marque.png" alt="img">
+                            <img src="assets/img/marque.png" alt="Kashmir Yatra Logo">
                             <h3>Group Booking Discounts</h3>
                         </div>
                     </div>
                     <div class="swiper-slide brand-slide-element">
                         <div class="marque-text">
-                            <img src="assets/img/marque.png" alt="img">
+                            <img src="assets/img/marque.png" alt="Kashmir Yatra Logo">
                             <h3>Real-Time Itinerary Updates</h3>
                         </div>
                     </div>
                     <div class="swiper-slide brand-slide-element">
                         <div class="marque-text">
-                            <img src="assets/img/marque.png" alt="img">
+                            <img src="assets/img/marque.png" alt="Kashmir Yatra Logo">
                             <h3>Expert Travel Advisors</h3>
                         </div>
                     </div>
@@ -2200,6 +2259,9 @@
     <script src="assets/js/wow.min.js"></script>
     <!--<< Main.js >>-->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/contact.js"></script>
+    <script src="assets/js/subscribe.js"></script>
     <script defer
         src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="

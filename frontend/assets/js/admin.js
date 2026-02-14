@@ -1,4 +1,5 @@
 const API_BASE = CONFIG.API_BASE_URL;
+const BASE_URL = API_BASE.replace('/api', '');
 const token = localStorage.getItem('adminToken');
 
 // Auth Check
@@ -34,14 +35,42 @@ navItems.forEach(item => {
         if (target === 'dashboard') loadStats();
         if (target === 'tours') loadTours();
         if (target === 'blogs') loadBlogs();
+        if (target === 'bookings') loadBookings();
         if (target === 'messages') loadMessages();
+        if (target === 'subscribers') loadSubscribers();
     });
 });
 
 // Initial Load
 document.addEventListener('DOMContentLoaded', () => {
+    updateAdminProfile();
     loadStats();
 });
+
+function updateAdminProfile() {
+    try {
+        const adminUserStr = localStorage.getItem('adminUser');
+        if (!adminUserStr) return;
+
+        const adminUser = JSON.parse(adminUserStr);
+        console.log("Admin User Data:", adminUser);
+
+        if (adminUser) {
+            const nameEl = document.getElementById('adminName');
+            const emailEl = document.getElementById('adminEmail');
+            const avatar = document.querySelector('.user-profile img');
+
+            if (nameEl) nameEl.textContent = adminUser.name || 'Admin User';
+            if (emailEl) emailEl.textContent = adminUser.email || '';
+
+            if (avatar && adminUser.name) {
+                avatar.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(adminUser.name)}&background=6c5ce7&color=fff`;
+            }
+        }
+    } catch (e) {
+        console.error("Error updating profile UI:", e);
+    }
+}
 
 // --- API Helpers ---
 async function fetchAPI(endpoint, options = {}) {
@@ -84,10 +113,11 @@ async function loadStats() {
         const results = await Promise.allSettled([
             fetchAPI('/tours/admin'), // Use Admin route for full count
             fetchAPI('/blogs'),
-            fetchAPI('/messages')
+            fetchAPI('/messages'),
+            fetchAPI('/bookings/admin')
         ]);
 
-        const [toursResult, blogsResult, msgsResult] = results;
+        const [toursResult, blogsResult, msgsResult, bookingsResult] = results;
         let tours = [];
 
         if (toursResult.status === 'fulfilled') {
@@ -122,6 +152,7 @@ async function loadStats() {
         if (blogsResult.status === 'fulfilled') {
             const blogs = await blogsResult.value.json();
             document.getElementById('totalBlogs').textContent = blogs.length;
+            console.log('Blogs data loaded:', blogs.length, 'blogs');
         } else {
             console.error("Blogs failed:", blogsResult.reason);
             document.getElementById('totalBlogs').textContent = '-';
@@ -129,10 +160,17 @@ async function loadStats() {
 
         if (msgsResult.status === 'fulfilled') {
             const msgs = await msgsResult.value.json();
-            document.getElementById('totalMessages').textContent = msgs.length;
+            // document.getElementById('totalMessages').textContent = msgs.length; // Replaced by bookings card
+        }
+
+        if (bookingsResult.status === 'fulfilled') {
+            const bookings = await bookingsResult.value.json();
+            const bookingsEl = document.getElementById('totalBookings');
+            if (bookingsEl) bookingsEl.textContent = bookings.length;
         } else {
-            console.error("Messages failed:", msgsResult.reason);
-            document.getElementById('totalMessages').textContent = '-';
+            console.error("Bookings failed:", bookingsResult.reason);
+            const bookingsEl = document.getElementById('totalBookings');
+            if (bookingsEl) bookingsEl.textContent = '-';
         }
 
     } catch (e) {
@@ -152,7 +190,7 @@ async function loadTours() {
     container.innerHTML = tours.map(tour => `
         <div class="item-card">
             <div class="card-img">
-                <img src="${tour.images[0] || 'assets/img/placeholder.jpg'}" alt="${tour.title}">
+                <img src="${tour.images && tour.images.length > 0 ? (tour.images[0].startsWith('http') ? tour.images[0] : BASE_URL + '/' + tour.images[0]) : 'assets/img/placeholder.jpg'}" alt="${tour.title}">
                 ${tour.isFeatured ? '<span style="position:absolute; top:10px; right:10px; background:var(--primary-lime); color:#000; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:bold;">Featured</span>' : ''}
             </div>
             <div class="card-content">
@@ -309,7 +347,7 @@ async function loadBlogs() {
     container.innerHTML = blogs.map(blog => `
         <div class="item-card">
             <div class="card-img">
-                <img src="${blog.image || 'assets/img/placeholder.jpg'}" alt="${blog.title}">
+                <img src="${blog.image ? (blog.image.startsWith('http') ? blog.image : BASE_URL + '/' + blog.image) : 'assets/img/placeholder.jpg'}" alt="${blog.title}">
             </div>
             <div class="card-content">
                 <div class="card-meta">
@@ -355,7 +393,7 @@ window.editBlog = async (id) => {
     // Show existing image preview if available
     if (blog.image) {
         const preview = document.getElementById('blogImagePreview');
-        preview.src = blog.image;
+        preview.src = blog.image.startsWith('http') ? blog.image : BASE_URL + '/' + blog.image;
         preview.style.display = 'block';
     }
 
@@ -432,7 +470,7 @@ async function loadMessages() {
     const msgs = await res.json();
 
     container.innerHTML = msgs.map(msg => `
-        <div class="message-item" onclick="viewMessage('${msg._id}')">
+        <div class="message-item" onclick="viewMessage('${msg._id}')" style="position: relative; padding-right: 50px;">
             <div class="msg-sender">
                 <div class="sender-avatar">${msg.name.charAt(0).toUpperCase()}</div>
                 <div>
@@ -445,9 +483,32 @@ async function loadMessages() {
                 <div class="msg-text text-muted">${msg.message.substring(0, 50)}...</div>
             </div>
             <div class="msg-date">${new Date(msg.createdAt).toLocaleDateString()}</div>
+            <button class="btn-icon delete" onclick="deleteMessage('${msg._id}', event)" title="Delete" 
+                style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); z-index: 10;">
+                <i class="fa fa-trash"></i>
+            </button>
         </div>
     `).join('');
 }
+
+window.deleteMessage = async (id, event) => {
+    event.stopPropagation(); // Prevent opening the modal
+    if (!confirm('Are you sure you want to delete this message?')) return;
+
+    try {
+        const res = await fetchAPI(`/messages/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            showToast('Message deleted successfully');
+            loadMessages();
+            loadStats(); // Update stats counters
+        } else {
+            alert('Failed to delete message');
+        }
+    } catch (error) {
+        console.error("Error deleting message:", error);
+        alert("Error deleting message");
+    }
+};
 
 window.viewMessage = async (id) => {
     // Quick hack: re-fetch all to find one (since we don't have getById public/admin split sorted out perfectly yet)
@@ -473,5 +534,126 @@ window.closeModal = (id) => {
 window.onclick = (event) => {
     if (event.target.classList.contains('modal')) {
         event.target.style.display = "none";
+    }
+};
+// --- Bookings Logic ---
+async function loadBookings() {
+    try {
+        const response = await fetchAPI('/bookings/admin');
+        const bookings = await response.json();
+        const tbody = document.getElementById('bookingsTableBody');
+        tbody.innerHTML = '';
+
+        bookings.forEach(b => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="text-white"><strong>${b.tourTitle}</strong></td>
+                <td>
+                    <div class="text-white">${b.name}</div>
+                    <div style="font-size: 0.8rem; color: var(--text-gray)">${b.email} | ${b.phone}</div>
+                </td>
+                <td class="text-white">${b.departureDate}</td>
+                <td class="text-white">${b.persons}</td>
+                <td class="text-white">₹${b.totalPrice.toLocaleString()}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-info" onclick="viewBookingDetails('${b._id}')" title="View Details"><i class="fa-solid fa-eye"></i></button>
+                    <button class="btn btn-sm btn-outline-danger ms-1" onclick="deleteBooking('${b._id}')" title="Delete Permanent"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    } catch (err) {
+        console.error("Load Bookings Error:", err);
+        showToast("Error loading bookings");
+    }
+}
+
+async function viewBookingDetails(id) {
+    try {
+        const response = await fetch(`${API_BASE}/bookings/admin`); // We already have the list, but let's find the item
+        const bookings = await response.json();
+        const b = bookings.find(item => item._id === id);
+
+        if (!b) return;
+
+        // Use the existing messageModal or create a new one? Let's use messageModal structure for now
+        document.getElementById('msgFrom').textContent = b.name;
+        document.getElementById('msgEmail').textContent = b.email;
+        document.getElementById('msgSubject').textContent = `Booking for ${b.tourTitle}`;
+        document.getElementById('msgBody').innerHTML = `
+            <div class="booking-details-modal">
+                <p><strong>Phone:</strong> ${b.phone}</p>
+                <p><strong>Tour:</strong> ${b.tourTitle}</p>
+                <p><strong>Departure Date:</strong> ${b.departureDate}</p>
+                <p><strong>Persons:</strong> ${b.persons}</p>
+                <p><strong>Total Price:</strong> ₹${b.totalPrice.toLocaleString()}</p>
+                <p><strong>Submission Date:</strong> ${new Date(b.createdAt).toLocaleDateString()}</p>
+            </div>
+        `;
+        document.getElementById('messageModal').style.display = 'block';
+    } catch (err) {
+        console.error("View Details Error:", err);
+        showToast("Error loading details");
+    }
+}
+
+
+async function deleteBooking(id) {
+    if (!confirm('Are you sure you want to DELETE this booking PERMANENTLY? This cannot be undone.')) return;
+
+    try {
+        await fetchAPI(`/bookings/${id}`, {
+            method: 'DELETE'
+        });
+        showToast('Booking deleted');
+        loadBookings();
+    } catch (err) {
+        console.error("Delete Booking Error:", err);
+        showToast("Error deleting booking");
+    }
+}
+
+// --- Subscribers Management ---
+async function loadSubscribers() {
+    try {
+        const res = await fetchAPI('/subscribers');
+        const subscribers = await res.json();
+        const tbody = document.getElementById('subscribersTableBody');
+        if (!tbody) return;
+
+        tbody.innerHTML = subscribers.map(s => `
+            <tr>
+                <td class="text-white">${s.email}</td>
+                <td class="text-white">${new Date(s.createdAt).toLocaleDateString()}</td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger" onclick="deleteSubscriber('${s._id}')" title="Delete"><i class="fa fa-trash"></i></button>
+                </td>
+            </tr>
+        `).join('');
+
+        const totalSubscribersEl = document.getElementById('totalSubscribers');
+        if (totalSubscribersEl) totalSubscribersEl.textContent = subscribers.length;
+
+    } catch (err) {
+        console.error("Load Subscribes Error:", err);
+        showToast("Error loading subscribers");
+    }
+}
+
+window.deleteSubscriber = async (id) => {
+    if (!confirm('Are you sure you want to delete this subscriber?')) return;
+    try {
+        const res = await fetchAPI(`/subscribers/${id}`, { method: 'DELETE' });
+        if (res.ok) {
+            showToast('Subscriber deleted');
+            loadSubscribers();
+            if (document.getElementById('totalSubscribers')) {
+                // Refresh stats if we are on dashboard or have the counter
+                loadStats();
+            }
+        }
+    } catch (err) {
+        console.error("Delete Subscriber Error:", err);
+        showToast("Error deleting subscriber");
     }
 };

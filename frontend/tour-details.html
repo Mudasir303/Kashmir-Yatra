@@ -1,18 +1,20 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<!--<< Header Area >>-->
 
-<!-- Mirrored from modinatheme.com/html/travil/tour-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Jan 2026 14:50:02 GMT -->
 
 <head>
     <!-- ========== Meta Tags ========== -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="modinatheme">
-    <meta name="description" content="Travil - Travel & Tour Booking Html Template">
+    <meta name="author" content="Kashmir Yatra">
+    <meta name="description"
+        content="Get detailed information about our premium Kashmir tour itineraries. Explore day-wise plans, inclusions, and highlights for your dream trip to Srinagar, Gulmarg, and beyond.">
+    <meta name="keywords"
+        content="Kashmir itinerary, Srinagar tour details, Gulmarg package highlights, Pahalgam trip inclusions, Kashmir travel guide, custom Kashmir tours">
+    <link rel="canonical" href="https://www.kashmiryatra.com/tour-details.html">
     <!-- ======== Page title ============ -->
-    <title>Travil - Travel & Tour Booking Html Template</title>
+    <title>Tour Details - Handcrafted Kashmir Itineraries | Kashmir Yatra</title>
     <!--<< Favicon >>-->
     <link rel="shortcut icon" href="assets/img/favicon.svg">
     <!--<< Bootstrap min.css >>-->
@@ -37,6 +39,7 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
 </head>
 
 <body>
@@ -184,7 +187,7 @@
                                                 <a href="index.html">Home</a>
                                             </li>
                                             <li>
-                                                <a href="tour-details.html">
+                                                <a href="tour.html">
                                                     Tours
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -194,7 +197,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="destination-details.html">
+                                                <a href="destination.html">
                                                     Destinations
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -296,7 +299,7 @@
         <div class="container">
             <div class="tour-details-wrapper">
                 <div class="row g-5">
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-12">
                         <div class="tour-details-items">
                             <div class="details-thumb">
                                 <img id="tour-detail-image" src="assets/img/tour/details-1.jpg" alt="Tour Image"
@@ -308,7 +311,7 @@
                                     <span id="tour-detail-location">Loading location...</span>
                                 </span>
                                 <h2 id="tour-detail-title">Loading tour...</h2>
-                                <h3 class="theme-color mt-3">$<span id="tour-detail-price">0</span></h3>
+                                <h3 class="theme-color mt-3">₹<span id="tour-detail-price">0</span></h3>
                                 <h5 class="mt-2"><i class="far fa-clock"></i> Duration: <span
                                         id="tour-detail-duration"></span></h5>
 
@@ -319,118 +322,71 @@
                                     </p>
                                 </div>
 
-                                <!-- Dynamic Itinerary Section -->
-                                <div class="faq-items mt-5" id="itinerary-section" style="display: none;">
-                                    <h4>Tour Plan</h4>
-                                    <div class="faq-accordion">
-                                        <div class="accordion" id="accordion2">
-                                            <!-- Itinerary items will be injected here -->
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- Dynamic Itinerary Section Removed -->
 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="tour-details-sidebar sticky-style">
-                            <div class="tour-sidebar-items">
-                                <h3>Tour Booking</h3>
-                                <ul class="form-list">
-                                    <li>
-                                        From Date:
-                                        <div class="form-clt">
-                                            <div id="datepicker" class="input-group date" data-date-format="dd-mm-yyyy">
-                                                <input class="form-control" type="text" placeholder="mm/dd/yyyy"
-                                                    readonly>
-                                                <span class="input-group-addon"><i class="far fa-calendar"></i></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        Time:
-                                        <div class="form-clt d-flex gap-3">
-                                            <label class="checkbox-single">
-                                                <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                    <span class="checkbox-area d-center">
-                                                        <input type="checkbox">
-                                                        <span class="checkmark d-center"></span>
-                                                    </span>
-                                                    <span class="text-color">
-                                                        12:00
-                                                    </span>
-                                                </span>
-                                            </label>
-                                            <label class="checkbox-single">
-                                                <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                                    <span class="checkbox-area d-center">
-                                                        <input type="checkbox">
-                                                        <span class="checkmark d-center"></span>
-                                                    </span>
-                                                    <span class="text-color">
-                                                        10:00
-                                                    </span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                                <div class="tickets-list">
-                                    <p>Tickets</p>
-                                    <ul>
-                                        <li>
-                                            Price per person: <b>$<span id="sidebar-price">0</span></b>
-                                            <div class="form-clt">
-                                                <div class="form">
-                                                    <select class="single-select w-100">
-                                                        <option> 01</option>
-                                                        <option> 02</option>
-                                                        <option> 03</option>
-                                                        <option> 04</option>
-                                                    </select>
+                                <!-- Booking Section (Bottom) -->
+                                <div class="tour-booking-section mt-5 p-4 border rounded bg-light glass-form">
+                                    <h3 class="mb-4">Book This Tour</h3>
+                                    <form id="tour-booking-form">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <div class="form-clt">
+                                                    <label class="form-label">Full Name</label>
+                                                    <input type="text" name="name" placeholder="Enter your name"
+                                                        required>
                                                 </div>
                                             </div>
-                                        </li>
-                                    </ul>
+                                            <div class="col-md-6">
+                                                <div class="form-clt">
+                                                    <label class="form-label">Email Address</label>
+                                                    <input type="email" name="email" placeholder="Enter your email"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-clt">
+                                                    <label class="form-label">Phone Number</label>
+                                                    <input type="tel" name="phone" placeholder="Enter phone number"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-clt">
+                                                    <label class="form-label">Departure Date</label>
+                                                    <div id="datepicker" class="input-group date"
+                                                        data-date-format="dd-mm-yyyy">
+                                                        <input class="form-control" type="text" name="departureDate"
+                                                            placeholder="Select Date" readonly required>
+                                                        <span class="input-group-addon"><i
+                                                                class="far fa-calendar"></i></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-clt">
+                                                    <label class="form-label">Number of Persons</label>
+                                                    <input type="number" name="persons" value="1" min="1"
+                                                        id="booking-persons" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 d-flex align-items-end">
+                                                <div class="w-100">
+                                                    <h4 class="theme-color mb-2">Total: ₹<span
+                                                            id="booking-total-price">0</span></h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 mt-4">
+                                                <button type="submit" class="theme-btn w-100 text-center"
+                                                    id="booking-submit-btn">
+                                                    <span>Confirm Booking</span> <i class="far fa-long-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <p class="text-center mt-3 mb-0">Need help? <a href="contact.html">Contact Us</a>
+                                    </p>
                                 </div>
-                                <div class="extra-items">
-                                    <p>Add Extra:</p>
-                                    <label class="checkbox-single d-flex justify-content-between align-items-center">
-                                        <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                            <span class="checkbox-area d-center">
-                                                <input type="checkbox">
-                                                <span class="checkmark d-center"></span>
-                                            </span>
-                                            <span class="text-color">
-                                                Add service per booking
-                                            </span>
-                                        </span>
-                                        <span class="text-color">$45</span>
-                                    </label>
-                                    <label class="checkbox-single d-flex justify-content-between align-items-center">
-                                        <span class="d-flex gap-xl-3 gap-2 align-items-center">
-                                            <span class="checkbox-area d-center">
-                                                <input type="checkbox">
-                                                <span class="checkmark d-center"></span>
-                                            </span>
-                                            <span class="text-color">
-                                                Add service per personal
-                                            </span>
-                                        </span>
-                                        <span class="text-color">$35</span>
-                                    </label>
-                                </div>
-                                <ul class="total-list">
-                                </ul>
-                                <a href="contact.html" class="theme-btn">
-                                    <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
-                                </a>
-                                <p class="text">Need any help?</p>
-                            </div>
-                            <div class="offer-card bg-cover"
-                                style="background-image: url('assets/img/destinations/offter-card.jpg');">
-                                <h3>Book Now and Enjoy Amazing Savings!</h3>
-                                <img src="assets/img/destinations/disocunt.png" alt="img">
+
                             </div>
                         </div>
                     </div>
@@ -620,10 +576,11 @@
     <script src="assets/js/jquery.magnific-popup.min.js"></script>
     <!--<< Wow Animation Js >>-->
     <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/booking.js"></script>
     <!--<< Main.js >>-->
     <script src="assets/js/main.js"></script>
-    <script defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c12417176015"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
         data-cf-beacon='{"version":"2024.11.0","token":"90f7972af14a48b4add7da2b74f5d675","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
@@ -648,14 +605,15 @@
                 document.title = `${tour.title} - Kashmir Yatra`;
                 document.getElementById("tour-detail-title").textContent = tour.title;
                 document.getElementById("tour-detail-location").textContent = tour.location;
+                // Change main price text content to handle formatted currency or just number
                 document.getElementById("tour-detail-price").textContent = tour.price;
                 document.getElementById("tour-detail-duration").textContent = tour.duration;
-                document.getElementById("tour-detail-description").textContent = tour.description;
+                document.getElementById("tour-detail-description").innerHTML = tour.description;
 
-                // Sidebar Price
-                const sidebarPriceEl = document.getElementById("sidebar-price");
-                if (sidebarPriceEl) {
-                    sidebarPriceEl.textContent = tour.price;
+                // Sidebar Price -> Now Bottom Booking Price
+                const bookingPriceEl = document.getElementById("booking-price");
+                if (bookingPriceEl) {
+                    bookingPriceEl.textContent = tour.price;
                 }
 
                 // Handle Image
@@ -668,38 +626,7 @@
                     }
                 }
 
-                // Handle Itinerary
-                const itinerarySection = document.getElementById("itinerary-section");
-                const accordionContainer = document.getElementById("accordion2");
-
-                if (tour.itinerary && tour.itinerary.length > 0) {
-                    itinerarySection.style.display = "block";
-                    accordionContainer.innerHTML = "";
-
-                    tour.itinerary.forEach((item, index) => {
-                        const isFirst = index === 0;
-                        const collapseId = `faq${index + 1}`;
-                        const headingId = `heading${index + 1}`;
-
-                        const accordionItem = `
-                            <div class="accordion-item mb-3">
-                                <h5 class="accordion-header" id="${headingId}">
-                                    <button class="accordion-button ${isFirst ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="${isFirst}" aria-controls="${collapseId}">
-                                        <span>Day ${item.day}:</span> &nbsp; ${item.title}
-                                    </button>
-                                </h5>
-                                <div id="${collapseId}" class="accordion-collapse collapse ${isFirst ? 'show' : ''}" aria-labelledby="${headingId}" data-bs-parent="#accordion2">
-                                    <div class="accordion-body">
-                                        ${item.activity}
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                        accordionContainer.insertAdjacentHTML("beforeend", accordionItem);
-                    });
-                } else {
-                    itinerarySection.style.display = "none";
-                }
+                // Handle Itinerary - Removed per user request
 
             } catch (error) {
                 console.error("Error fetching tour details:", error);
@@ -720,4 +647,4 @@
 
 <!-- Mirrored from modinatheme.com/html/travil/tour-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Jan 2026 14:50:04 GMT -->
 
-</html>
+</htm

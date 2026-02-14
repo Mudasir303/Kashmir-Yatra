@@ -3,10 +3,56 @@
     Version         : 1.0
 * ================================================================= */
 
-(function($) {
+const showToast = (message, type = 'info') => {
+    let container = document.getElementById('toast-container');
+    if (!container) {
+        container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+    }
+
+    const toast = document.createElement('div');
+    toast.className = `toast-item ${type}`;
+
+    // Icon based on type
+    let icon = 'fa-info-circle';
+    if (type === 'success') icon = 'fa-check-circle';
+    if (type === 'error') icon = 'fa-exclamation-circle';
+
+    toast.innerHTML = `
+        <i class="fas ${icon}"></i>
+        <span class="toast-message">${message}</span>
+        <button class="toast-close">&times;</button>
+    `;
+
+    container.appendChild(toast);
+
+    // Trigger animation
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+
+    // Auto remove
+    const removeToast = () => {
+        toast.classList.remove('show');
+        toast.addEventListener('transitionend', () => {
+            toast.remove();
+        });
+    };
+
+    const timer = setTimeout(removeToast, 3000);
+
+    // Manual close
+    toast.querySelector('.toast-close').addEventListener('click', () => {
+        clearTimeout(timer);
+        removeToast();
+    });
+};
+
+(function ($) {
     "use strict";
 
-    $(document).ready( function() {
+    $(document).ready(function () {
 
 
         //>> Mobile Menu Js Start <<//
@@ -17,17 +63,17 @@
         });
 
         //>> Sidebar Toggle Js Start <<//
-        $(".offcanvas__close,.offcanvas__overlay").on("click", function() {
+        $(".offcanvas__close,.offcanvas__overlay").on("click", function () {
             $(".offcanvas__info").removeClass("info-open");
             $(".offcanvas__overlay").removeClass("overlay-open");
         });
-        $(".sidebar__toggle").on("click", function() {
+        $(".sidebar__toggle").on("click", function () {
             $(".offcanvas__info").addClass("info-open");
             $(".offcanvas__overlay").addClass("overlay-open");
         });
 
         //>> Body Overlay Js Start <<//
-        $(".body-overlay").on("click", function() {
+        $(".body-overlay").on("click", function () {
             $(".offcanvas__area").removeClass("offcanvas-opened");
             $(".df-search-area").removeClass("opened");;
             $(".body-overlay").removeClass("opened");
@@ -35,7 +81,7 @@
 
         //>> Sticky Header Js Start <<//
 
-        $(window).scroll(function() {
+        $(window).scroll(function () {
             if ($(this).scrollTop() > 250) {
                 $("#header-sticky").addClass("sticky");
             } else {
@@ -47,8 +93,8 @@
         //>> Wow Animation Start <<//
         new WOW().init();
 
-         //>> Video Popup Start <<//
-         $(".img-popup").magnificPopup({
+        //>> Video Popup Start <<//
+        $(".img-popup").magnificPopup({
             type: "image",
             gallery: {
                 enabled: true,
@@ -65,14 +111,14 @@
         new WOW().init();
 
         //>> Nice Select Start <<//
-         //>> Nice Select Start <<//
-         if ($('.single-select').length) {
+        //>> Nice Select Start <<//
+        if ($('.single-select').length) {
             $('.single-select').niceSelect();
         }
 
-        $('.odometer').appear(function(e) {
+        $('.odometer').appear(function (e) {
             var odo = $(".odometer");
-            odo.each(function() {
+            odo.each(function () {
                 var countNumber = $(this).attr("data-count");
                 $(this).html(countNumber);
             });
@@ -125,7 +171,7 @@
         //>> Banner Animation <<//
 
         //>> Brand Start <<//
-        if($('.brand-slider').length > 0) {
+        if ($('.brand-slider').length > 0) {
             const brandSlider = new Swiper(".brand-slider", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -161,7 +207,7 @@
         }
 
         //>> Tour Start <<//
-        if($('.tour-slider').length > 0) {
+        if ($('.tour-slider').length > 0) {
             const tourSlider = new Swiper(".tour-slider", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -200,7 +246,7 @@
             });
         }
 
-        if($('.tour-slider-5').length > 0) {
+        if ($('.tour-slider-5').length > 0) {
             const tourSlider5 = new Swiper(".tour-slider-5", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -244,7 +290,7 @@
 
 
 
-        if($('.testimonial-slider-3').length > 0) {
+        if ($('.testimonial-slider-3').length > 0) {
             const testimonialSider3 = new Swiper(".testimonial-slider-3", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -274,7 +320,7 @@
             });
         }
 
-        if($('.testimonial-slider-4').length > 0) {
+        if ($('.testimonial-slider-4').length > 0) {
             const testimonialSider4 = new Swiper(".testimonial-slider-4", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -304,7 +350,7 @@
             });
         }
 
-        if($('.testimonial-slider-5').length > 0) {
+        if ($('.testimonial-slider-5').length > 0) {
             const testimonialSider5 = new Swiper(".testimonial-slider-5", {
                 spaceBetween: 30,
                 speed: 2000,
@@ -321,7 +367,7 @@
         }
 
         //>> Text Slider Start <<//
-        if($('.text-slider').length > 0) {
+        if ($('.text-slider').length > 0) {
             const textSlider = new Swiper(".text-slider", {
                 slidesPerView: 'auto',
                 spaceBetween: 35,
@@ -337,7 +383,7 @@
             });
         }
 
-        if($('.text-slider-2').length > 0) {
+        if ($('.text-slider-2').length > 0) {
             const textSlider2 = new Swiper(".text-slider-2", {
                 slidesPerView: 'auto',
                 spaceBetween: 35,
@@ -354,7 +400,7 @@
         }
 
         //>> Destination Slider Start <<//
-        if($('.destination-auto-slider').length > 0) {
+        if ($('.destination-auto-slider').length > 0) {
             const destinationAutoSlider = new Swiper(".destination-auto-slider", {
                 slidesPerView: 'auto',
                 spaceBetween: 70,
@@ -370,7 +416,7 @@
             });
         }
 
-        if($('.destination-auto-slider-2').length > 0) {
+        if ($('.destination-auto-slider-2').length > 0) {
             const destinationAutoSlider2 = new Swiper(".destination-auto-slider-2", {
                 slidesPerView: 'auto',
                 spaceBetween: 70,
@@ -387,7 +433,7 @@
         }
 
         //>> Instagram Slider Start <<//
-        if($('.instagram-slider').length > 0) {
+        if ($('.instagram-slider').length > 0) {
             const instagramSlider = new Swiper(".instagram-slider", {
                 spaceBetween: 0,
                 speed: 2000,
@@ -453,7 +499,7 @@
         //>> PaymentMethod Js Start <<//
         const paymentMethod = $("input[name='pay-method']:checked").val();
         $(".payment").html(paymentMethod);
-        $(".checkout-radio-single").on("click", function() {
+        $(".checkout-radio-single").on("click", function () {
             let paymentMethod = $("input[name='pay-method']:checked").val();
             $(".payment").html(paymentMethod);
         });
@@ -465,7 +511,7 @@
 
         if (inputs.length > 0 && btnminus.length > 0 && btnplus.length > 0) {
 
-            inputs.forEach(function(input, index) {
+            inputs.forEach(function (input, index) {
                 const min = Number(input.getAttribute('min'));
                 const max = Number(input.getAttribute('max'));
                 const step = Number(input.getAttribute('step'));
@@ -498,29 +544,29 @@
         //>> Destination Hover Js Start <<//
         const getSlide = $('destination-wrapper-4, .destination-image-items-4').length - 1;
         const slideCal = 100 / getSlide + '%';
-        
+
         $('.destination-image-items-4').css({
             "width": slideCal
         });
-        
-        $(document).on('mouseenter', '.destination-image-items-4', function() {
+
+        $(document).on('mouseenter', '.destination-image-items-4', function () {
             $('.destination-image-items-4').removeClass('active');
             $(this).addClass('active');
-        });     
+        });
 
-         // Search bar
-         $(".search-toggle").on('click', function(){
+        // Search bar
+        $(".search-toggle").on('click', function () {
             $(".header-search-bar").addClass("search-open");
             $(".offcanvas-overlay").addClass("offcanvas-overlay-open");
-            });
+        });
 
-        $(".search-close,.offcanvas-overlay").on('click', function(){
+        $(".search-close,.offcanvas-overlay").on('click', function () {
             $(".header-search-bar").removeClass("search-open");
             $(".offcanvas-overlay").removeClass("offcanvas-overlay-open");
         });
 
         //>> Back To Top Slider Start <<//
-        $(window).on('scroll', function() {
+        $(window).on('scroll', function () {
             if ($(this).scrollTop() > 20) {
                 $("#back-top").addClass("show");
             } else {
@@ -528,19 +574,19 @@
             }
         });
 
-        $(document).on('click', '#back-top', function() {
+        $(document).on('click', '#back-top', function () {
             $('html, body').animate({ scrollTop: 0 }, 800);
             return false;
         });
 
-        $(function() {
+        $(function () {
             $("#datepicker, #datepicker2, #datepicker3, #datepicker4, #datepicker5, #datepicker6, #datepicker7, #datepicker8, #datepicker9, #datepicker10, #datepicker11").datepicker({
                 autoclose: true,
                 todayHighlight: true
             });
         });
 
-        
+
     }); // End Document Ready Function
 
     //Price Range Slideer
@@ -590,27 +636,39 @@
     //>> Prealoader Start <<//
     function loader() {
         // Lock horizontal overflow early to prevent layout shift while the preloader is visible
-        document.addEventListener('DOMContentLoaded', function () {
+        const lockOverflow = () => {
             try {
                 document.documentElement.style.overflowX = 'hidden';
                 document.body.style.overflowX = 'hidden';
-            } catch (e) {}
-        });
+            } catch (e) { }
+        };
 
-        $(window).on('load', function() {
-            // Animate loader off screen
-            $(".preloader").addClass('loaded');                    
-            $(".preloader").delay(600).fadeOut(function() {
-                // restore overflow after preloader is removed
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', lockOverflow);
+        } else {
+            lockOverflow();
+        }
+
+        const hideLoader = () => {
+            $(".preloader").addClass('loaded');
+            $(".preloader").delay(600).fadeOut(function () {
                 try {
                     document.documentElement.style.overflowX = '';
                     document.body.style.overflowX = '';
-                } catch (e) {}
-            });                       
+                } catch (e) { }
+            });
+        };
+
+        // Fallback: hide loader after 3s even if window.load doesn't fire
+        const fallbackTimer = setTimeout(hideLoader, 3000);
+
+        $(window).on('load', function () {
+            clearTimeout(fallbackTimer);
+            hideLoader();
         });
     }
 
     loader();
-    
+
 })(jQuery); // End jQuery
 

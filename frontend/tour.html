@@ -9,10 +9,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="modinatheme">
-    <meta name="description" content="Travil - Travel & Tour Booking Html Template">
+    <meta name="author" content="Kashmir Yatra">
+    <meta name="description"
+        content="Explore our wide range of Kashmir tour packages. From Srinagar houseboats to Gulmarg skiing and Pahalgam trekking, find your perfect Himalayan getaway with Kashmir Yatra.">
+    <meta name="keywords"
+        content="Kashmir tour packages, Srinagar tour, Gulmarg holiday, Pahalgam trip, Amarnath Yatra packages, Vaishno Devi tour, Kashmir honeymoon packages, budget tours Kashmir">
+    <link rel="canonical" href="https://www.kashmiryatra.com/tour.html">
     <!-- ======== Page title ============ -->
-    <title>Travil - Travel & Tour Booking Html Template</title>
+    <title>Kashmir Tour Packages - Explore Srinagar, Gulmarg & Pahalgam | Kashmir Yatra</title>
     <!--<< Favicon >>-->
     <link rel="shortcut icon" href="assets/img/favicon.svg">
     <!--<< Bootstrap min.css >>-->
@@ -37,6 +41,25 @@
     <link rel="stylesheet" href="assets/css/main.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kashmiryatra.com/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Tours",
+        "item": "https://www.kashmiryatra.com/tour.html"
+      }]
+    }
+    </script>
 </head>
 
 <body>
@@ -184,7 +207,7 @@
                                                 <a href="index.html">Home</a>
                                             </li>
                                             <li>
-                                                <a href="tour-details.html">
+                                                <a href="tour.html">
                                                     Tours
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -196,7 +219,7 @@
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="destination-details.html">
+                                                <a href="destination.html">
                                                     Destinations
                                                     <i class="fas fa-chevron-down"></i>
                                                 </a>
@@ -255,7 +278,7 @@
                             </div>
                             <div class="contact-items">
                                 <div class="icon">
-                                    <img src="assets/img/call.png" alt="img">
+                                    <img src="assets/img/call.png" alt="Kashmir Yatra Tour">
                                 </div>
                                 <div class="content">
                                     <span>Call Us</span>
@@ -327,219 +350,341 @@
             </div>
         </div>
         <div class="plane-shape float-bob-x">
-            <img src="assets/img/breadcrumb-plane.png" alt="img">
+            <img src="assets/img/breadcrumb-plane.png" alt="Kashmir Yatra Tour">
         </div>
     </div>
 
     <!-- Tour Section Start -->
     <section class="tour-section fix section-padding">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/01.jpg" alt="img">
+            <!-- Domestic Section -->
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="section-title text-center">
+                        <span class="wow fadeInUp">Incredible India</span>
+                        <h2 class="wow fadeInUp" data-wow-delay=".3s">Domestic Tours</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4" id="domestic-tours-container">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- International Section -->
+            <div class="row mt-5 pt-4">
+                <div class="col-12 mb-4">
+                    <div class="section-title text-center">
+                        <span class="wow fadeInUp">World Across</span>
+                        <h2 class="wow fadeInUp" data-wow-delay=".3s">International Tours</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4" id="international-tours-container">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Script to load tours -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const domesticContainer = document.getElementById("domestic-tours-container");
+            const internationalContainer = document.getElementById("international-tours-container");
+            const BASE_URL = "http://localhost:3000"; // Adjust if needed
+
+            // Helper function to render a group of tours
+            const renderGroup = (container, title, items) => {
+                if (items.length === 0) return;
+
+                const groupHeader = `
+                    <div class="col-12 mt-4 mb-2">
+                        <h4 class="mb-3 theme-color border-bottom pb-2">${title}</h4>
+                    </div>
+                `;
+                container.insertAdjacentHTML("beforeend", groupHeader);
+
+                items.forEach(tour => {
+                    const imagePath = tour.images && tour.images.length > 0
+                        ? `${BASE_URL}/${tour.images[0]}`
+                        : "assets/img/tour/details-1.jpg";
+
+                    const tourHTML = `
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="tour-box-items mt-0">
+                                <div class="thumb">
+                                    <a href="tour-details.html?id=${tour._id}">
+                                        <img src="${imagePath}" alt="${tour.title}" style="height: 250px; width: 100%; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <span>${tour.location}</span>
+                                    <h4>
+                                        <a href="tour-details.html?id=${tour._id}">
+                                            ${tour.title}
+                                        </a>
+                                    </h4>
+                                    <h6>From <span>₹${tour.price}</span></h6>
+                                    <ul class="list">
+                                        <li>
+                                            <i class="far fa-clock"></i>
+                                            ${tour.duration}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="content">
-                            <span>AUSTRALIA</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Island Peak Climbing
-                                </a>
-                            </h4>
-                            <h6>From <span>$376</span> <del>$999</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    3 Days / 2 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
+                     `;
+                    container.insertAdjacentHTML("beforeend", tourHTML);
+                });
+            };
+
+            // Fetch and Render Domestic Tours
+            try {
+                const res = await fetch(`${BASE_URL}/api/tours?category=Domestic`);
+                if (!res.ok) throw new Error("Failed to fetch domestic tours");
+                const tours = await res.json();
+
+                domesticContainer.innerHTML = ""; // Clear loader
+
+                if (tours.length === 0) {
+                    domesticContainer.innerHTML = '<p class="text-center">No domestic tours found.</p>';
+                } else {
+                    const groups = {
+                        "Kashmir": [],
+                        "Ladakh": [],
+                        "Himachal": [],
+                        "Andaman": []
+                    };
+                    const others = [];
+
+                    tours.forEach(tour => {
+                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
+                        if (sub.includes("kashmir")) groups["Kashmir"].push(tour);
+                        else if (sub.includes("ladakh")) groups["Ladakh"].push(tour);
+                        else if (sub.includes("himachal") || sub.includes("manali") || sub.includes("shimla")) groups["Himachal"].push(tour);
+                        else if (sub.includes("andaman")) groups["Andaman"].push(tour);
+                        else others.push(tour);
+                    });
+
+                    if (groups["Kashmir"].length) renderGroup(domesticContainer, "Kashmir Packages", groups["Kashmir"]);
+                    if (groups["Ladakh"].length) renderGroup(domesticContainer, "Ladakh Adventures", groups["Ladakh"]);
+                    if (groups["Himachal"].length) renderGroup(domesticContainer, "Himachal Pradesh", groups["Himachal"]);
+                    if (groups["Andaman"].length) renderGroup(domesticContainer, "Andaman & Nicobar", groups["Andaman"]);
+                    if (others.length) renderGroup(domesticContainer, "Other Domestic Destinations", others);
+                }
+            } catch (err) {
+                console.error(err);
+                domesticContainer.innerHTML = '<p class="text-center text-danger">Error loading domestic tours.</p>';
+            }
+
+            // Fetch and Render International Tours
+            try {
+                const res = await fetch(`${BASE_URL}/api/tours?category=International`);
+                if (!res.ok) throw new Error("Failed to fetch international tours");
+                const tours = await res.json();
+
+                internationalContainer.innerHTML = ""; // Clear loader
+
+                if (tours.length === 0) {
+                    internationalContainer.innerHTML = '<p class="text-center">No international tours found.</p>';
+                } else {
+                    const groups = {
+                        "Dubai": [],
+                        "Thailand": [],
+                        "Bali": []
+                    };
+                    const others = [];
+
+                    tours.forEach(tour => {
+                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
+                        if (sub.includes("dubai")) groups["Dubai"].push(tour);
+                        else if (sub.includes("thailand")) groups["Thailand"].push(tour);
+                        else if (sub.includes("bali")) groups["Bali"].push(tour);
+                        else others.push(tour);
+                    });
+
+                    if (groups["Dubai"].length) renderGroup(internationalContainer, "Dubai Packages", groups["Dubai"]);
+                    if (groups["Thailand"].length) renderGroup(internationalContainer, "Thailand Getaways", groups["Thailand"]);
+                    if (groups["Bali"].length) renderGroup(internationalContainer, "Beautiful Bali", groups["Bali"]);
+                    if (others.length) renderGroup(internationalContainer, "Other International Destinations", others);
+                }
+            } catch (err) {
+                console.error(err);
+                internationalContainer.innerHTML = '<p class="text-center text-danger">Error loading international tours.</p>';
+            }
+        });
+    </script>
+
+    <!--Testimonial Section Start -->
+    <section class="testimonial-section-4 section-padding">
+        <div class="container">
+            <div class="section-title-area">
+                <div class="section-title">
+                    <span class="wow fadeInUp">Tour Reviews</span>
+                    <h2 class="wow fadeInUp" data-wow-delay=".3s">
+                        Traveler Stories from <br> Our Packages
+                    </h2>
+                </div>
+                <p class="wow fadeInUp" data-wow-delay=".5">See how our customized tour packages have created <br>
+                    lifelong memories for families, couples, and adventurers.
+                </p>
+            </div>
+            <div class="swiper testimonial-slider-4">
+                <div class="swiper-wrapper">
+                    <!-- Testimonial 1 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-box-items-4">
+                            <div class="testi-img">
+                                <img src="assets/img/testimonial/client-03.png" alt="Priya & Raj">
+                            </div>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="icon">
+                                <img src="assets/img/testimonial/quote-01.png" alt="icon">
+                            </div>
+                            <h3>
+                                "The 'Gems of Kashmir' package was perfectly paced. We saw everything from Mughal
+                                Gardens to Gulmarg without feeling rushed."
+                            </h3>
+                            <div class="client-info">
+                                <h4>Priya & Raj</h4>
+                                <span>Honeymoon Couple</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-box-items-4">
+                            <div class="testi-img">
+                                <img src="assets/img/testimonial/client-04.png" alt="David Miller">
+                            </div>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="icon">
+                                <img src="assets/img/testimonial/quote-01.png" alt="icon">
+                            </div>
+                            <h3>
+                                "I customized my trekking tour to Tarsar Marsar. The logistics were flawless, and the
+                                camping gear provided was top-notch."
+                            </h3>
+                            <div class="client-info">
+                                <h4>David Miller</h4>
+                                <span>Adventure Traveler</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="swiper-slide">
+                        <div class="testimonial-box-items-4">
+                            <div class="testi-img">
+                                <img src="assets/img/testimonial/client-03.png" alt="Mrs. Iyer">
+                            </div>
+                            <div class="star">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="icon">
+                                <img src="assets/img/testimonial/quote-01.png" alt="icon">
+                            </div>
+                            <h3>
+                                "Traveling with kids can be hard, but their Family Package made it easy. The driver was
+                                very patient and the hotels were kid-friendly."
+                            </h3>
+                            <div class="client-info">
+                                <h4>Mrs. Iyer</h4>
+                                <span>Family Vacation</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/02.jpg" alt="img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Faq-section Start -->
+    <section class="faq-section section-padding fix">
+        <div class="container">
+            <div class="section-title text-center">
+                <span class="wow fadeInUp">Tour FAQs</span>
+                <h2 class="wow fadeInUp" data-wow-delay=".3s">Common Questions About Our Tours</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="faq-accordion">
+                        <div class="accordion" id="accordionFaqTour">
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".1s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-tour-1" aria-expanded="false" aria-controls="faq-tour-1">
+                                        Can I customize an existing tour package?
+                                    </button>
+                                </h5>
+                                <div id="faq-tour-1" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqTour">
+                                    <div class="accordion-body">
+                                        Yes! All our packages are 100% customizable. You can add days, change hotels, or
+                                        include specific activities like pony rides or river rafting to suit your
+                                        preferences.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".2s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-tour-2" aria-expanded="false" aria-controls="faq-tour-2">
+                                        Do you offer group discounts?
+                                    </button>
+                                </h5>
+                                <div id="faq-tour-2" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqTour">
+                                    <div class="accordion-body">
+                                        We offer special rates for groups larger than 10 people. Please contact our
+                                        support team for a custom quote for corporate outings or large family reunions.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".3s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-tour-3" aria-expanded="false" aria-controls="faq-tour-3">
+                                        What is your cancellation policy?
+                                    </button>
+                                </h5>
+                                <div id="faq-tour-3" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqTour">
+                                    <div class="accordion-body">
+                                        We offer flexible cancellation policies. Generally, cancellations made 15 days
+                                        prior to arrival seek a minimal deduction. Please check the specific terms of
+                                        your chosen package.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="content">
-                            <span>LOS ANGLES</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Ocean on the Maldive
-                                </a>
-                            </h4>
-                            <h6>From <span>$995</span> <del>$1048</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    4 Days / 5 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/03.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>LONDON</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Short around Pokhara
-                                </a>
-                            </h4>
-                            <h6>From <span>$574</span> <del>$943</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    2 Days / 3 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/04.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>BANGLADESH</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Langtang Valley Trekking
-                                </a>
-                            </h4>
-                            <h6>From <span>$678</span> <del>$899</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    1 Week
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    2 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/05.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>WASINGTON</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    France Eiffel Tower
-                                </a>
-                            </h4>
-                            <h6>From <span>$473</span> <del>$199</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    4 Days / 5 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/06.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>AMERICA</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Gananoque Islands
-                                </a>
-                            </h4>
-                            <h6>From <span>$345</span> <del>$599</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    9 Days / 8 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/077.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>FRANCE</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Paradise, Places
-                                </a>
-                            </h4>
-                            <h6>From <span>$270</span> <del>$399</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    2 Weeks
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    5 Countries
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".8s">
-                    <div class="tour-box-items mt-0">
-                        <div class="thumb">
-                            <img src="assets/img/tour/088.jpg" alt="img">
-                        </div>
-                        <div class="content">
-                            <span>DHAKA</span>
-                            <h4>
-                                <a href="tour-details.html">
-                                    Moscow Red City Land
-                                </a>
-                            </h4>
-                            <h6>From <span>$678</span> <del>$899</del></h6>
-                            <ul class="list">
-                                <li>
-                                    <i class="far fa-calendar"></i>
-                                    4 Days / 5 Night
-                                </li>
-                                <li>
-                                    <i class="far fa-flag"></i>
-                                    3 Countries
-                                </li>
-                            </ul>
+                        <div class="text-center mt-4">
+                            <a href="faq.html" class="theme-btn">
+                                <span>View All FAQs</span> <i class="far fa-long-arrow-right"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -689,7 +834,7 @@
         </div>
     </footer>
 
-        <!-- Floating Social Icons Bar Start -->
+    <!-- Floating Social Icons Bar Start -->
     <div class="floating-social-bar">
         <a href="https://wa.me/919149851190" target="_blank" class="social-item whatsapp" title="WhatsApp Us">
             <i class="fab fa-whatsapp"></i>
@@ -740,4 +885,3 @@
 <!-- Mirrored from modinatheme.com/html/travil/tour.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Jan 2026 14:50:04 GMT -->
 
 </html>
-

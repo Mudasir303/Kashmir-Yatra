@@ -23,8 +23,9 @@ exports.adminLogin = async (req, res) => {
     res.json({
       success: true,
       token,
-      admin: {
+      user: {
         id: admin._id,
+        name: admin.name,
         email: admin.email
       }
     });

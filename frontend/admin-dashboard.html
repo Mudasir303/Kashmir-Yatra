@@ -31,11 +31,14 @@
                 <li data-target="blogs">
                     <a href="#"><i class="fa-solid fa-feather-pointed"></i> <span>Blogs</span></a>
                 </li>
-                <li data-target="messages">
-                    <a href="#"><i class="fa-regular fa-envelope"></i> <span>Messages</span></a>
+                <li data-target="bookings">
+                    <a href="#"><i class="fa-solid fa-calendar-check"></i> <span>Bookings</span></a>
                 </li>
                 <li data-target="messages">
                     <a href="#"><i class="fa-regular fa-envelope"></i> <span>Messages</span></a>
+                </li>
+                <li data-target="subscribers">
+                    <a href="#"><i class="fa-solid fa-users"></i> <span>Subscribers</span></a>
                 </li>
             </ul>
 
@@ -56,8 +59,8 @@
                     <div class="user-profile">
                         <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="Admin">
                         <div class="user-info">
-                            <h4>Admin</h4>
-                            <p>Traveler Pro</p>
+                            <h4 id="adminName">Admin</h4>
+                            <p id="adminEmail">Traveler Pro</p>
                         </div>
                     </div>
                 </div>
@@ -93,11 +96,11 @@
                     <div class="stat-card"
                         style="background: var(--bg-dark); padding: 20px; border-radius: 15px; flex: 1; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between;">
                         <div>
-                            <h3 style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px;">Messages
+                            <h3 style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 5px;">Bookings
                             </h3>
-                            <p id="totalMessages" style="font-size: 1.5rem; font-weight: 700; margin: 0;">...</p>
+                            <p id="totalBookings" style="font-size: 1.5rem; font-weight: 700; margin: 0;">...</p>
                         </div>
-                        <i class="fa-regular fa-envelope" style="font-size: 2rem; color: #74b9ff;"></i>
+                        <i class="fa-solid fa-calendar-check" style="font-size: 2rem; color: #fdcb6e;"></i>
                     </div>
                 </div>
 
@@ -172,12 +175,66 @@
                 <div class="card-grid" id="blogsTableBody"></div>
             </div>
 
-            <!-- Messages Section -->
-            <div id="messages-section" class="content-view">
-                <h3>Messages</h3>
-                <div class="messages-list" id="messagesTableBody"></div>
+            <!-- Bookings Section -->
+            <div id="bookings-section" class="content-view">
+                <h3>Manage Bookings</h3>
+                <div class="card bg-dark-custom">
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table align-items-center table-flush table-dark-custom">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>Tour</th>
+                                        <th>Traveler</th>
+                                        <th>Date</th>
+                                        <th>Persons</th>
+                                        <th>Total Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bookingsTableBody">
+                                    <!-- Dynamic Content -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <!-- Messages Section -->
+            <div id="messages-section" class="content-view">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h3>Inquiries & Messages</h3>
+                    </div>
+                    <div id="messagesTableBody" class="message-list">
+                        <!-- Dynamic content -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Subscribers Section -->
+            <div id="subscribers-section" class="content-view">
+                <div class="section-card">
+                    <div class="card-header">
+                        <h3>Newsletter Subscribers</h3>
+                    </div>
+                    <div class="table-responsive mt-3">
+                        <table class="table table-dark-custom">
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>Email</th>
+                                    <th>Subscribed On</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="subscribersTableBody">
+                                <!-- Dynamic content -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 

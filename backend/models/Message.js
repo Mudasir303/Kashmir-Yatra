@@ -13,6 +13,10 @@ const messageSchema = new mongoose.Schema(
         subject: {
             type: String
         },
+        phone: {
+            type: String,
+            required: true
+        },
         message: {
             type: String,
             required: true

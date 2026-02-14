@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow admin and internal pages
+Disallow: /admin-dashboard.html
+Disallow: /admin-login.html
+Disallow: /checkout.html
+Disallow: /shop-cart.html
+
+# Sitemap location
+Sitemap: https://www.kashmiryatra.com/sitemap.xml

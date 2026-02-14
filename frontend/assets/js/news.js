@@ -25,24 +25,26 @@ async function loadBlogs() {
             const snippet = plainText.substring(0, 150) + '...';
 
             const blogHTML = `
-            <div class="single-blog-post">
-                <div class="post-featured-thumb bg-cover" style="background-image: url('${imageSrc}');"></div>
-                <div class="post-content">
-                    <div class="post-meta">
-                        <span><i class="fal fa-user"></i> ${blog.author}</span>
-                        <span><i class="fal fa-calendar-alt"></i> ${date}</span>
-                    </div>
-                    <h2>
-                        <a href="news-details.html?id=${blog._id}">
-                            ${blog.title}
+            <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
+                <div class="single-blog-post h-100 d-flex flex-column">
+                    <div class="post-featured-thumb bg-cover" style="background-image: url('${imageSrc}'); height: 250px; flex-shrink: 0;"></div>
+                    <div class="post-content d-flex flex-column flex-grow-1">
+                        <div class="post-meta">
+                            <span><i class="fal fa-user"></i> ${blog.author}</span>
+                            <span><i class="fal fa-calendar-alt"></i> ${date}</span>
+                        </div>
+                        <h2>
+                            <a href="news-details.html?id=${blog._id}">
+                                ${blog.title}
+                            </a>
+                        </h2>
+                        <p class="flex-grow-1">
+                            ${snippet}
+                        </p>
+                        <a href="news-details.html?id=${blog._id}" class="theme-btn mt-auto line-height">
+                            <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                         </a>
-                    </h2>
-                    <p>
-                        ${snippet}
-                    </p>
-                    <a href="news-details.html?id=${blog._id}" class="theme-btn mt-4 line-height">
-                        <span>Read More</span> <i class="far fa-long-arrow-right"></i>
-                    </a>
+                    </div>
                 </div>
             </div>`;
 

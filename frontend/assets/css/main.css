@@ -486,6 +486,7 @@ p {
   opacity: 0;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
+  pointer-events: none;
 }
 
 .preloader.loaded .loader-section .bg {
@@ -12426,7 +12427,7 @@ End woocomerce css
 }
 
 .blog-wrapper .single-blog-post .post-content p {
-  margin-top: 15px;
+  margin-top: 60px;
 }
 
 .blog-wrapper .single-blog-post .post-content .post-meta {
