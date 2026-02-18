@@ -18,17 +18,16 @@ async function loadBlogs() {
             const date = new Date(blog.createdAt).toLocaleDateString();
             const imageSrc = blog.image || 'assets/img/news/post-1.jpg';
 
-            // Create snippets from content (strip HTML)
+            // Create snippets from content (strip HTML correctly with spacing)
             const tmpDiv = document.createElement("div");
-            tmpDiv.innerHTML = blog.content;
+            tmpDiv.innerHTML = blog.content.replace(/<\/p>|<\/h\d>|<br\s*\/?>/gi, '$& ');
             const plainText = tmpDiv.textContent || tmpDiv.innerText || "";
-            const snippet = plainText.substring(0, 150) + '...';
+            const snippet = plainText.trim().substring(0, 150) + '...';
 
             const blogHTML = `
             <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-                <div class="single-blog-post h-100 d-flex flex-column">
-                    <div class="post-featured-thumb bg-cover" style="background-image: url('${imageSrc}'); height: 250px; flex-shrink: 0;"></div>
-                    <div class="post-content d-flex flex-column flex-grow-1">
+                <div class="single-blog-post">
+                    <div class="post-content pb-0">
                         <div class="post-meta">
                             <span><i class="fal fa-user"></i> ${blog.author}</span>
                             <span><i class="fal fa-calendar-alt"></i> ${date}</span>
@@ -38,10 +37,15 @@ async function loadBlogs() {
                                 ${blog.title}
                             </a>
                         </h2>
-                        <p class="flex-grow-1">
+                    </div>
+                    <div class="post-featured-thumb">
+                        <img src="${imageSrc}" alt="${blog.title}">
+                    </div>
+                    <div class="post-content pt-3">
+                        <p>
                             ${snippet}
                         </p>
-                        <a href="news-details.html?id=${blog._id}" class="theme-btn mt-auto line-height">
+                        <a href="news-details.html?id=${blog._id}" class="theme-btn mt-auto">
                             <span>Read More</span> <i class="far fa-long-arrow-right"></i>
                         </a>
                     </div>

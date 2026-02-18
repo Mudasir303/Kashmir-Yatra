@@ -1236,3 +1236,217 @@
     font-size: 16px !important;
     font-weight: 700 !important;
 }
+
+/* Professional Blog & News Styles */
+.single-blog-post {
+    background: #ffffff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.single-blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+}
+
+.single-blog-post .post-content.pb-0 {
+    padding: 25px 25px 0;
+    height: 185px;
+    /* Increased to prevent overlap with 3-line titles */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.single-blog-post .post-meta {
+    margin-bottom: 12px;
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+    color: #888;
+    flex-shrink: 0;
+}
+
+.single-blog-post h2 {
+    font-size: 18px;
+    /* Slightly smaller for better fit in cards */
+    line-height: 1.5;
+    margin-bottom: 0;
+    font-weight: 700;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.single-blog-post h2 a {
+    color: var(--header);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.single-blog-post h2 a:hover {
+    color: var(--theme-color);
+}
+
+.single-blog-post .post-featured-thumb {
+    height: 240px;
+    /* Standardized fixed image height */
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+.single-blog-post .post-featured-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.single-blog-post:hover .post-featured-thumb img {
+    transform: scale(1.05);
+}
+
+.single-blog-post .post-content.pt-3 {
+    padding: 20px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.single-blog-post p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex-grow: 1;
+    /* Pushes button to the bottom */
+}
+
+/* Blog Details Specifics */
+.blog-post-details {
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.03);
+}
+
+.blog-post-details #blogTitle {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: var(--header);
+}
+
+@media (max-width: 767px) {
+    .blog-post-details #blogTitle {
+        font-size: 30px;
+    }
+
+    .blog-post-details {
+        padding: 20px;
+    }
+}
+
+.blog-post-details .post-meta {
+    padding-bottom: 25px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.blog-post-details #blogContent {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.blog-post-details #blogContent p {
+    margin-bottom: 25px;
+}
+
+.blog-post-details .post-featured-thumb img {
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Blog Card Alignment Fixes - Home Page */
+#blog-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#blog-container .wow {
+    display: flex !important;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.news-box-items-4 {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #fff;
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.news-box-items-4:hover {
+    transform: translateY(-5px);
+}
+
+.news-box-items-4 .news-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 25px !important;
+}
+
+.news-box-items-4 .news-content h3 {
+    min-height: 72px;
+    /* Accommodates ~3 lines of title */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 25px !important;
+    border-bottom: 1px dashed rgba(21, 20, 21, 0.1);
+    padding-bottom: 20px;
+}
+
+.news-box-items-4 .news-content .link-btn {
+    margin-top: auto;
+    padding-top: 15px;
+    width: 100%;
+    color: var(--theme-color);
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.news-box-items-4 .news-content .link-btn:hover {
+    color: var(--theme-color-2);
+}
+
+.news-box-items-4 .news-img .post-date {
+    top: 20px !important;
+    left: 20px !important;
+}

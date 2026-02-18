@@ -12069,8 +12069,9 @@ End woocomerce css
   line-height: 1.4;
 }
 
-.blog-wrapper .single-blog-post.post-details .post-content h1,
+
 .blog-wrapper .single-blog-post.post-details .post-content h2,
+.blog-wrapper .single-blog-post.post-details .post-content h1,
 .blog-wrapper .single-blog-post.post-details .post-content h3,
 .blog-wrapper .single-blog-post.post-details .post-content h4,
 .blog-wrapper .single-blog-post.post-details .post-content h5,
@@ -12426,9 +12427,9 @@ End woocomerce css
   list-style-type: decimal;
 }
 
-.blog-wrapper .single-blog-post .post-content p {
+/* .blog-wrapper .single-blog-post .post-content p {
   margin-top: 60px;
-}
+} */
 
 .blog-wrapper .single-blog-post .post-content .post-meta {
   margin-bottom: 10px;

@@ -28,6 +28,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
             const delay = (index * 0.2 + 0.3).toFixed(1);
 
+            const wordsPerMinute = 200;
+            const wordCount = blog.content ? blog.content.split(/\s+/).length : 50;
+            const readTime = Math.ceil(wordCount / wordsPerMinute);
+
             return `
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="${delay}s">
                     <div class="news-box-items-4">
@@ -41,10 +45,9 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="news-content">
                             <ul>
                                 <li> <b>By</b> ${blog.author || 'Admin'}</li>
-                                <li><b>${blog.comments?.length || 0}</b> Comments</li>
+                                <li><b>${readTime}</b> min read</li>
                             </ul>
                             <h3><a href="news-details.html?id=${blog._id}">${blog.title}</a></h3>
-                            <p>${blog.content.substring(0, 100)}...</p>
                             <a href="news-details.html?id=${blog._id}" class="link-btn">Continue Reading <i class="far fa-long-arrow-right"></i></a>
                         </div>
                     </div>
