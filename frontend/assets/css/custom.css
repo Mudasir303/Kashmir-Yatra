@@ -348,6 +348,8 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    cursor: pointer;
 }
 
 .tour-box-items:hover {
@@ -451,13 +453,13 @@
 
 /* Full width theme-btn override inside cards */
 .tour-box-items .theme-btn {
-    width: 100%;
+    width: 100% !important;
+    margin: 15px 0 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 10px 10px 10px 30px !important;
-    /* background: linear-gradient(to right, var(--theme-color), var(--theme-color-2)); */
-    border-radius: 50px;
+    padding: 14px 25px !important;
+    border-radius: 12px !important;
     box-shadow: 0 4px 15px rgba(77, 64, 202, 0.3);
     border: none;
     position: relative;
@@ -556,8 +558,8 @@
     overflow: hidden;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    background: #ffffff;
-    height: 100%;
+    position: relative;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
 }
@@ -791,6 +793,109 @@
 .hero-items {
     height: 100% !important;
     min-height: 800px;
+}
+
+/* Seasonal Deal UI Enhancements */
+.tour-card-item .tour-image {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    /* Standardized height */
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+}
+
+.tour-card-item .tour-image img {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.tour-card-item:hover .tour-image img {
+    transform: scale(1.1);
+}
+
+.tour-card-item .tour-content h4 {
+    min-height: 52px;
+    /* Ensure 2 lines height for alignment */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.offer-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: var(--theme-color-2);
+    color: #fff;
+    padding: 8px 22px;
+    border-radius: 50px;
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(251, 91, 50, 0.4);
+    animation: badgePulse 2s infinite ease-in-out;
+}
+
+@keyframes badgePulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.price-box {
+    margin-top: 10px;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #8E8F8F;
+    font-size: 16px;
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.deal-price {
+    color: var(--theme-color-2);
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.skeleton-loader {
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-loader::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0) 100%);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    100% {
+        transform: translateX(100%);
+    }
 }
 
 .hero-static-overlay {
@@ -1397,9 +1502,10 @@
 }
 
 .news-box-items-4 {
+    position: relative;
+    cursor: pointer;
     display: flex;
     flex-direction: column;
-    height: 100%;
     background: #fff;
     border-radius: 28px;
     overflow: hidden;
@@ -1449,4 +1555,11 @@
 .news-box-items-4 .news-img .post-date {
     top: 20px !important;
     left: 20px !important;
+}
+
+/* Ensure stretched-link covers the entire card area including images */
+.trending-destinations-card-items .stretched-link::after,
+.news-box-items-4 .stretched-link::after,
+.tour-box-items .stretched-link::after {
+    z-index: 15;
 }

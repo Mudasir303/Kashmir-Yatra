@@ -40,6 +40,7 @@
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/toast.css">
 </head>
 
 <body>
@@ -596,7 +597,7 @@
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/api/tours/${tourId}`);
+                const response = await fetch(`${CONFIG.API_BASE_URL}/tours/${tourId}`);
                 if (!response.ok) throw new Error("Tour not found");
 
                 const tour = await response.json();
@@ -605,28 +606,41 @@
                 document.title = `${tour.title} - Kashmir Yatra`;
                 document.getElementById("tour-detail-title").textContent = tour.title;
                 document.getElementById("tour-detail-location").textContent = tour.location;
-                // Change main price text content to handle formatted currency or just number
-                document.getElementById("tour-detail-price").textContent = tour.price;
                 document.getElementById("tour-detail-duration").textContent = tour.duration;
                 document.getElementById("tour-detail-description").innerHTML = tour.description;
-
-                // Sidebar Price -> Now Bottom Booking Price
-                const bookingPriceEl = document.getElementById("booking-price");
-                if (bookingPriceEl) {
-                    bookingPriceEl.textContent = tour.price;
+                // Handle Price
+                const priceEl = document.getElementById("tour-detail-price");
+                if (priceEl) {
+                    if (tour.isSeasonalDeal && tour.discountPrice) {
+                        priceEl.parentElement.innerHTML = `
+                            <span style="text-decoration: line-through; color: #888; font-size: 0.7em; margin-right: 10px;">₹${tour.price}</span>
+                            ₹<span id="tour-detail-price">${tour.discountPrice}</span>
+                        `;
+                        // Add Badge near title
+                        const titleEl = document.getElementById("tour-detail-title");
+                        if (titleEl && tour.offerLabel) {
+                            titleEl.insertAdjacentHTML('afterend', `
+                                <div class="offer-badge mt-2 mb-3" style="display: inline-block; background: #ff5e14; color: white; padding: 5px 15px; border-radius: 5px; font-weight: 700; font-size: 16px; box-shadow: 0 4px 15px rgba(255,94,20,0.3); animation: badgePulse 2s infinite;">
+                                    ${tour.offerLabel}
+                                </div>
+                            `);
+                        }
+                    } else {
+                        priceEl.textContent = tour.price;
+                    }
                 }
 
                 // Handle Image
                 const imageEl = document.getElementById("tour-detail-image");
                 if (imageEl) {
                     if (tour.images && tour.images.length > 0) {
-                        imageEl.src = `http://localhost:3000/${tour.images[0]}`;
+                        const imageBaseUrl = CONFIG.API_BASE_URL.replace('/api', '');
+                        // Use image path directly from database
+                        imageEl.src = tour.images[0];
                     } else {
                         imageEl.src = "assets/img/tour/details-1.jpg";
                     }
                 }
-
-                // Handle Itinerary - Removed per user request
 
             } catch (error) {
                 console.error("Error fetching tour details:", error);
@@ -639,7 +653,6 @@
                         <a href="index.html" class="theme-btn mt-3">Back to Home</a>
                     </div>`;
                 }
-
             }
         });
     </script>

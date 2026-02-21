@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <!--<< Main.css >>-->
     <link rel="stylesheet" href="assets/css/main.css">
+    <!--<< Custom.css >>-->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!--<< Toast.css >>-->
+    <link rel="stylesheet" href="assets/css/toast.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
 </head>
@@ -463,14 +467,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-intl-1" aria-expanded="false" aria-controls="faq-intl-1">
-                                        Do you assist with Visa applications?
+                                        Do you provide end-to-end assistance with international Visa applications?
                                     </button>
                                 </h5>
                                 <div id="faq-intl-1" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqIntl">
                                     <div class="accordion-body">
-                                        Yes, we provide full assistance with tourist visa applications for all our
-                                        international destinations, including documentation guidance.
+                                        Yes, our international desk provides comprehensive documentation guidance and
+                                        application support for all our destinations, including Dubai, Thailand, and
+                                        Bali. We ensure your paperwork is professional and complete to maximize approval
+                                        chances.
                                     </div>
                                 </div>
                             </div>
@@ -478,14 +484,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-intl-2" aria-expanded="false" aria-controls="faq-intl-2">
-                                        Is travel insurance included in international packages?
+                                        Is comprehensive travel insurance mandatory for international trips?
                                     </button>
                                 </h5>
                                 <div id="faq-intl-2" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqIntl">
                                     <div class="accordion-body">
-                                        Travel insurance is optional but highly recommended. We can help you purchase a
-                                        suitable policy for your trip.
+                                        While not always mandatory for all countries, we highly recommend comprehensive
+                                        travel insurance for every international journey. It covers unforeseen health
+                                        issues, flight delays, and baggage loss. We can help you select a premium policy
+                                        that covers your entire itinerary.
                                     </div>
                                 </div>
                             </div>
@@ -493,14 +501,32 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-intl-3" aria-expanded="false" aria-controls="faq-intl-3">
-                                        What currency should I carry?
+                                        Are there any hidden costs like local taxes or resort fees?
                                     </button>
                                 </h5>
                                 <div id="faq-intl-3" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqIntl">
                                     <div class="accordion-body">
-                                        We recommend carrying US Dollars or the local currency of the destination. We
-                                        can advise you on the best exchange options before your trip.
+                                        Transparency is a core value at Kashmir Yatra. Our quotes clearly state what is
+                                        included (hotel, transport, meal plan). We explicitly mention any mandatory
+                                        local costs like "Tourism Dirham" in Dubai or resort fees in Bali so there are
+                                        no surprises upon arrival.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".4s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-intl-4" aria-expanded="false" aria-controls="faq-intl-4">
+                                        Can I pay for my international package in installments?
+                                    </button>
+                                </h5>
+                                <div id="faq-intl-4" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqIntl">
+                                    <div class="accordion-body">
+                                        Yes, we offer flexible payment plans for our international packages. You can
+                                        secure your booking with an initial deposit and settle the balance through an
+                                        agreed installment schedule before your travel departure date.
                                     </div>
                                 </div>
                             </div>
@@ -699,13 +725,14 @@
     <script src="assets/js/wow.min.js"></script>
     <!--<< Main.js >>-->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/config.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             const tourContainer = document.getElementById("tour-list-container");
 
             try {
-                const response = await fetch("http://localhost:3000/api/tours?category=International");
+                const response = await fetch(`${CONFIG.API_BASE_URL}/tours?category=International`);
                 if (!response.ok) throw new Error("Failed to fetch tours");
 
                 const tours = await response.json();
@@ -745,13 +772,23 @@
                     tourContainer.insertAdjacentHTML("beforeend", groupHeader);
 
                     items.forEach(tour => {
+                        const imageBaseUrl = CONFIG.API_BASE_URL.replace('/api', '');
                         const imagePath = tour.images && tour.images.length > 0
-                            ? `http://localhost:3000/${tour.images[0]}`
+                            ? tour.images[0]
                             : "assets/img/tour/details-1.jpg";
+
+                        const discountBadge = tour.isSeasonalDeal && tour.offerLabel
+                            ? `<div class="offer-badge" style="position: absolute; top: 15px; left: 15px; background: var(--bg-1, #ff5e14); color: white; padding: 5px 12px; border-radius: 5px; font-weight: 700; z-index: 2; font-size: 14px; box-shadow: 0 4px 15px rgba(255,94,20,0.3); animation: badgePulse 2s infinite;">${tour.offerLabel}</div>`
+                            : '';
+
+                        const priceDisplay = tour.isSeasonalDeal && tour.discountPrice
+                            ? `<span style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px;">₹${tour.price}</span><span>₹${tour.discountPrice}</span>`
+                            : `<span>₹${tour.price}</span>`;
 
                         const tourHTML = `
                             <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                <div class="tour-box-items mt-0">
+                                <div class="tour-box-items mt-0" style="position: relative;">
+                                    ${discountBadge}
                                     <div class="thumb">
                                         <a href="tour-details.html?id=${tour._id}">
                                             <img src="${imagePath}" alt="${tour.title}" style="height: 250px; width: 100%; object-fit: cover;">
@@ -760,17 +797,22 @@
                                     <div class="content">
                                         <span>${tour.location}</span>
                                         <h4>
-                                            <a href="tour-details.html?id=${tour._id}">
+                                            <a href="tour-details.html?id=${tour._id}" class="stretched-link">
                                                 ${tour.title}
                                             </a>
                                         </h4>
-                                        <h6>From <span>₹${tour.price}</span></h6>
-                                        <ul class="list">
-                                            <li>
-                                                <i class="far fa-clock"></i>
-                                                ${tour.duration}
-                                            </li>
-                                        </ul>
+                                        <h6>From ${priceDisplay}</h6>
+                                        <div class="tour-meta mt-3">
+                                            <ul class="list m-0 mb-3" style="list-style: none; padding: 0;">
+                                                <li style="color: #666; font-size: 14px;">
+                                                    <i class="far fa-clock" style="color: var(--theme-color); margin-right: 5px;"></i>
+                                                    ${tour.duration}
+                                                </li>
+                                            </ul>
+                                            <a href="tour-details.html?id=${tour._id}" class="theme-btn" style="position: relative; z-index: 3;">
+                                                <span>View Itinerary</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

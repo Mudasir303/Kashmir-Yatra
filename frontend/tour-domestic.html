@@ -464,14 +464,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-dom-1" aria-expanded="false" aria-controls="faq-dom-1">
-                                        Do I need special permits for Ladakh?
+                                        Do I need special permits for Ladakh or border areas?
                                     </button>
                                 </h5>
                                 <div id="faq-dom-1" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqDomestic">
                                     <div class="accordion-body">
-                                        Yes, certain areas in Ladakh like Pangong Tso and Nubra Valley require an Inner
-                                        Line Permit. We arrange these permits for you as part of the package.
+                                        Yes, certain high-altitude and border regions like Pangong Tso, Nubra Valley
+                                        (Ladakh), and Gurez Valley (Kashmir) require Inner Line Permits or local
+                                        permissions. As your local partner, we handle all permit processing seamlessly
+                                        as part of your package, ensuring you have no paperwork hurdles.
                                     </div>
                                 </div>
                             </div>
@@ -479,14 +481,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-dom-2" aria-expanded="false" aria-controls="faq-dom-2">
-                                        What is the best time to visit Himachal Pradesh?
+                                        What is the best time to experience snow in Gulmarg and Pahalgam?
                                     </button>
                                 </h5>
                                 <div id="faq-dom-2" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqDomestic">
                                     <div class="accordion-body">
-                                        For snow, visit between December and February. For pleasant weather and
-                                        sightseeing, March to June is ideal.
+                                        For a complete "Winter Wonderland" experience with heavy snow, the ideal time is
+                                        from late December to February. If you prefer lush greenery and pleasant
+                                        meadows, April to June is perfect. Each season in the Himalayas offers a unique
+                                        aesthetic, and we can advise the best dates based on your interests.
                                     </div>
                                 </div>
                             </div>
@@ -494,14 +498,33 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-dom-3" aria-expanded="false" aria-controls="faq-dom-3">
-                                        Are flights included in domestic packages?
+                                        How do you handle local transport and mountain driving?
                                     </button>
                                 </h5>
                                 <div id="faq-dom-3" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqDomestic">
                                     <div class="accordion-body">
-                                        Flight inclusion depends on the specific package. We can book flights for you
-                                        upon request at competitive rates.
+                                        Safety is our top priority. We use a fleet of well-maintained premium SUVs
+                                        (Innova, Crysta, Scorpio) driven by local experts who are highly experienced in
+                                        Himalayan terrain and mountain weather conditions. All our vehicles are
+                                        commercially licensed and regularly inspected.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".4s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-dom-4" aria-expanded="false" aria-controls="faq-dom-4">
+                                        Do you provide assistance with local SIM cards and connectivity?
+                                    </button>
+                                </h5>
+                                <div id="faq-dom-4" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqDomestic">
+                                    <div class="accordion-body">
+                                        Yes, we understand that staying connected is important. Only postpaid SIM cards
+                                        (BSNL/Airtel/Jio) work in J&K. Our team can assist you with local connectivity
+                                        tips or arrange for reliable communication options upon your arrival in
+                                        Srinagar.
                                     </div>
                                 </div>
                             </div>
@@ -700,13 +723,14 @@
     <script src="assets/js/wow.min.js"></script>
     <!--<< Main.js >>-->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/config.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", async () => {
             const tourContainer = document.getElementById("tour-list-container");
 
             try {
-                const response = await fetch("http://localhost:3000/api/tours?category=Domestic");
+                const response = await fetch(`${CONFIG.API_BASE_URL}/tours?category=Domestic`);
                 if (!response.ok) throw new Error("Failed to fetch tours");
 
                 const tours = await response.json();
@@ -749,12 +773,21 @@
 
                     items.forEach(tour => {
                         const imagePath = tour.images && tour.images.length > 0
-                            ? `http://localhost:3000/${tour.images[0]}`
+                            ? tour.images[0]
                             : "assets/img/tour/details-1.jpg";
+
+                        const discountBadge = tour.isSeasonalDeal && tour.offerLabel
+                            ? `<div class="offer-badge" style="position: absolute; top: 15px; left: 15px; background: var(--bg-1, #ff5e14); color: white; padding: 5px 12px; border-radius: 5px; font-weight: 700; z-index: 2; font-size: 14px; box-shadow: 0 4px 15px rgba(255,94,20,0.3); animation: badgePulse 2s infinite;">${tour.offerLabel}</div>`
+                            : '';
+
+                        const priceDisplay = tour.isSeasonalDeal && tour.discountPrice
+                            ? `<span style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px;">₹${tour.price}</span><span>₹${tour.discountPrice}</span>`
+                            : `<span>₹${tour.price}</span>`;
 
                         const tourHTML = `
                             <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                                <div class="tour-box-items mt-0">
+                                <div class="tour-box-items mt-0" style="position: relative;">
+                                    ${discountBadge}
                                     <div class="thumb">
                                         <a href="tour-details.html?id=${tour._id}">
                                             <img src="${imagePath}" alt="${tour.title}" style="height: 250px; width: 100%; object-fit: cover;">
@@ -763,17 +796,22 @@
                                     <div class="content">
                                         <span>${tour.location}</span>
                                         <h4>
-                                            <a href="tour-details.html?id=${tour._id}">
+                                            <a href="tour-details.html?id=${tour._id}" class="stretched-link">
                                                 ${tour.title}
                                             </a>
                                         </h4>
-                                        <h6>From <span>₹${tour.price}</span></h6>
-                                        <ul class="list">
-                                            <li>
-                                                <i class="far fa-clock"></i>
-                                                ${tour.duration}
-                                            </li>
-                                        </ul>
+                                        <h6>From ${priceDisplay}</h6>
+                                        <div class="tour-meta mt-3">
+                                            <ul class="list m-0 mb-3" style="list-style: none; padding: 0;">
+                                                <li style="color: #666; font-size: 14px;">
+                                                    <i class="far fa-clock" style="color: var(--theme-color); margin-right: 5px;"></i>
+                                                    ${tour.duration}
+                                                </li>
+                                            </ul>
+                                            <a href="tour-details.html?id=${tour._id}" class="theme-btn" style="position: relative; z-index: 3;">
+                                                <span>View Itinerary</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

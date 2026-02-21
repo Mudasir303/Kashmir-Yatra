@@ -1,8 +1,9 @@
 const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
-const CONFIG = {
+const BASE_SERVER_URL = isLocal
+    ? 'http://localhost:3000'
+    : 'https://kashmir-yatra.onrender.com';
 
-    API_BASE_URL: isLocal
-        ? 'http://localhost:3000/api'
-        : `${window.location.origin}/api`
+const CONFIG = {
+    API_BASE_URL: `${BASE_SERVER_URL}/api`
 };

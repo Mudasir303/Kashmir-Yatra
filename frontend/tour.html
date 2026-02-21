@@ -39,6 +39,10 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <!--<< Main.css >>-->
     <link rel="stylesheet" href="assets/css/main.css">
+    <!--<< Custom.css >>-->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <!--<< Toast.css >>-->
+    <link rel="stylesheet" href="assets/css/toast.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
 
@@ -393,135 +397,7 @@
         </div>
     </section>
 
-    <!-- Script to load tours -->
-    <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const domesticContainer = document.getElementById("domestic-tours-container");
-            const internationalContainer = document.getElementById("international-tours-container");
-            const BASE_URL = "http://localhost:3000"; // Adjust if needed
 
-            // Helper function to render a group of tours
-            const renderGroup = (container, title, items) => {
-                if (items.length === 0) return;
-
-                const groupHeader = `
-                    <div class="col-12 mt-4 mb-2">
-                        <h4 class="mb-3 theme-color border-bottom pb-2">${title}</h4>
-                    </div>
-                `;
-                container.insertAdjacentHTML("beforeend", groupHeader);
-
-                items.forEach(tour => {
-                    const imagePath = tour.images && tour.images.length > 0
-                        ? `${BASE_URL}/${tour.images[0]}`
-                        : "assets/img/tour/details-1.jpg";
-
-                    const tourHTML = `
-                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-                            <div class="tour-box-items mt-0">
-                                <div class="thumb">
-                                    <a href="tour-details.html?id=${tour._id}">
-                                        <img src="${imagePath}" alt="${tour.title}" style="height: 250px; width: 100%; object-fit: cover;">
-                                    </a>
-                                </div>
-                                <div class="content">
-                                    <span>${tour.location}</span>
-                                    <h4>
-                                        <a href="tour-details.html?id=${tour._id}">
-                                            ${tour.title}
-                                        </a>
-                                    </h4>
-                                    <h6>From <span>₹${tour.price}</span></h6>
-                                    <ul class="list">
-                                        <li>
-                                            <i class="far fa-clock"></i>
-                                            ${tour.duration}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                     `;
-                    container.insertAdjacentHTML("beforeend", tourHTML);
-                });
-            };
-
-            // Fetch and Render Domestic Tours
-            try {
-                const res = await fetch(`${BASE_URL}/api/tours?category=Domestic`);
-                if (!res.ok) throw new Error("Failed to fetch domestic tours");
-                const tours = await res.json();
-
-                domesticContainer.innerHTML = ""; // Clear loader
-
-                if (tours.length === 0) {
-                    domesticContainer.innerHTML = '<p class="text-center">No domestic tours found.</p>';
-                } else {
-                    const groups = {
-                        "Kashmir": [],
-                        "Ladakh": [],
-                        "Himachal": [],
-                        "Andaman": []
-                    };
-                    const others = [];
-
-                    tours.forEach(tour => {
-                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
-                        if (sub.includes("kashmir")) groups["Kashmir"].push(tour);
-                        else if (sub.includes("ladakh")) groups["Ladakh"].push(tour);
-                        else if (sub.includes("himachal") || sub.includes("manali") || sub.includes("shimla")) groups["Himachal"].push(tour);
-                        else if (sub.includes("andaman")) groups["Andaman"].push(tour);
-                        else others.push(tour);
-                    });
-
-                    if (groups["Kashmir"].length) renderGroup(domesticContainer, "Kashmir Packages", groups["Kashmir"]);
-                    if (groups["Ladakh"].length) renderGroup(domesticContainer, "Ladakh Adventures", groups["Ladakh"]);
-                    if (groups["Himachal"].length) renderGroup(domesticContainer, "Himachal Pradesh", groups["Himachal"]);
-                    if (groups["Andaman"].length) renderGroup(domesticContainer, "Andaman & Nicobar", groups["Andaman"]);
-                    if (others.length) renderGroup(domesticContainer, "Other Domestic Destinations", others);
-                }
-            } catch (err) {
-                console.error(err);
-                domesticContainer.innerHTML = '<p class="text-center text-danger">Error loading domestic tours.</p>';
-            }
-
-            // Fetch and Render International Tours
-            try {
-                const res = await fetch(`${BASE_URL}/api/tours?category=International`);
-                if (!res.ok) throw new Error("Failed to fetch international tours");
-                const tours = await res.json();
-
-                internationalContainer.innerHTML = ""; // Clear loader
-
-                if (tours.length === 0) {
-                    internationalContainer.innerHTML = '<p class="text-center">No international tours found.</p>';
-                } else {
-                    const groups = {
-                        "Dubai": [],
-                        "Thailand": [],
-                        "Bali": []
-                    };
-                    const others = [];
-
-                    tours.forEach(tour => {
-                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
-                        if (sub.includes("dubai")) groups["Dubai"].push(tour);
-                        else if (sub.includes("thailand")) groups["Thailand"].push(tour);
-                        else if (sub.includes("bali")) groups["Bali"].push(tour);
-                        else others.push(tour);
-                    });
-
-                    if (groups["Dubai"].length) renderGroup(internationalContainer, "Dubai Packages", groups["Dubai"]);
-                    if (groups["Thailand"].length) renderGroup(internationalContainer, "Thailand Getaways", groups["Thailand"]);
-                    if (groups["Bali"].length) renderGroup(internationalContainer, "Beautiful Bali", groups["Bali"]);
-                    if (others.length) renderGroup(internationalContainer, "Other International Destinations", others);
-                }
-            } catch (err) {
-                console.error(err);
-                internationalContainer.innerHTML = '<p class="text-center text-danger">Error loading international tours.</p>';
-            }
-        });
-    </script>
 
     <!--Testimonial Section Start -->
     <section class="testimonial-section-4 section-padding">
@@ -637,15 +513,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-tour-1" aria-expanded="false" aria-controls="faq-tour-1">
-                                        Can I customize an existing tour package?
+                                        Can I customize a tour package listed on the website?
                                     </button>
                                 </h5>
                                 <div id="faq-tour-1" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqTour">
                                     <div class="accordion-body">
-                                        Yes! All our packages are 100% customizable. You can add days, change hotels, or
-                                        include specific activities like pony rides or river rafting to suit your
-                                        preferences.
+                                        Yes! Every tour package we offer is fully customizable. Whether you want to
+                                        extend your stay in a particular location, upgrade your hotel category, or add
+                                        specific adventure activities, our experts will tailor the itinerary to match
+                                        your vision and budget.
                                     </div>
                                 </div>
                             </div>
@@ -653,14 +530,16 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-tour-2" aria-expanded="false" aria-controls="faq-tour-2">
-                                        Do you offer group discounts?
+                                        What is the booking process for large groups?
                                     </button>
                                 </h5>
                                 <div id="faq-tour-2" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqTour">
                                     <div class="accordion-body">
-                                        We offer special rates for groups larger than 10 people. Please contact our
-                                        support team for a custom quote for corporate outings or large family reunions.
+                                        For large groups or corporate MICE bookings, we follow a professional
+                                        consultation process. We'll provide a dedicated account manager to handle all
+                                        logistics, from bulk hotel blocks and luxury transport to conference facilities
+                                        and customized group activities. Special group rates apply.
                                     </div>
                                 </div>
                             </div>
@@ -668,15 +547,33 @@
                                 <h5 class="accordion-header">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faq-tour-3" aria-expanded="false" aria-controls="faq-tour-3">
-                                        What is your cancellation policy?
+                                        Are flights included in the tour packages?
                                     </button>
                                 </h5>
                                 <div id="faq-tour-3" class="accordion-collapse collapse"
                                     data-bs-parent="#accordionFaqTour">
                                     <div class="accordion-body">
-                                        We offer flexible cancellation policies. Generally, cancellations made 15 days
-                                        prior to arrival seek a minimal deduction. Please check the specific terms of
-                                        your chosen package.
+                                        Our standard tour packages are ground-only (hotel, transport, sightseeing).
+                                        however, we do provide flight booking assistance as an add-on service. This
+                                        allows us to offer you the best local ground rates while giving you flexibility
+                                        with your flight choices.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item mb-3 wow fadeInUp" data-wow-delay=".4s">
+                                <h5 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faq-tour-4" aria-expanded="false" aria-controls="faq-tour-4">
+                                        What is your revision and cancellation policy?
+                                    </button>
+                                </h5>
+                                <div id="faq-tour-4" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFaqTour">
+                                    <div class="accordion-body">
+                                        We provide a professional service level agreement with flexible revision
+                                        policies. Cancellations are handled according to the specific vendor terms
+                                        (hotels/airlines), and we always strive to minimize any loss for our travelers
+                                        through our strong local relationships.
                                     </div>
                                 </div>
                             </div>
@@ -693,6 +590,7 @@
     </section>
 
     <!-- Footer Section Start -->
+
     <footer class="footer-section fix dark-theme">
         <div class="container">
             <div class="footer-wrapper">
@@ -874,7 +772,154 @@
     <!--<< Wow Animation Js >>-->
     <script src="assets/js/wow.min.js"></script>
     <!--<< Main.js >>-->
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Script to load tours -->
+    <script>
+        document.addEventListener("DOMContentLoaded", async () => {
+            const domesticContainer = document.getElementById("domestic-tours-container");
+            const internationalContainer = document.getElementById("international-tours-container");
+            const BASE_URL = CONFIG.API_BASE_URL.replace('/api', '');
+            const API_BASE_URL = CONFIG.API_BASE_URL;
+
+            // Helper function to render a group of tours
+            const renderGroup = (container, title, items) => {
+                if (items.length === 0) return;
+
+                const groupHeader = `
+                    <div class="col-12 mt-4 mb-2">
+                        <h4 class="mb-3 theme-color border-bottom pb-2">${title}</h4>
+                    </div>
+                `;
+                container.insertAdjacentHTML("beforeend", groupHeader);
+
+                items.forEach(tour => {
+                    const imagePath = tour.images && tour.images.length > 0
+                        ? tour.images[0]
+                        : "assets/img/tour/details-1.jpg";
+
+                    const discountBadge = tour.isSeasonalDeal && tour.offerLabel
+                        ? `<div class="offer-badge" style="position: absolute; top: 15px; left: 15px; background: var(--bg-1, #ff5e14); color: white; padding: 5px 12px; border-radius: 5px; font-weight: 700; z-index: 2; font-size: 14px; box-shadow: 0 4px 15px rgba(255,94,20,0.3); animation: badgePulse 2s infinite;">${tour.offerLabel}</div>`
+                        : '';
+
+                    const priceDisplay = tour.isSeasonalDeal && tour.discountPrice
+                        ? `<span style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px;">₹${tour.price}</span><span>₹${tour.discountPrice}</span>`
+                        : `<span>₹${tour.price}</span>`;
+
+                    const tourHTML = `
+                        <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                            <div class="tour-box-items mt-0" style="position: relative;">
+                                ${discountBadge}
+                                <div class="thumb">
+                                    <a href="tour-details.html?id=${tour._id}">
+                                        <img src="${imagePath}" alt="${tour.title}" style="height: 250px; width: 100%; object-fit: cover;">
+                                    </a>
+                                </div>
+                                <div class="content">
+                                    <span>${tour.location}</span>
+                                    <h4>
+                                        <a href="tour-details.html?id=${tour._id}" class="stretched-link">
+                                            ${tour.title}
+                                        </a>
+                                    </h4>
+                                    <h6>From ${priceDisplay}</h6>
+                                    <div class="tour-meta mt-3">
+                                        <ul class="list m-0 mb-3" style="list-style: none; padding: 0;">
+                                            <li style="color: #666; font-size: 14px;">
+                                                <i class="far fa-clock" style="color: var(--theme-color); margin-right: 5px;"></i>
+                                                ${tour.duration}
+                                            </li>
+                                        </ul>
+                                        <a href="tour-details.html?id=${tour._id}" class="theme-btn" style="position: relative; z-index: 3;">
+                                            <span>View Itinerary</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     `;
+                    container.insertAdjacentHTML("beforeend", tourHTML);
+                });
+            };
+
+            // Fetch and Render Domestic Tours
+            try {
+                const res = await fetch(`${API_BASE_URL}/tours?category=Domestic`);
+                if (!res.ok) throw new Error("Failed to fetch domestic tours");
+                const tours = await res.json();
+
+                domesticContainer.innerHTML = ""; // Clear loader
+
+                if (tours.length === 0) {
+                    domesticContainer.innerHTML = '<p class="text-center">No domestic tours found.</p>';
+                } else {
+                    const groups = {
+                        "Kashmir": [],
+                        "Ladakh": [],
+                        "Himachal": [],
+                        "Andaman": []
+                    };
+                    const others = [];
+
+                    tours.forEach(tour => {
+                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
+                        if (sub.includes("kashmir")) groups["Kashmir"].push(tour);
+                        else if (sub.includes("ladakh")) groups["Ladakh"].push(tour);
+                        else if (sub.includes("himachal") || sub.includes("manali") || sub.includes("shimla")) groups["Himachal"].push(tour);
+                        else if (sub.includes("andaman")) groups["Andaman"].push(tour);
+                        else others.push(tour);
+                    });
+
+                    if (groups["Kashmir"].length) renderGroup(domesticContainer, "Kashmir Packages", groups["Kashmir"]);
+                    if (groups["Ladakh"].length) renderGroup(domesticContainer, "Ladakh Adventures", groups["Ladakh"]);
+                    if (groups["Himachal"].length) renderGroup(domesticContainer, "Himachal Pradesh", groups["Himachal"]);
+                    if (groups["Andaman"].length) renderGroup(domesticContainer, "Andaman & Nicobar", groups["Andaman"]);
+                    if (others.length) renderGroup(domesticContainer, "Other Domestic Destinations", others);
+                }
+            } catch (err) {
+                console.error(err);
+                domesticContainer.innerHTML = '<p class="text-center text-danger">Error loading domestic tours.</p>';
+            }
+
+            // Fetch and Render International Tours
+            try {
+                const res = await fetch(`${API_BASE_URL}/tours?category=International`);
+                if (!res.ok) throw new Error("Failed to fetch international tours");
+                const tours = await res.json();
+
+                internationalContainer.innerHTML = ""; // Clear loader
+
+                if (tours.length === 0) {
+                    internationalContainer.innerHTML = '<p class="text-center">No international tours found.</p>';
+                } else {
+                    const groups = {
+                        "Dubai": [],
+                        "Thailand": [],
+                        "Bali": []
+                    };
+                    const others = [];
+
+                    tours.forEach(tour => {
+                        const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
+                        if (sub.includes("dubai")) groups["Dubai"].push(tour);
+                        else if (sub.includes("thailand")) groups["Thailand"].push(tour);
+                        else if (sub.includes("bali")) groups["Bali"].push(tour);
+                        else others.push(tour);
+                    });
+
+                    if (groups["Dubai"].length) renderGroup(internationalContainer, "Dubai Packages", groups["Dubai"]);
+                    if (groups["Thailand"].length) renderGroup(internationalContainer, "Thailand Getaways", groups["Thailand"]);
+                    if (groups["Bali"].length) renderGroup(internationalContainer, "Beautiful Bali", groups["Bali"]);
+                    if (others.length) renderGroup(internationalContainer, "Other International Destinations", others);
+                }
+            } catch (err) {
+                console.error(err);
+                internationalContainer.innerHTML = '<p class="text-center text-danger">Error loading international tours.</p>';
+            }
+        });
+    </script>
+
     <script defer
         src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
         integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="

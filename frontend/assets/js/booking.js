@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // 1. Listen for price updates from the main fetch
     const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
-            if (mutation.target.id === "tour-detail-price") {
-                perPersonPrice = parseInt(mutation.target.textContent.replace(/[^0-9]/g, "")) || 0;
+            const priceEl = document.getElementById("tour-detail-price");
+            if (priceEl && priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
+                perPersonPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, "")) || 0;
                 updateTotalPrice();
             }
         });
@@ -19,16 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const priceEl = document.getElementById("tour-detail-price");
     if (priceEl) {
         observer.observe(priceEl, { characterData: true, childList: true, subtree: true });
-        // Initial set
-        setTimeout(() => {
-            perPersonPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, "")) || 0;
-            updateTotalPrice();
+        
+        // Polling check as fallback for initial load
+        let checkCount = 0;
+        const checkPrice = setInterval(() => {
+            if (priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
+                perPersonPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, "")) || 0;
+                updateTotalPrice();
+                clearInterval(checkPrice);
+            }
+            if (++checkCount > 10) clearInterval(checkPrice);
         }, 500);
     }
 
     const updateTotalPrice = () => {
         const persons = parseInt(personsInput.value) || 1;
-        totalPriceEl.textContent = (perPersonPrice * persons).toLocaleString();
+        if (totalPriceEl) {
+            totalPriceEl.textContent = (perPersonPrice * persons).toLocaleString();
+        }
     };
 
     if (personsInput) {

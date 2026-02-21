@@ -41,6 +41,21 @@ const tourSchema = new mongoose.Schema(
     isFeatured: {
       type: Boolean,
       default: false
+    },
+    isSeasonalDeal: {
+      type: Boolean,
+      default: false
+    },
+    discountPrice: {
+      type: Number
+    },
+    offerLabel: {
+      type: String
+    },
+    season: {
+      type: String,
+      enum: ['Spring', 'Summer', 'Autumn', 'Winter', 'All Season'],
+      default: 'All Season'
     }
   },
   { timestamps: true }

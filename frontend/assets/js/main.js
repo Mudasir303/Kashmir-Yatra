@@ -579,6 +579,27 @@ const showToast = (message, type = 'info') => {
             return false;
         });
 
+        //>> Clickable Card Containers Start <<//
+        $(document).on('click', '.trending-destinations-card-items, .news-box-items-4, .tour-box-items', function (e) {
+            // If the user clicked on an actual <a> tag or any element within an <a> tag, 
+            // let the browser handle it normally.
+            if ($(e.target).closest('a').length) {
+                return;
+            }
+
+            // Find the primary link within the card (usually the one with stretched-link)
+            const $link = $(this).find('a.stretched-link').first();
+
+            // If found, trigger a click or navigate
+            if ($link.length) {
+                const href = $link.attr('href');
+                if (href && href !== '#') {
+                    window.location.href = href;
+                }
+            }
+        });
+        //>> Clickable Card Containers End <<//
+
         $(function () {
             $("#datepicker, #datepicker2, #datepicker3, #datepicker4, #datepicker5, #datepicker6, #datepicker7, #datepicker8, #datepicker9, #datepicker10, #datepicker11").datepicker({
                 autoclose: true,

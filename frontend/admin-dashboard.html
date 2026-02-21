@@ -297,11 +297,42 @@
                     <small>Upload up to 5 images</small>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Is Featured?</label>
+                        <select class="form-control-custom" id="tourFeatured">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Is Seasonal Deal?</label>
+                        <select class="form-control-custom" id="tourSeasonalDeal">
+                            <option value="false">No</option>
+                            <option value="true">Yes</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Discounted Price (Optional)</label>
+                        <input type="number" class="form-control-custom" id="tourDiscountPrice" placeholder="e.g. 1999">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Offer Label (e.g. 20% OFF)</label>
+                        <input type="text" class="form-control-custom" id="tourOfferLabel" placeholder="e.g. 20% OFF">
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label>Is Featured?</label>
-                    <select class="form-control-custom" id="tourFeatured">
-                        <option value="false">No</option>
-                        <option value="true">Yes</option>
+                    <label>Season</label>
+                    <select class="form-control-custom" id="tourSeason">
+                        <option value="All Season">All Season</option>
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Autumn">Autumn</option>
+                        <option value="Winter">Winter</option>
                     </select>
                 </div>
                 <button type="submit" class="btn-submit">Save Tour</button>

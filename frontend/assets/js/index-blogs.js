@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <li> <b>By</b> ${blog.author || 'Admin'}</li>
                                 <li><b>${readTime}</b> min read</li>
                             </ul>
-                            <h3><a href="news-details.html?id=${blog._id}">${blog.title}</a></h3>
+                            <h3><a href="news-details.html?id=${blog._id}" class="stretched-link">${blog.title}</a></h3>
                             <a href="news-details.html?id=${blog._id}" class="link-btn">Continue Reading <i class="far fa-long-arrow-right"></i></a>
                         </div>
                     </div>

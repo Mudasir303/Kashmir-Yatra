@@ -10,9 +10,8 @@ exports.createTour = async (req, res) => {
 
     let imagePaths = [];
     if (req.files && req.files.length > 0) {
-      // Logic to construct full URL or relative path
-      // Assuming server serves 'uploads' statically at '/uploads'
-      imagePaths = req.files.map(file => `uploads/${file.filename}`);
+      const fullBaseUrl = `${req.protocol}://${req.get('host')}`;
+      imagePaths = req.files.map(file => `${fullBaseUrl}/uploads/${file.filename}`);
     }
 
     // Parse other fields if they come as strings (Multipart/Form-Data sends everything as string)
@@ -58,14 +57,18 @@ exports.getAllToursAdmin = async (req, res) => {
  */
 exports.getAllToursPublic = async (req, res) => {
   try {
-    const { category } = req.query;
+    const { category, isSeasonalDeal } = req.query;
     let filter = {};
 
     if (category) {
       filter.category = category;
     }
 
-    const tours = await Tour.find(filter);
+    if (isSeasonalDeal === 'true') {
+      filter.isSeasonalDeal = true;
+    }
+
+    const tours = await Tour.find(filter).sort({ createdAt: -1 });
     res.json(tours);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -102,7 +105,8 @@ exports.updateTour = async (req, res) => {
 
     // If new files are uploaded, update images array
     if (req.files && req.files.length > 0) {
-      const imagePaths = req.files.map(file => `uploads/${file.filename}`);
+      const fullBaseUrl = `${req.protocol}://${req.get('host')}`;
+      const imagePaths = req.files.map(file => `${fullBaseUrl}/uploads/${file.filename}`);
       updateData.images = imagePaths;
     }
 

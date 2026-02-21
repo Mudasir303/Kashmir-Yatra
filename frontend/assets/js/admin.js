@@ -191,12 +191,17 @@ async function loadTours() {
         <div class="item-card">
             <div class="card-img">
                 <img src="${tour.images && tour.images.length > 0 ? (tour.images[0].startsWith('http') ? tour.images[0] : BASE_URL + '/' + tour.images[0]) : 'assets/img/placeholder.jpg'}" alt="${tour.title}">
-                ${tour.isFeatured ? '<span style="position:absolute; top:10px; right:10px; background:var(--primary-lime); color:#000; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:bold;">Featured</span>' : ''}
+                <div style="position:absolute; top:10px; right:10px; display:flex; flex-direction:column; gap:5px; align-items:flex-end;">
+                  ${tour.isFeatured ? '<span style="background:var(--primary-lime); color:#000; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:bold;">Featured</span>' : ''}
+                  ${tour.isSeasonalDeal ? `<span style="background:#ff7675; color:#fff; padding:2px 8px; border-radius:4px; font-size:0.7rem; font-weight:bold;">Seasonal</span>` : ''}
+                </div>
             </div>
             <div class="card-content">
                 <div class="card-meta">
                     <span><i class="fa fa-map-marker-alt"></i> ${tour.location}</span>
-                    <span style="color:var(--primary-lime); font-weight:600;">₹${tour.price}</span>
+                    <span style="color:var(--primary-lime); font-weight:600;">
+                       ${tour.discountPrice ? `<span style="text-decoration:line-through; color:var(--text-gray); font-size:0.8rem; margin-right:5px;">₹${tour.price}</span>₹${tour.discountPrice}` : `₹${tour.price}`}
+                    </span>
                 </div>
                 <h4>${tour.title}</h4>
                 <div style="font-size:0.8rem; color:var(--text-gray); margin-bottom:10px;">
@@ -263,6 +268,10 @@ window.editTour = async (id) => {
     // But we could show existing images if we wanted to (omitted for brevity as per plan)
 
     document.getElementById('tourFeatured').value = tour.isFeatured;
+    document.getElementById('tourSeasonalDeal').value = tour.isSeasonalDeal || 'false';
+    document.getElementById('tourDiscountPrice').value = tour.discountPrice || '';
+    document.getElementById('tourOfferLabel').value = tour.offerLabel || '';
+    document.getElementById('tourSeason').value = tour.season || 'All Season';
 
     document.getElementById('tourModalTitle').textContent = 'Edit Tour';
     document.getElementById('tourModal').style.display = 'block';
@@ -304,6 +313,10 @@ document.getElementById('tourForm').addEventListener('submit', async (e) => {
     formData.append('category', document.getElementById('tourCategory').value);
     formData.append('subCategory', document.getElementById('tourSubCategory').value);
     formData.append('isFeatured', document.getElementById('tourFeatured').value);
+    formData.append('isSeasonalDeal', document.getElementById('tourSeasonalDeal').value);
+    formData.append('discountPrice', document.getElementById('tourDiscountPrice').value);
+    formData.append('offerLabel', document.getElementById('tourOfferLabel').value);
+    formData.append('season', document.getElementById('tourSeason').value);
 
     // Append images
     if (fileInput.files.length > 0) {
