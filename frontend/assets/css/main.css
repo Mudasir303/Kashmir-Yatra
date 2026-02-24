@@ -3566,7 +3566,8 @@ p {
 
 @media (max-width: 1199px) {
   .hero-4 .hero-items .hero-content h1 .shape-text::before {
-    display: none;
+    bottom: -10px;
+    height: 20px;
   }
 }
 

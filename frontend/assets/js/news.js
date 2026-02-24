@@ -16,7 +16,10 @@ async function loadBlogs() {
 
         blogs.forEach(blog => {
             const date = new Date(blog.createdAt).toLocaleDateString();
-            const imageSrc = blog.image || 'assets/img/news/post-1.jpg';
+            const BASE_URL = CONFIG.API_BASE_URL.replace('/api', '');
+            const imageSrc = blog.image
+                ? (blog.image.startsWith('http') ? blog.image : `${BASE_URL}/${blog.image}`)
+                : 'assets/img/news/post-1.jpg';
 
             // Create snippets from content (strip HTML correctly with spacing)
             const tmpDiv = document.createElement("div");

@@ -34,7 +34,7 @@ function renderDeals(deals, container) {
 
     container.innerHTML = deals.map(deal => {
         const mainImage = deal.images && deal.images.length > 0
-            ? deal.images[0]
+            ? (deal.images[0].startsWith('http') ? deal.images[0] : `${apiBase}/${deal.images[0]}`)
             : 'assets/img/tour/29.jpg';
 
         const discountBadge = deal.offerLabel

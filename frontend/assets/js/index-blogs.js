@@ -32,11 +32,16 @@ document.addEventListener("DOMContentLoaded", function () {
             const wordCount = blog.content ? blog.content.split(/\s+/).length : 50;
             const readTime = Math.ceil(wordCount / wordsPerMinute);
 
+            const BASE_URL = CONFIG.API_BASE_URL.replace('/api', '');
+            const imageSrc = blog.image
+                ? (blog.image.startsWith('http') ? blog.image : `${BASE_URL}/${blog.image}`)
+                : 'assets/img/news/news-11.jpg';
+
             return `
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="${delay}s">
                     <div class="news-box-items-4">
                         <div class="news-img">
-                            <img src="${blog.image || 'assets/img/news/news-11.jpg'}" alt="${blog.title}" style="height: 250px; object-fit: cover; width: 100%;">
+                            <img src="${imageSrc}" alt="${blog.title}" style="height: 250px; object-fit: cover; width: 100%;">
                             <ul class="post-date">
                                 <li>${day}</li>
                                 <li>${month}</li>

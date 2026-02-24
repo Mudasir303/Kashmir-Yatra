@@ -8,10 +8,8 @@ exports.createTour = async (req, res) => {
     console.log("Create Tour Request Body:", req.body);
     console.log("Create Tour Request Files:", req.files);
 
-    let imagePaths = [];
     if (req.files && req.files.length > 0) {
-      const fullBaseUrl = `${req.protocol}://${req.get('host')}`;
-      imagePaths = req.files.map(file => `${fullBaseUrl}/uploads/${file.filename}`);
+      imagePaths = req.files.map(file => file.path);
     }
 
     // Parse other fields if they come as strings (Multipart/Form-Data sends everything as string)
@@ -105,8 +103,7 @@ exports.updateTour = async (req, res) => {
 
     // If new files are uploaded, update images array
     if (req.files && req.files.length > 0) {
-      const fullBaseUrl = `${req.protocol}://${req.get('host')}`;
-      const imagePaths = req.files.map(file => `${fullBaseUrl}/uploads/${file.filename}`);
+      const imagePaths = req.files.map(file => file.path);
       updateData.images = imagePaths;
     }
 

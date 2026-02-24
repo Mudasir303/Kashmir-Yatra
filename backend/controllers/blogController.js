@@ -9,7 +9,7 @@ exports.createBlog = async (req, res) => {
         let image = req.body.image; // in case URL is sent
 
         if (req.file) {
-            image = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+            image = req.file.path;
         }
 
         const blog = await Blog.create({
@@ -62,7 +62,7 @@ exports.updateBlog = async (req, res) => {
         let updateData = { title, content, author, tags };
 
         if (req.file) {
-            updateData.image = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
+            updateData.image = req.file.path;
         } else if (req.body.image) {
             updateData.image = req.body.image;
         }

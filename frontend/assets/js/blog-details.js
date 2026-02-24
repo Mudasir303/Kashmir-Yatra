@@ -22,7 +22,8 @@ async function loadBlogDetails() {
         // Handle Image
         const imgEl = document.getElementById('blogImage');
         if (imgEl && blog.image) {
-            imgEl.src = blog.image;
+            const BASE_URL = CONFIG.API_BASE_URL.replace('/api', '');
+            imgEl.src = blog.image.startsWith('http') ? blog.image : `${BASE_URL}/${blog.image}`;
             imgEl.style.display = 'block';
         } else if (imgEl) {
             imgEl.style.display = 'none';

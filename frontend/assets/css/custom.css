@@ -988,6 +988,12 @@
     .hero-static-overlay .hero-content h1 {
         font-size: 40px;
     }
+
+    .hero-static-overlay .hero-content h1 .shape-text::before {
+        height: 15px;
+        bottom: -8px;
+        background-size: contain;
+    }
 }
 
 /* Alignment and Sync Fixes */
@@ -1195,6 +1201,12 @@
         line-height: 1.2;
     }
 
+    .hero-static-overlay .hero-content h1 .shape-text::before {
+        height: 12px;
+        bottom: -6px;
+        background-size: contain;
+    }
+
     .hero-static-overlay .hero-content p {
         font-size: 16px;
         margin-bottom: 20px;
@@ -1230,6 +1242,11 @@
 @media (max-width: 575px) {
     .hero-static-overlay .hero-content h1 {
         font-size: 30px;
+    }
+
+    .hero-static-overlay .hero-content h1 .shape-text::before {
+        height: 10px;
+        bottom: -4px;
     }
 
     .glass-form .section-title h2 {
@@ -1562,4 +1579,127 @@
 .news-box-items-4 .stretched-link::after,
 .tour-box-items .stretched-link::after {
     z-index: 15;
+}
+
+/* ==========================================================================
+   Professional Testimonial Card Styles
+   ========================================================================== */
+
+.testimonial-box-items-4 {
+    background: #ffffff !important;
+    padding: 40px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06) !important;
+    border: 1px solid rgba(0, 0, 0, 0.12) !important;
+    margin-top: 0 !important;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonial-box-items-4::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: linear-gradient(to right, var(--theme-color-2, #00C9FF), var(--theme-color, #4D40CA));
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    z-index: 10;
+}
+
+.testimonial-box-items-4:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(77, 64, 202, 0.4) !important;
+    background: #fcfcfc !important;
+    /* Extremely subtle tint */
+}
+
+.testimonial-box-items-4:hover::after {
+    width: 100%;
+}
+
+.testimonial-box-items-4 .star {
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    color: #ffb800 !important;
+    /* Premium Gold */
+    font-size: 14px;
+}
+
+.testimonial-box-items-4 .icon {
+    position: absolute !important;
+    top: 30px !important;
+    right: 30px !important;
+    margin: 0 !important;
+    opacity: 0.15;
+    transition: all 0.3s ease;
+}
+
+.testimonial-box-items-4 .icon img {
+    width: 45px !important;
+}
+
+.testimonial-box-items-4:hover .icon {
+    opacity: 0.3;
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.testimonial-box-items-4 h3 {
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    line-height: 1.7 !important;
+    color: #333333 !important;
+    font-family: 'Prompt', sans-serif !important;
+    font-style: italic !important;
+    margin-bottom: 30px !important;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.testimonial-box-items-4 .client-info {
+    border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+    padding-top: 25px !important;
+    margin-top: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 4px !important;
+}
+
+.testimonial-box-items-4 .client-info h4 {
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #1a1a1a !important;
+    margin-bottom: 0 !important;
+    font-family: 'Prompt', sans-serif !important;
+}
+
+.testimonial-box-items-4 .client-info span {
+    color: var(--theme-color, #4D40CA) !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+/* Ensure Swiper container handles the shadow overflow and card alignment */
+.testimonial-slider-4 {
+    padding: 20px 20px 50px !important;
+    margin: -20px -20px -30px !important;
+}
+
+.testimonial-slider-4 .swiper-wrapper {
+    display: flex !important;
+    align-items: stretch !important;
+}
+
+.testimonial-slider-4 .swiper-slide {
+    height: auto !important;
+    display: flex !important;
 }
