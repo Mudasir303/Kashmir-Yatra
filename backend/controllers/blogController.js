@@ -12,11 +12,17 @@ exports.createBlog = async (req, res) => {
             image = req.file.path;
         }
 
+        // If tags are sent as a string (from admin form), split them into an array
+        let processedTags = tags;
+        if (typeof tags === 'string') {
+            processedTags = tags.split(',').map(t => t.trim()).filter(t => t !== '');
+        }
+
         const blog = await Blog.create({
             title,
             content,
             author,
-            tags,
+            tags: processedTags,
             image
         });
         res.status(201).json(blog);
@@ -30,8 +36,17 @@ exports.createBlog = async (req, res) => {
 // @access  Public
 exports.getAllBlogs = async (req, res) => {
     try {
-        const limit = req.query.limit ? parseInt(req.query.limit) : 0;
-        const blogs = await Blog.find().sort({ createdAt: -1 }).limit(limit);
+        const { tag, limit } = req.query;
+        let query = {};
+
+        if (tag) {
+            // Trim the tag to handle potential whitespace issues from URL encoding
+            const cleanTag = tag.trim();
+            query.tags = { $in: [cleanTag] };
+        }
+
+        const blogLimit = limit ? parseInt(limit) : 0;
+        const blogs = await Blog.find(query).sort({ createdAt: -1 }).limit(blogLimit);
         res.json(blogs);
     } catch (error) {
         res.status(500).json({ message: error.message });
@@ -59,7 +74,13 @@ exports.getBlogById = async (req, res) => {
 exports.updateBlog = async (req, res) => {
     try {
         const { title, content, author, tags } = req.body;
-        let updateData = { title, content, author, tags };
+        // If tags are sent as a string, split them into an array
+        let processedTags = tags;
+        if (typeof tags === 'string') {
+            processedTags = tags.split(',').map(t => t.trim()).filter(t => t !== '');
+        }
+
+        let updateData = { title, content, author, tags: processedTags };
 
         if (req.file) {
             updateData.image = req.file.path;

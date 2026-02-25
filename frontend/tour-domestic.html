@@ -11,10 +11,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="author" content="Kashmir Yatra">
     <meta name="description"
-        content="Discover the best domestic tour packages in India. From the snow-capped peaks of Kashmir and Ladakh to the tropical beaches of Andaman and the scenic hills of Himachal.">
+        content="Discover the best domestic tour packages in India. From the snow-capped peaks of Kashmir and Ladakh to the tropical beaches of Andaman.">
     <meta name="keywords"
-        content="domestic tours India, India travel packages, Kashmir tour, Ladakh adventure, Himachal holiday, Andaman trip, Kerala backwaters, budget domestic tours">
+        content="domestic tours India, India travel packages, Kashmir tour, Ladakh adventure, Andaman trip, Kerala backwaters, budget domestic tours">
     <link rel="canonical" href="https://www.kashmiryatra.com/tour-domestic.html">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Domestic Tour Packages - Explore India | Kashmir Yatra">
+    <meta property="og:description"
+        content="Discover the best domestic tour packages in India. From the snow-capped peaks of Kashmir to the tropical beaches of Andaman.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kashmiryatra.com/tour-domestic.html">
+    <meta property="og:image" content="assets/img/hero/new/11550725-snow-covered-house-himalayas-kashmir.jpg">
+    <meta property="og:site_name" content="Kashmir Yatra">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Domestic Tour Packages - Explore India | Kashmir Yatra">
+    <meta name="twitter:description"
+        content="Discover the best domestic tour packages in India with Kashmir Yatra. Curated itineraries for Kashmir, Ladakh, and more.">
+    <meta name="twitter:image" content="assets/img/hero/new/11550725-snow-covered-house-himalayas-kashmir.jpg">
     <!-- ======== Page title ============ -->
     <title>Domestic Tour Packages - Explore the Beauty of India | Kashmir Yatra</title>
     <!--<< Favicon >>-->
@@ -311,8 +327,7 @@
     </div>
 
     <!--  Breadcrumb Section Start -->
-    <div class="breadcrumb-wrapper section-padding  bg-cover"
-        style="background-image: url('assets/img/hero/new/11550725-snow-covered-house-himalayas-kashmir.jpg');">
+    <div class="breadcrumb-wrapper section-padding  bg-cover" style="background-image: url('assets/img/domestic.png');">
         <div class="container-fluid">
             <div class="page-heading">
                 <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".3s">
@@ -332,7 +347,7 @@
             </div>
         </div>
         <div class="plane-shape float-bob-x">
-            <img src="assets/img/breadcrumb-plane.png" alt="img">
+            <img src="assets/img/logo kashmir yatra.png" alt="img">
         </div>
     </div>
 
@@ -732,7 +747,6 @@
                 const groups = {
                     "Kashmir": [],
                     "Ladakh": [],
-                    "Himachal": [],
                     "Andaman": []
                 };
                 const others = [];
@@ -741,7 +755,6 @@
                     const sub = tour.subCategory ? tour.subCategory.toLowerCase() : "";
                     if (sub.includes("kashmir")) groups["Kashmir"].push(tour);
                     else if (sub.includes("ladakh")) groups["Ladakh"].push(tour);
-                    else if (sub.includes("himachal") || sub.includes("manali") || sub.includes("shimla") || sub.includes("kasol")) groups["Himachal"].push(tour);
                     else if (sub.includes("andaman")) groups["Andaman"].push(tour);
                     else others.push(tour);
                 });
@@ -813,7 +826,6 @@
 
                 if (shouldRender("Kashmir")) renderGroup("Kashmir Packages", groups["Kashmir"]);
                 if (shouldRender("Ladakh")) renderGroup("Ladakh Adventures", groups["Ladakh"]);
-                if (shouldRender("Himachal")) renderGroup("Himachal Pradesh", groups["Himachal"]);
                 if (shouldRender("Andaman")) renderGroup("Andaman & Nicobar Islands", groups["Andaman"]);
 
                 // For 'Other', maybe we want to show it only if no filter or if filter is something else?
