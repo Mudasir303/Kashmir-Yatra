@@ -199,6 +199,44 @@
     bottom: 30px;
 }
 
+/* WhatsApp Button for Offcanvas - No Hover Effects */
+.whatsapp-btn-offcanvas {
+    background-color: #25D366 !important;
+    color: #ffffff !important;
+    padding: 12px;
+    font-size: 14px;
+    display: block;
+    border-radius: 8px;
+    text-align: center;
+    border: none !important;
+    text-decoration: none !important;
+    transition: none !important;
+    animation: none !important;
+    box-shadow: none !important;
+    position: relative;
+    z-index: 1;
+}
+
+.whatsapp-btn-offcanvas i {
+    color: #ffffff !important;
+    background: none !important;
+    box-shadow: none !important;
+}
+
+.whatsapp-btn-offcanvas:hover,
+.whatsapp-btn-offcanvas:focus,
+.whatsapp-btn-offcanvas:active {
+    background-color: #25D366 !important;
+    color: #ffffff !important;
+    transform: none !important;
+    box-shadow: none !important;
+    transition: none !important;
+}
+
+.whatsapp-btn-offcanvas:hover i {
+    transform: none !important;
+}
+
 /* Subscribe Section */
 .subscribe-section {
     padding: 80px 0;
@@ -1702,4 +1740,76 @@
 .testimonial-slider-4 .swiper-slide {
     height: auto !important;
     display: flex !important;
+}
+
+/* ==========================================================================
+   Breadcrumb Responsiveness Overrides
+   ========================================================================== */
+
+.breadcrumb-wrapper {
+    padding: 120px 0 !important;
+    /* Default spacing */
+    position: relative;
+    overflow: hidden;
+}
+
+.breadcrumb-wrapper .container-fluid {
+    padding: 0 15px !important;
+    /* Default Bootstrap behavior on mobile/tablet */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.breadcrumb-wrapper .page-heading h1 {
+    font-size: 42px !important;
+    line-height: 1.2;
+    margin-top: 10px;
+}
+
+.breadcrumb-wrapper .page-heading .breadcrumb-items {
+    margin-bottom: 15px !important;
+    flex-wrap: wrap;
+    /* Ensure they wrap on very small screens */
+}
+
+/* Tablet View */
+@media (max-width: 991px) {
+    .breadcrumb-wrapper {
+        padding: 100px 0 !important;
+    }
+
+    .breadcrumb-wrapper .page-heading h1 {
+        font-size: 32px !important;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 767px) {
+    .breadcrumb-wrapper {
+        padding: 80px 0 !important;
+    }
+
+    .breadcrumb-wrapper .page-heading h1 {
+        font-size: 26px !important;
+    }
+
+    .breadcrumb-wrapper .page-heading .breadcrumb-items {
+        gap: 10px !important;
+        justify-content: center;
+    }
+
+    .breadcrumb-wrapper .page-heading .breadcrumb-items li {
+        font-size: 14px !important;
+    }
+}
+
+/* Small Mobile View */
+@media (max-width: 480px) {
+    .breadcrumb-wrapper {
+        padding: 60px 0 !important;
+    }
+
+    .breadcrumb-wrapper .page-heading h1 {
+        font-size: 22px !important;
+    }
 }
