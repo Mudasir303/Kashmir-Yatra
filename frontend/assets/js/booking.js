@@ -6,32 +6,37 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let perPersonPrice = 0;
 
-    // 1. Listen for price updates from the main fetch
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            const priceEl = document.getElementById("tour-detail-price");
-            if (priceEl && priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
-                perPersonPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, "")) || 0;
+    // 1. Unified function to update per-person price
+    const syncPerPersonPrice = () => {
+        const priceEl = document.getElementById("tour-detail-price");
+        if (priceEl && priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
+            const numericPrice = parseInt(priceEl.textContent.replace(/[^\d]/g, "")) || 0;
+            if (numericPrice !== perPersonPrice) {
+                perPersonPrice = numericPrice;
                 updateTotalPrice();
             }
-        });
-    });
+            return true;
+        }
+        return false;
+    };
 
-    const priceEl = document.getElementById("tour-detail-price");
-    if (priceEl) {
-        observer.observe(priceEl, { characterData: true, childList: true, subtree: true });
-        
-        // Polling check as fallback for initial load
-        let checkCount = 0;
-        const checkPrice = setInterval(() => {
-            if (priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
-                perPersonPrice = parseInt(priceEl.textContent.replace(/[^0-9]/g, "")) || 0;
-                updateTotalPrice();
-                clearInterval(checkPrice);
-            }
-            if (++checkCount > 10) clearInterval(checkPrice);
-        }, 500);
-    }
+    // Observe a stable container (the entire details content)
+    const container = document.querySelector(".details-content") || document.body;
+    const observer = new MutationObserver(() => {
+        syncPerPersonPrice();
+    });
+    observer.observe(container, { childList: true, subtree: true, characterData: true });
+
+    // Initial and Polling check as fallback
+    syncPerPersonPrice();
+    let checkCount = 0;
+    const checkPrice = setInterval(() => {
+        if (syncPerPersonPrice()) {
+            // We found a price, but for seasonal deals it might change AGAIN
+            // after the initial load, so we continue polling for a bit
+        }
+        if (++checkCount > 30) clearInterval(checkPrice);
+    }, 300);
 
     const updateTotalPrice = () => {
         const persons = parseInt(personsInput.value) || 1;
@@ -43,6 +48,17 @@ document.addEventListener("DOMContentLoaded", () => {
     if (personsInput) {
         personsInput.addEventListener("input", updateTotalPrice);
         personsInput.addEventListener("change", updateTotalPrice);
+    }
+
+    // Initialize Datepicker with Restriction (Disable Past Dates)
+    const datePickerEl = $('#datepicker');
+    if (datePickerEl.length) {
+        datePickerEl.datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            startDate: new Date(), // Disables all dates before today
+            format: 'dd-mm-yyyy'
+        }).on('changeDate', updateTotalPrice); // Ensure price updates if date selection somehow affects logic in future
     }
 
     // 2. Numeric Restriction for Phone

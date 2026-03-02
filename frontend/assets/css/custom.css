@@ -866,9 +866,7 @@
 }
 
 .offer-badge {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    display: inline-block;
     background: var(--theme-color-2);
     color: #fff;
     padding: 8px 22px;
@@ -879,6 +877,13 @@
     z-index: 10;
     box-shadow: 0 4px 15px rgba(251, 91, 50, 0.4);
     animation: badgePulse 2s infinite ease-in-out;
+}
+
+.tour-image .offer-badge,
+.tour-card-item .tour-image .offer-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 @keyframes badgePulse {
@@ -1178,15 +1183,22 @@
 }
 
 .glass-form .form-clt input,
-.glass-form .form-clt textarea {
+.glass-form .form-clt textarea,
+.glass-form .form-clt select {
     background: rgba(114, 92, 92, 0.15) !important;
     border: 1px solid rgba(255, 255, 255, 0.15) !important;
     border-radius: 4px !important;
     color: #ffffff !important;
-    padding: 5px !important;
+    padding: 12px 15px !important;
     width: 100% !important;
     margin-bottom: 5px;
     transition: all 0.3s ease;
+    font-size: 15px;
+}
+
+.glass-form .form-clt select option {
+    background: #1a1c23;
+    color: #fff;
 }
 
 .glass-form .form-clt textarea {
@@ -1200,11 +1212,40 @@
 }
 
 .glass-form .form-clt input:focus,
-.glass-form .form-clt textarea:focus {
+.glass-form .form-clt textarea:focus,
+.glass-form .form-clt select:focus {
     background: rgba(255, 255, 255, 0.1) !important;
     border-color: rgba(255, 255, 255, 0.3) !important;
     outline: none;
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+/* Glass Form Light Variant (for light backgrounds like MICE page) */
+.glass-form-light {
+    background: #ffffff !important;
+    border: 1px solid #e0e0e0 !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+}
+
+.glass-form-light .form-clt input,
+.glass-form-light .form-clt textarea,
+.glass-form-light .form-clt select {
+    background: #f8f9fa !important;
+    border: 1px solid #ddd !important;
+    color: #333 !important;
+}
+
+.glass-form-light .form-clt input::placeholder,
+.glass-form-light .form-clt textarea::placeholder {
+    color: #777 !important;
+}
+
+.glass-form-light .form-clt input:focus,
+.glass-form-light .form-clt textarea:focus,
+.glass-form-light .form-clt select:focus {
+    background: #fff !important;
+    border-color: var(--theme-color) !important;
+    box-shadow: 0 0 10px rgba(77, 64, 202, 0.1);
 }
 
 .glass-form .theme-btn-2 {

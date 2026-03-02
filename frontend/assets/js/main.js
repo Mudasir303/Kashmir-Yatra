@@ -28,9 +28,9 @@ const showToast = (message, type = 'info') => {
     container.appendChild(toast);
 
     // Trigger animation
-    requestAnimationFrame(() => {
+    setTimeout(() => {
         toast.classList.add('show');
-    });
+    }, 10);
 
     // Auto remove
     const removeToast = () => {
@@ -198,6 +198,43 @@ const showToast = (message, type = 'info') => {
                     },
                     400: {
                         slidesPerView: 2,
+                    },
+                    0: {
+                        slidesPerView: 1,
+                    },
+                },
+            });
+        }
+
+        //>> Achievement Slider Start <<//
+        if ($('.achievement-slider').length > 0) {
+            const achievementSlider = new Swiper(".achievement-slider", {
+                spaceBetween: 30,
+                speed: 2000,
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                breakpoints: {
+                    1399: {
+                        slidesPerView: 4,
+                    },
+                    1199: {
+                        slidesPerView: 3,
+                    },
+                    991: {
+                        slidesPerView: 3,
+                    },
+                    767: {
+                        slidesPerView: 2,
+                    },
+                    575: {
+                        slidesPerView: 1,
                     },
                     0: {
                         slidesPerView: 1,

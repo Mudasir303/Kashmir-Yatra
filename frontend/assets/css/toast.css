@@ -19,7 +19,7 @@
     gap: 12px;
     min-width: 300px;
     transform: translateX(120%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     font-family: 'Inter', sans-serif;
     font-size: 14px;
     line-height: 1.5;

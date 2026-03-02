@@ -15,11 +15,20 @@ const setupContactForm = (formId, defaultSubject = 'New Website Inquiry') => {
             const emailInput = contactForm.querySelector('input[name="email"]');
             const phoneInput = contactForm.querySelector('input[name="phone"]');
             const messageInput = contactForm.querySelector('textarea[name="message"]');
+            const companyInput = contactForm.querySelector('input[name="company"]');
+            const miceTypeInput = contactForm.querySelector('select[name="mice_type"]');
 
             const name = nameInput ? nameInput.value.trim() : '';
             const email = emailInput ? emailInput.value.trim() : '';
             const phone = phoneInput ? phoneInput.value.trim() : '';
-            const message = messageInput ? messageInput.value.trim() : '';
+            let message = messageInput ? messageInput.value.trim() : '';
+
+            const company = companyInput ? companyInput.value.trim() : null;
+            const miceType = miceTypeInput ? miceTypeInput.value : null;
+
+            if (company || miceType) {
+                message = `MICE Type: ${miceType || 'N/A'}\nCompany: ${company || 'N/A'}\n\nRequirements:\n${message}`;
+            }
 
             if (!name || !email || !phone || !message) {
                 showToast('Please fill in all fields including phone number.', 'error');
@@ -79,4 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setupContactForm('contact-form-hero', 'New Website Inquiry');
     setupContactForm('contact-form1', 'New Website Inquiry');
     setupContactForm('contact-form', 'New Website Inquiry');
+    setupContactForm('mice-inquiry-form', 'MICE Corporate Inquiry');
 });

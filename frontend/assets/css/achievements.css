@@ -1,0 +1,98 @@
+/* Achievements Section Styles */
+.achievement-section {
+    background: var(--bg-color-2, #f8f9fa);
+    position: relative;
+    overflow: hidden;
+}
+
+.achievement-title-area {
+    margin-bottom: 50px;
+}
+
+.achievement-title-area .section-title span {
+    color: #007bff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.achievement-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.4s ease;
+    height: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.achievement-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    border-color: #007bff;
+}
+
+.achievement-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(0, 123, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: #007bff;
+    font-size: 30px;
+    transition: all 0.4s ease;
+}
+
+.achievement-card:hover .achievement-icon {
+    background: #007bff;
+    color: #fff;
+    transform: rotateY(360deg);
+}
+
+.achievement-content h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.achievement-content p {
+    font-size: 15px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.achievement-year {
+    display: inline-block;
+    padding: 5px 15px;
+    background: #f1f5f9;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+}
+
+.achievement-slider {
+    padding-bottom: 50px !important;
+}
+
+.achievement-slider .swiper-pagination-bullet-active {
+    background: #007bff;
+}
+
+/* Glassmorphism effect for a more premium look */
+.achievement-card.glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
