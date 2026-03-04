@@ -122,6 +122,34 @@
     margin-top: 10px;
 }
 
+.footer-section.dark-theme .theme-btn {
+    padding: 12px 35px !important;
+    width: auto !important;
+    min-width: 180px;
+    border-radius: 50px !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.footer-section.dark-theme .theme-btn span {
+    margin: 0 !important;
+}
+
+.footer-section.dark-theme .theme-btn i {
+    font-size: 16px;
+    margin: 0 !important;
+    position: static !important;
+    background: none !important;
+    box-shadow: none !important;
+    width: auto !important;
+    height: auto !important;
+    line-height: normal !important;
+}
+
 .footer-bottom-1.dark-bottom {
     background-color: #07080c !important;
     border-top: 1px solid #1a1c23;
@@ -130,8 +158,8 @@
 /* Floating Social Icons Bar */
 .floating-social-bar {
     position: fixed;
-    top: 45%;
-    right: 0;
+    top: 40%;
+    right: 4px;
     transform: translateY(-50%);
     z-index: 99999;
     display: flex;
@@ -141,20 +169,20 @@
 }
 
 .floating-social-bar .social-item {
-    width: 50px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 22px;
+    font-size: 20px;
     background-color: #333;
     transition: all 0.3s ease;
     text-decoration: none;
     border-radius: 50%;
     margin-bottom: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    margin-right: 20px;
+    margin-left: 15px;
 }
 
 .floating-social-bar .social-item.whatsapp {

@@ -1,18 +1,35 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<!--<< Header Area >>-->
-
-<!-- Mirrored from modinatheme.com/html/travil/team-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Jan 2026 14:50:27 GMT -->
 
 <head>
     <!-- ========== Meta Tags ========== -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="author" content="modinatheme">
-    <meta name="description" content="Travil - Travel & Tour Booking Html Template">
-    <!-- ======== Page title ============ -->
-    <title>Travil - Travel & Tour Booking Html Template</title>
+    <meta name="author" content="Kashmir Yatra">
+    <title>Ticketing Service | Kashmir Yatra</title>
+    <meta name="description"
+        content="Effortless ticket booking for flights, trains, and buses at your convenience, ensuring a smooth start to your journey with Kashmir Yatra.">
+    <meta name="keywords"
+        content="flight tickets Srinagar, train booking Kashmir, bus tickets Kashmir, travel agency Srinagar, Kashmir Yatra ticketing">
+    <link rel="canonical" href="https://www.kashmiryatra.com/ticketing.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kashmiryatra.com/ticketing.html">
+    <meta property="og:title" content="Ticketing Service | Kashmir Yatra">
+    <meta property="og:description"
+        content="Effortless ticket booking for flights, trains, and buses at your convenience, ensuring a smooth start to your journey with Kashmir Yatra.">
+    <meta property="og:image" content="https://www.kashmiryatra.com/assets/img/hero/hero-bg.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.kashmiryatra.com/ticketing.html">
+    <meta property="twitter:title" content="Ticketing Service | Kashmir Yatra">
+    <meta property="twitter:description"
+        content="Effortless ticket booking for flights, trains, and buses at your convenience, ensuring a smooth start to your journey with Kashmir Yatra.">
+    <meta property="twitter:image" content="https://www.kashmiryatra.com/assets/img/hero/hero-bg.jpg">
+
     <!--<< Favicon >>-->
     <link rel="shortcut icon" href="assets/img/favicon.svg">
     <!--<< Bootstrap min.css >>-->
@@ -35,17 +52,38 @@
     <link rel="stylesheet" href="assets/css/nice-select.css">
     <!--<< Main.css >>-->
     <link rel="stylesheet" href="assets/css/main.css">
+    <!--<< Custom.css >>-->
+    <link rel="stylesheet" href="assets/css/custom.css">
     <!--<< Style.css >>-->
     <link rel="stylesheet" href="style.css">
+    <!--<< Toast.css >>-->
+    <link rel="stylesheet" href="assets/css/toast.css">
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kashmiryatra.com/index.html"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Ticketing Service",
+        "item": "https://www.kashmiryatra.com/ticketing.html"
+      }]
+    }
+    </script>
 </head>
 
 <body>
-
     <!-- Preloader Start -->
     <div id="preloader" class="preloader">
         <div class="animation-preloader">
-            <div class="spinner">
-            </div>
+            <div class="spinner"></div>
             <div class="logo-loading">
                 <img src="assets/img/logo kashmir yatra.png" alt="Kashmir Yatra Logo">
             </div>
@@ -68,10 +106,15 @@
             </div>
         </div>
     </div>
-    <!-- Back To Top start -->
+
+    <!-- Back To Top -->
     <button id="back-top" class="back-to-top">
         <i class="fas fa-long-arrow-up"></i>
     </button>
+
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+
     <!-- Offcanvas Area Start -->
     <div class="fix-area">
         <div class="offcanvas__info">
@@ -120,18 +163,20 @@
                                     <span
                                         style="display: block; font-size: 12px; color: #666; text-transform: uppercase; letter-spacing: 1px;">WhatsApp
                                         Only</span>
-                                    <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F" target="_blank"
+                                    <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F"
+                                        target="_blank"
                                         style="font-size: 16px; font-weight: 700; color: #333; text-decoration: none;">+91
                                         91498 51190</a>
                                 </div>
                             </div>
-                            <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F" target="_blank" class="theme-btn w-100 text-center"
-                                style="padding: 12px; font-size: 14px; display: block; border-radius: 8px;">
+                            <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F"
+                                target="_blank" class="whatsapp-btn-offcanvas">
                                 <i class="fab fa-whatsapp me-2"></i> WhatsApp Support
                             </a>
                         </div>
+
                         <div class="social-icon d-flex align-items-center">
-                            <a href="https://www.facebook.com/share/16qqkmyWJK/" target="_blank"><i
+                            <a href="https://www.facebook.com/people/Kashmir-Yatra/100068596967208/" target="_blank"><i
                                     class="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/kashmir_yatra/" target="_blank"><i
                                     class="fab fa-instagram"></i></a>
@@ -145,31 +190,25 @@
         </div>
     </div>
     <div class="offcanvas__overlay"></div>
-    <!-- Header Section Start -->
+
+    <!-- Header Section -->
     <header class="header-section header-inner">
         <div class="header-top-section">
             <div class="container-fluid">
                 <div class="header-top-wrapper">
                     <ul class="top-left">
-                        <li>
-                            <i class="far fa-envelope"></i>
-                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Kashmiryatra@hotmail.com&su=Tour%20Inquiry&body=Dear%20Kashmir%20Yatra%20Team%2C%0A%0AI%27m%20interested%20in%20planning%20a%20trip%20soon.%20Please%20send%20me%20your%20recommended%20itineraries%20and%20package%20rates.%0A%0AThank%20you%2C%0A%5BYour%20Name%5D">Kashmiryatra@hotmail.com</a>
+                        <li><i class="far fa-envelope"></i><a
+                                href="https://mail.google.com/mail/?view=cm&fs=1&to=Kashmiryatra@hotmail.com&su=Tour%20Inquiry&body=Dear%20Kashmir%20Yatra%20Team%2C%0A%0AI%27m%20interested%20in%20planning%20a%20trip%20soon.%20Please%20send%20me%20your%20recommended%20itineraries%20and%20package%20rates.%0A%0AThank%20you%2C%0A%5BYour%20Name%5D">Kashmiryatra@hotmail.com</a>
                         </li>
-                        <li>
-                            <i class="far fa-map-marker-alt"></i>
-                            Barbar Shah, Srinagar, J&K 190001
-                        </li>
+                        <li><i class="far fa-map-marker-alt"></i>Barbar Shah, Srinagar, J&K 190001</li>
                     </ul>
                     <div class="social-icon">
-
-
-                        <a href="tel:+919149851190" style="color: #c5bfbf; margin-right: 15px;">
-                            <i class="fas fa-phone-alt" style="margin-right: 5px;"></i> Call Us: +91 9149851190
-                        </a> <a href="https://www.facebook.com/share/16qqkmyWJK/" target="_blank"><i
+                        <a href="tel:+919149851190" style="color: #c5bfbf; margin-right: 15px;"><i
+                                class="fas fa-phone-alt"></i> Call Us: +91 9149851190</a>
+                        <a href="https://www.facebook.com/share/16qqkmyWJK/" target="_blank"><i
                                 class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/kashmir_yatra/" target="_blank"><i
                                 class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank"><i
                                 class="fab fa-google"></i></a>
                     </div>
@@ -183,7 +222,7 @@
                         <div class="header-left">
                             <div class="logo">
                                 <a href="index.html" class="header-logo">
-                                    <img src="assets/img/logo kashmir yatra.png" alt="logo-img">
+                                    <img src="assets/img/logo kashmir yatra.png" alt="Kashmir Yatra Logo">
                                 </a>
                             </div>
                         </div>
@@ -192,94 +231,52 @@
                                 <div class="main-menu">
                                     <nav id="mobile-menu">
                                         <ul>
+                                            <li><a href="index.html">Home</a></li>
                                             <li>
-                                                <a href="index.html">Home</a>
-                                            </li>
-                                            <li>
-                                                <a href="tour.html">
-                                                    Tours
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </a>
+                                                <a href="tour.html">Tours <i class="fas fa-chevron-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="tour-domestic.html">Domestic Tours</a></li>
                                                     <li><a href="tour-international.html">International Tours</a></li>
-                                                    <!-- <li><a href="tour-list.html">Tour List</a></li>
-                                                    <li><a href="tour-details.html">Tour Details</a></li> -->
                                                 </ul>
                                             </li>
                                             <li>
-                                                <a href="destination.html">
-                                                    Destinations
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </a>
+                                                <a href="destination.html">Destinations <i
+                                                        class="fas fa-chevron-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="destination-domestic.html">Domestic</a></li>
                                                     <li><a href="destination-international.html">International</a></li>
                                                 </ul>
                                             </li>
-                                            <!-- <li class="has-dropdown">
-                                                <a href="news-details.html">
-                                                    Pages
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    <li><a href="team.html">Our Team</a></li>
-                                                    <li><a href="team-details.html">Team Details</a></li>
-                                                    <li class="has-dropdown">
-                                                        <a href="shop-details.html">
-                                                            Shop Page
-                                                            <i class="fas fa-angle-right"></i>
-                                                        </a>
-                                                        <ul class="submenu">
-                                                            <li><a href="shop.html">Shop Page</a></li>
-                                                            <li><a href="shop-cart.html">Shop Cart</a></li>
-                                                            <li><a href="shop-details.html">Shop Details</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="faq.html">Faqs</a></li>
-                                                    <li><a href="404.html">404 Error</a></li>
-                                                </ul>
-                                            </li> -->
-                                            <!-- <li>
-                                                <a href="news-details.html">
-                                                    News
-                                                    <i class="fas fa-chevron-down"></i>
-                                                </a>
-                                                <ul class="submenu">
-                                                    
-                                                    <li><a href="news-details.html">News Details</a></li>
-                                                </ul>
-                                            </li> -->
                                             <li><a href="news.html">Blogs</a></li>
                                             <li>
-                                                <a href="about.html">About Us</a>
-                                            </li>
-
-                                            <li>
-                                                <a href="contact.html">
-                                                    Contact
+                                                <a href="#">
+                                                    Services
+                                                    <i class="fas fa-chevron-down"></i>
                                                 </a>
+                                                <ul class="submenu">
+                                                    <li><a href="ticketing.html">Ticketing Service</a></li>
+                                                    <li><a href="taxi.html">Taxi Service</a></li>
+                                                    <li><a href="accommodation.html">Accommodation</a></li>
+                                                    <li><a href="pilgrimage.html">Pilgrimage Tours</a></li>
+                                                    <li><a href="unexplored.html">Kashmir Unexplored</a></li>
+                                                    <li><a href="mice.html">Corporate Tours (MICE)</a></li>
+                                                </ul>
                                             </li>
+                                            <li><a href="about.html">About Us</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="contact-items">
-                                <div class="icon">
-                                    <img src="assets/img/call.png" alt="img">
-                                </div>
+                                <div class="icon"><img src="assets/img/call.png" alt="icon"></div>
                                 <div class="content">
                                     <span>Call Us</span>
                                     <h6><a href="tel:+919149851190">+91 91498 51190</a></h6>
                                 </div>
                             </div>
-                            <!-- <div class="header-search">
-                                <button class="d-flex align-items-center search-toggle"><i
-                                        class="far fa-search"></i></button>
-                            </div> -->
-                            <a href="tour-details.html" class="theme-btn">
-                                <span>Explore More</span> <i class="far fa-long-arrow-right"></i>
+                            <a href="https://kashmiryatra.net/Pay-Now" class="theme-btn">
+                                <span>Book Now</span> <i class="far fa-long-arrow-right"></i>
                             </a>
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar__toggle">
@@ -297,145 +294,180 @@
         </div>
     </header>
 
-    <!-- Search Section Start -->
-    <div class="header-search-bar d-flex align-items-center">
-        <button class="search-close">�</button>
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="search-bar">
-                        <div class="contact-form-box contact-search-form-box">
-                            <form action="#">
-                                <input type="email" placeholder="Search here...">
-                                <button type="submit"><i class="far fa-search"></i></button>
-                            </form>
-                            <p>Type above and press Enter to search. Press Close to cancel.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--  Breadcrumb Section Start -->
-    <div class="breadcrumb-wrapper section-padding  bg-cover"
-        style="background-image: url('assets/img/breadcrumb-bg.jpg');">
+    <!-- Breadcrumb Section -->
+    <div class="breadcrumb-wrapper section-padding bg-cover" style="background-image: url('assets/img/about.jpg');">
         <div class="container-fluid">
             <div class="page-heading">
                 <ul class="breadcrumb-items wow fadeInUp" data-wow-delay=".3s">
-                    <li>
-                        <a href="index.html">
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <i class="far fa-slash"></i>
-                    </li>
-                    <li>
-                        Tour Guide Details
-                    </li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><i class="far fa-slash"></i></li>
+                    <li>Ticketing Service</li>
                 </ul>
-                <h1 class="wow fadeInUp" data-wow-delay=".5s">Tour Guide Details</h1>
+                <h1 class="wow fadeInUp mt-5" data-wow-delay=".5s">Seamless Travel Ticketing</h1>
             </div>
         </div>
         <div class="plane-shape float-bob-x">
-            <img src="assets/img/logo kashmir yatra.png" alt="img">
+            <img src="assets/img/logo kashmir yatra.png" alt="Kashmir Yatra">
         </div>
     </div>
 
-    <!-- Team Section Start -->
-    <section class="team-details-section fix section-padding">
+    <!-- Excellence Model Section -->
+    <section class="about-section section-padding">
         <div class="container">
-            <div class="team-details-wrapper">
-                <div class="row g-4 align-items-center">
-                    <div class="col-lg-5">
-                        <div class="team-details-image">
-                            <img src="assets/img/team/details.jpg" alt="team-img">
-                        </div>
-                    </div>
-                    <div class="col-lg-7">
-                        <div class="team-details-content">
-                            <div class="details-info">
-                                <h3>Salman Ahmed</h3>
-                                <span>Software Engineer</span>
-                            </div>
-                            <p class="mt-3">
-                                Mauris sapien neque, placerat ut dolor nec, egestas tincidunt felis. Sed in ornare quam,
-                                finibus dui aliquam justo duis eros quam, semper at libero sed, vehicula the consequat
-                                arcu. In ornare, enim at egestas bibendum, ligula ante congue arcu, sed ornare sem nulla
-                                is nec magna. Morbi faucibus.
-                            </p>
-                            <div class="progress-area mt-4">
-                                <div class="progress-wrap">
-                                    <div class="pro-items">
-                                        <div class="pro-head">
-                                            <h6 class="title">
-                                                tour package
-                                            </h6>
-                                            <span class="point">
-                                                90%
-                                            </span>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar" data-wow-duration=".9s" role="progressbar"
-                                                style="width: 90%;" aria-valuenow="95" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                    <div class="pro-items">
-                                        <div class="pro-head">
-                                            <h6 class="title">
-                                                Travel
-                                            </h6>
-                                            <span class="point">
-                                                95%
-                                            </span>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar" data-wow-duration=".9s" role="progressbar"
-                                                style="width: 85%;" aria-valuenow="95" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="social-icon">
-                                <span>Social Media:</span>
-                                <a href="https://www.facebook.com/share/16qqkmyWJK/" target="_blank"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank"><i
-                                        class="fab fa-google"></i></a>
-                                <a href="https://www.linkedin.com/" target="_blank"><i
-                                        class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-pinterest-p"></i></a>
-                            </div>
-                        </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6 wow fadeInLeft" data-wow-delay=".3s">
+                    <div class="about-image">
+                        <img src="assets/img/about/01.jpg" alt="Corporate Excellence">
                     </div>
                 </div>
-                <div class="team-single-history pt-5">
-                    <div class="title">
-                        <h3>Education Background</h3>
+                <div class="col-lg-6 wow fadeInRight" data-wow-delay=".5s">
+                    <div class="about-content">
+                        <div class="section-title">
+                            <span class="text-primary">Seamless Arrivals & Departures</span>
+                            <h2>Effortless Ticket Booking</h2>
+                        </div>
+                        <p class="mt-3">
+                            We take the hassle out of your travel planning by offering comprehensive ticketing services
+                            for flights, trains, and buses. Focus on your journey while we handle the complex logistics
+                            of securing the best routes and timings for your arrival in the valley.
+                        </p>
+                        <p>
+                            With our extensive network and strategic partnerships with major carriers, we secure the
+                            most competitive rates for your domestic and international travel needs, ensuring a smooth
+                            and comfortable start to your Kashmir experience.
+                        </p>
+                        <p>
+                            Beyond just booking, we provide 24/7 support for rescheduling, cancellations, and real-time
+                            travel updates. Our goal is to ensure that your transit is as seamless as the serene
+                            shores of Dal Lake, leaving you free to immerse yourself in the beauty of your destination.
+                        </p>
                     </div>
-                    <h5 class="pt-5">Diploma in Web Design <span>2012 - 2014</span></h5>
-                    <p class="mt-3">
-                        Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                        industry's in the ou standard dummy text ever since the 1500s, when an unknown printer
-                        took.Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been
-                        the industry's in the abouti standard dummy
-                    </p>
-                    <h5 class="pt-5">Degree in UI/UX Design <span>2015 - 2016 </span></h5>
-                    <p class="mt-3">
-                        Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                        industry's in the ou standard dummy text ever since the 1500s, when an unknown printer
-                        took.Ipsum is simply dummy text of the printing and type setting industry. Lorem Ipsum has been
-                        the industry's in the abouti standard dummy
-                    </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section Start -->
+    <!-- Ticketing Pillars Section -->
+    <section class="service-section section-padding pt-0">
+        <div class="container">
+            <div class="section-title text-center mb-5">
+                <span>Our Booking Services</span>
+                <h2>Comprehensive Ticketing Solutions</h2>
+            </div>
+            <div class="row g-4">
+                <!-- Flights -->
+                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div class="tour-box-items text-center p-4 h-100 shadow-sm"
+                        style="min-height: 350px; display: flex; flex-direction: column;">
+                        <div class="icon mb-3" style="font-size: 40px; color: #4D40CA;"><i
+                                class="fas fa-plane-departure"></i>
+                        </div>
+                        <h4>Flight Tickets</h4>
+                        <p>Domestic and international flight bookings with competitive rates and optimized routing for
+                            your convenience.</p>
+                    </div>
+                </div>
+                <!-- Trains -->
+                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                    <div class="tour-box-items text-center p-4 h-100 shadow-sm"
+                        style="min-height: 350px; display: flex; flex-direction: column;">
+                        <div class="icon mb-3" style="font-size: 40px; color: #4D40CA;"><i class="fas fa-train"></i>
+                        </div>
+                        <h4>Train Tickets</h4>
+                        <p>Hassle-free railway bookings across India, including premier trains ensuring comfortable
+                            mainland connectivity.</p>
+                    </div>
+                </div>
+                <!-- Buses -->
+                <div class="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                    <div class="tour-box-items text-center p-4 h-100 shadow-sm"
+                        style="min-height: 350px; display: flex; flex-direction: column;">
+                        <div class="icon mb-3" style="font-size: 40px; color: #4D40CA;"><i class="fas fa-bus"></i>
+                        </div>
+                        <h4>Bus Tickets</h4>
+                        <p>Comfortable AC and non-AC interstate bus bookings for scenic road journeys to and from the
+                            valley.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Ticketing Section -->
+    <section class="about-section section-padding sect-bg">
+        <div class="container">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-6">
+                    <div class="section-title">
+                        <span>Why Book With Us?</span>
+                        <h2>The Kashmir Yatra Advantage</h2>
+                    </div>
+                    <ul class="list-unstyled mt-4">
+                        <li class="mb-3 d-flex align-items-center"><i class="fas fa-check-circle text-primary me-3"></i>
+                            <div><strong>Best Rates:</strong> Access to exclusive deals and competitive pricing for all
+                                routes.</div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center"><i class="fas fa-check-circle text-primary me-3"></i>
+                            <div><strong>Instant Booking:</strong> Fast and secure ticket confirmation.</div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center"><i class="fas fa-check-circle text-primary me-3"></i>
+                            <div><strong>Expert Advice:</strong> Guidance on the best routes, connections, and travel
+                                times.</div>
+                        </li>
+                        <li class="mb-3 d-flex align-items-center"><i class="fas fa-check-circle text-primary me-3"></i>
+                            <div><strong>24/7 Support:</strong> Round-the-clock assistance for cancellations and
+                                rescheduling.</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6" id="ticketing-form">
+                    <div class="contact-form-box glass-form glass-form-light">
+                        <div class="section-title mb-4">
+                            <span class="text1" style="color: var(--theme-color);">Request a Booking</span>
+                            <h2 class="form-header-title" style="color: #0f0707 !important;">Ticketing Inquiry</h2>
+                        </div>
+                        <form id="ticketing-inquiry-form" class="contact-form-items">
+                            <div class="row g-3">
+                                <div class="col-lg-6">
+                                    <div class="form-clt"><input type="text" name="name" placeholder="Full Name"
+                                            required></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-clt"><input type="email" name="email" placeholder="Email Address"
+                                            required></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-clt"><input type="tel" name="phone" placeholder="Phone Number"
+                                            required></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-clt">
+                                        <select name="ticket_type" required>
+                                            <option value="">Select Transport Type</option>
+                                            <option value="Flight">Flight</option>
+                                            <option value="Train">Train</option>
+                                            <option value="Bus">Bus</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-clt"><textarea name="message"
+                                            placeholder="Travel Details (From, To, Date, Passengers, etc.)"
+                                            required></textarea></div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <button type="submit" class="theme-btn w-100"><span>Send Inquiry <i
+                                                class="fas fa-paper-plane"></i></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
     <footer class="footer-section fix dark-theme">
         <div class="container">
             <div class="footer-wrapper">
@@ -451,16 +483,18 @@
                             </div>
                             <div class="footer-content">
                                 <p>
-                                    Your trusted Kashmir travel partner since 2017. We specialize in customized tour
-                                    packages,
+                                    Your trusted Kashmir travel partner since 2017. We are the best travel agency in
+                                    Srinagar, specializing in customized tour packages,
                                     luxury houseboats, adventure treks, and authentic local experiences across Srinagar,
                                     Gulmarg, Pahalgam, and beyond.
                                 </p>
                                 <div class="social-icon">
-                                    <a href="https://www.facebook.com/share/16qqkmyWJK/" target="_blank"
-                                        aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F" target="_blank"
-                                        aria-label="Chat on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                    <a href="https://www.facebook.com/people/Kashmir-Yatra/100068596967208/"
+                                        target="_blank" aria-label="Follow us on Facebook"><i
+                                            class="fab fa-facebook-f"></i></a>
+                                    <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F"
+                                        target="_blank" aria-label="Chat on WhatsApp"><i
+                                            class="fab fa-whatsapp"></i></a>
                                     <a href="https://www.instagram.com/kashmir_yatra/" target="_blank"
                                         aria-label="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
                                     <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank"
@@ -470,50 +504,49 @@
                         </div>
                     </div>
 
-                                        <!-- Column 2: Popular Tours -->
-                    <div class="col-xl-2 col-lg-6 col-md-6">
+                    <!-- Column 2: Top Tours & Destinations -->
+                    <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="footer-widget-items">
                             <div class="widget-title">
-                                <h3>Popular Tours</h3>
+                                <h3>Top Tours & Destinations</h3>
                             </div>
                             <ul class="list-items">
                                 <li><a href="tour-domestic.html"><i class="far fa-long-arrow-right"></i> Domestic
-                                        Packages</a>
-                                </li>
+                                        Packages</a></li>
                                 <li><a href="tour-international.html"><i class="far fa-long-arrow-right"></i>
-                                        International Packages</a>
-                                </li>
+                                        International Packages</a></li>
                                 <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> Srinagar Packages</a>
                                 </li>
                                 <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> Gulmarg Ski Tours</a>
                                 </li>
                                 <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> Pahalgam Getaways</a>
                                 </li>
-                                <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> Honeymoon Packages</a>
-                                </li>
-                                <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> Family Tours</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Column 3: Top Destinations -->
-                    <div class="col-xl-2 col-lg-6 col-md-6">
-                        <div class="footer-widget-items">
-                            <div class="widget-title">
-                                <h3>Top Destinations</h3>
-                            </div>
-                            <ul class="list-items">
                                 <li><a href="destination-domestic.html"><i class="far fa-long-arrow-right"></i> Domestic
                                         Destinations</a></li>
                                 <li><a href="destination-international.html"><i class="far fa-long-arrow-right"></i>
                                         International Destinations</a></li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Dal Lake</a></li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Gulmarg
-                                        Gondola</a></li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Sonamarg</a></li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Gurez Valley</a>
-                                </li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Yusmarg</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Column 3: Our Services -->
+                    <div class="col-xl-2 col-lg-6 col-md-6">
+                        <div class="footer-widget-items">
+                            <div class="widget-title">
+                                <h3>Our Services</h3>
+                            </div>
+                            <ul class="list-items">
+                                <li><a href="ticketing.html"><i class="far fa-long-arrow-right"></i> Ticketing
+                                        Service</a></li>
+                                <li><a href="taxi.html"><i class="far fa-long-arrow-right"></i> Taxi Service</a></li>
+                                <li><a href="accommodation.html"><i class="far fa-long-arrow-right"></i>
+                                        Accommodation</a></li>
+                                <li><a href="pilgrimage.html"><i class="far fa-long-arrow-right"></i> Pilgrimage
+                                        Tours</a></li>
+                                <li><a href="unexplored.html"><i class="far fa-long-arrow-right"></i> Kashmir
+                                        Unexplored</a></li>
+                                <li><a href="mice.html"><i class="far fa-long-arrow-right"></i> Corporate Tours
+                                        (MICE)</a></li>
                             </ul>
                         </div>
                     </div>
@@ -528,7 +561,8 @@
                                 <li><a href="index.html"><i class="far fa-long-arrow-right"></i> Home</a></li>
                                 <li><a href="about.html"><i class="far fa-long-arrow-right"></i> About Us</a></li>
                                 <li><a href="tour.html"><i class="far fa-long-arrow-right"></i> All Tours</a></li>
-                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Destinations</a></li>
+                                <li><a href="destination.html"><i class="far fa-long-arrow-right"></i> Destinations</a>
+                                </li>
                                 <li><a href="news.html"><i class="far fa-long-arrow-right"></i> Blogs</a></li>
                                 <li><a href="faq.html"><i class="far fa-long-arrow-right"></i> FAQs</a></li>
                                 <li><a href="contact.html"><i class="far fa-long-arrow-right"></i> Contact Us</a></li>
@@ -537,7 +571,7 @@
                     </div>
 
                     <!-- Column 5: Contact & Get Directions -->
-                    <div class="col-xl-3 col-lg-6 col-md-6">
+                    <div class="col-xl-2 col-lg-6 col-md-6">
                         <div class="footer-widget-items">
                             <div class="widget-title">
                                 <h3>Contact Info</h3>
@@ -574,7 +608,7 @@
             <div class="container">
                 <div class="footer-bottom-wrapper">
                     <p class="wow fadeInUp" data-wow-delay=".3s">
-                        &copy; 2017-2026 Kashmir Yatra. All rights reserved.
+                        © 2026 Kashmir Yatra. All rights reserved.
                     </p>
                     <ul class="footer-menu wow fadeInUp" data-wow-delay=".5s">
                         <li><a href="privacy-terms.html">Privacy</a></li>
@@ -588,14 +622,16 @@
 
     <!-- Floating Social Icons Bar Start -->
     <div class="floating-social-bar">
-        <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F" target="_blank" class="social-item whatsapp" title="WhatsApp Us">
+        <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F"
+            target="_blank" class="social-item whatsapp" title="WhatsApp Us">
             <i class="fab fa-whatsapp"></i>
         </a>
         <a href="https://www.instagram.com/kashmir_yatra/" target="_blank" class="social-item instagram"
             title="Instagram">
             <i class="fab fa-instagram"></i>
         </a>
-        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Kashmiryatra@hotmail.com&su=Tour%20Inquiry&body=Dear%20Kashmir%20Yatra%20Team%2C%0A%0AI%27m%20interested%20in%20planning%20a%20trip%20soon.%20Please%20send%20me%20your%20recommended%20itineraries%20and%20package%20rates.%0A%0AThank%20you%2C%0A%5BYour%20Name%5D" class="social-item email" title="Email Us">
+        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Kashmiryatra@hotmail.com&su=Tour%20Inquiry&body=Dear%20Kashmir%20Yatra%20Team%2C%0A%0AI%27m%20interested%20in%20planning%20a%20trip%20soon.%20Please%20send%20me%20your%20recommended%20itineraries%20and%20package%20rates.%0A%0AThank%20you%2C%0A%5BYour%20Name%5D"
+            class="social-item email" title="Email Us">
             <i class="far fa-envelope"></i>
         </a>
         <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank" class="social-item google"
@@ -604,8 +640,9 @@
         </a>
     </div>
     <!-- Floating Social Icons Bar End -->
-    <!--<< All JS Plugins >>-->
-    <script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+
+    <!-- JS Scripts -->
+    <script src="assets/js/config.js"></script>
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <!--<< Bootstrap Js >>-->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
@@ -626,15 +663,11 @@
     <!--<< Wow Animation Js >>-->
     <script src="assets/js/wow.min.js"></script>
     <!--<< Main.js >>-->
-    <script src="assets/js/main.js"></script>
-    <script defer
-        src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
-        integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
-        data-cf-beacon='{"version":"2024.11.0","token":"90f7972af14a48b4add7da2b74f5d675","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
-        crossorigin="anonymous"></script>
+    <script src="assets/js/main.js?v=2"></script>
+    <!--<< Subscribe.js >>-->
+    <script src="assets/js/subscribe.js"></script>
+    <!--<< Mice Form JS >>-->
+    <script src="assets/js/service-forms.js"></script>
 </body>
 
-<!-- Mirrored from modinatheme.com/html/travil/team-details.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 30 Jan 2026 14:50:27 GMT -->
-
 </html>
-

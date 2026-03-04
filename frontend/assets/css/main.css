@@ -13437,9 +13437,9 @@ p.sticky-label {
   }
 }
 
-.footer-wrapper {
+/* .footer-wrapper {
   padding: 75px 0 110px;
-}
+} */
 
 @media (max-width: 991px) {
   .footer-wrapper {
