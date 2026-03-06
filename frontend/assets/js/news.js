@@ -59,6 +59,9 @@ async function loadBlogs() {
             const plainText = tmpDiv.textContent || tmpDiv.innerText || "";
             const snippet = plainText.trim().substring(0, 150) + '...';
 
+            const titleWords = blog.title ? blog.title.trim().split(/\s+/) : [];
+            const displayTitle = titleWords.length > 9 ? titleWords.slice(0, 9).join(' ') + '...' : blog.title;
+
             const blogHTML = `
             <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
                 <div class="single-blog-post h-100 d-flex flex-column">
@@ -69,7 +72,7 @@ async function loadBlogs() {
                         </div>
                         <h2 class="h5">
                             <a href="news-details.html?id=${blog._id}">
-                                ${blog.title}
+                                ${displayTitle}
                             </a>
                         </h2>
                     </div>

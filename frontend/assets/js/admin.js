@@ -45,6 +45,34 @@ navItems.forEach(item => {
 document.addEventListener('DOMContentLoaded', () => {
     updateAdminProfile();
     loadStats();
+
+    // Mobile Sidebar Toggle
+    const menuToggleBtn = document.getElementById('menuToggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+    if (menuToggleBtn && sidebar && sidebarOverlay) {
+        menuToggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking outside
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            sidebarOverlay.classList.remove('active');
+        });
+
+        // Close sidebar when clicking a nav link on mobile
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (window.innerWidth <= 991) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                }
+            });
+        });
+    }
 });
 
 function updateAdminProfile() {

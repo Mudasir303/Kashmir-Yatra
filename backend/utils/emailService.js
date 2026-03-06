@@ -2,11 +2,23 @@ const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
+    port: 587,
+    secure: false, // Use STARTTLS
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
+    },
+    tls: {
+        rejectUnauthorized: false // Helps avoid some handshake issues in cloud environments
+    }
+});
+
+// Verify connection configuration
+transporter.verify((error, success) => {
+    if (error) {
+        console.error("SMTP Connection Error:", error);
+    } else {
+        console.log("Server is ready to send emails");
     }
 });
 
@@ -22,7 +34,13 @@ const sendEmail = async (options) => {
 
         console.log("Email sent successfully");
     } catch (error) {
-        console.error("Email Sending Error:", error);
+        console.error("Detailed Email Error:", {
+            message: error.message,
+            code: error.code,
+            command: error.command,
+            response: error.response
+        });
+        throw error; // Rethrow to let the caller handle it if needed
     }
 };
 

@@ -37,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 ? (blog.image.startsWith('http') ? blog.image : `${BASE_URL}/${blog.image}`)
                 : 'assets/img/news/news-11.jpg';
 
+            const titleWords = blog.title ? blog.title.trim().split(/\s+/) : [];
+            const displayTitle = titleWords.length > 9 ? titleWords.slice(0, 9).join(' ') + '...' : blog.title;
+
             return `
                 <div class="col-xl-4 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay="${delay}s">
                     <div class="news-box-items-4">
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                 <li> <b>By</b> ${blog.author || 'Admin'}</li>
                                 <li><b>${readTime}</b> min read</li>
                             </ul>
-                            <h3><a href="news-details.html?id=${blog._id}" class="stretched-link">${blog.title}</a></h3>
+                            <h3><a href="news-details.html?id=${blog._id}" class="stretched-link">${displayTitle}</a></h3>
                             <a href="news-details.html?id=${blog._id}" class="link-btn">Continue Reading <i class="far fa-long-arrow-right"></i></a>
                         </div>
                     </div>
