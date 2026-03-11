@@ -10,6 +10,27 @@
     <link rel="stylesheet" href="assets/css/font-awesome.css">
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/admin-login.css">
+    <!-- Structured Data (JSON-LD) for Kashmir Yatra -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "TravelAgency",
+      "name": "Kashmir Yatra",
+      "url": "https://www.kashmiryatra.com",
+      "logo": "https://www.kashmiryatra.com/assets/img/logo/logo.webp",
+      "image": "https://www.kashmiryatra.com/assets/img/hero/hero-bg.webp",
+      "description": "Kashmir Yatra: The best travel agency in Srinagar offering premium Kashmir tour packages, houseboats, and Himalayan adventures.",
+      "telephone": "+91-9149851190",
+      "email": "Kashmiryatra@hotmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Srinagar",
+        "addressRegion": "Jammu & Kashmir",
+        "addressCountry": "IN"
+      },
+      "priceRange": "$"
+    }
+    </script>
 </head>
 
 <body>
@@ -19,7 +40,7 @@
             <!-- Left Side (Image/Branding) -->
             <div class="login-card-left">
                 <div class="overlay-content">
-                    <img src="assets/img/logo kashmir yatra.png" alt="Kashmir Yatra" class="card-logo">
+                    <img src="assets/img/logo kashmir yatra.webp" alt="Kashmir Yatra" class="card-logo">
                     <h2>Kashmir Yatra</h2>
                     <p>Experience the timeless beauty of the mountains and valleys. Your portal to paradise starts here.
                     </p>
@@ -58,8 +79,8 @@
     </div>
 
     <!-- JS -->
-    <script src="assets/js/config.js"></script>
-    <script src="assets/js/admin-login.js"></script>
+    <script src="assets/js/config.js" defer></script>
+    <script src="assets/js/admin-login.js" defer></script>
 </body>
 
 </html>
