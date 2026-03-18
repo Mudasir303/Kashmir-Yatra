@@ -709,7 +709,7 @@ const showToast = (message, type = 'info') => {
 
         const hideLoader = () => {
             $(".preloader").addClass('loaded');
-            $(".preloader").delay(600).fadeOut(function () {
+            $(".preloader").fadeOut(400, function () {
                 try {
                     document.documentElement.style.overflowX = '';
                     document.body.style.overflowX = '';
@@ -717,8 +717,8 @@ const showToast = (message, type = 'info') => {
             });
         };
 
-        // Fallback: hide loader after 3s even if window.load doesn't fire
-        const fallbackTimer = setTimeout(hideLoader, 3000);
+        // Fallback: hide loader after 1.5s to ensure it never blocks LCP for too long
+        const fallbackTimer = setTimeout(hideLoader, 1500);
 
         $(window).on('load', function () {
             clearTimeout(fallbackTimer);
