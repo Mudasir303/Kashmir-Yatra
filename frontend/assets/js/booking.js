@@ -92,9 +92,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 persons: parseInt(formData.get("persons"))
             };
 
-            // Basic Validation
             if (!data.name || !data.email || !data.phone || !data.departureDate || !data.persons) {
                 showToast("Please fill in all fields", "error");
+                return;
+            }
+
+            if (data.phone.length < 10) {
+                showToast("Please enter a valid 10-digit phone number", "error");
                 return;
             }
 

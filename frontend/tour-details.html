@@ -176,13 +176,14 @@
                             </a>
                         </div>
                         <div class="social-icon d-flex align-items-center">
-                            <a href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#" target="_blank"><i
-                                    class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#"
+                                target="_blank"><i class="fab fa-facebook-f"></i></a>
                             <a href="https://www.instagram.com/kashmir_yatra/" target="_blank"><i
                                     class="fab fa-instagram"></i></a>
                             <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank"><i
                                     class="fab fa-google"></i></a>
-                            <a href="https://www.linkedin.com/in/kashmir-yatra-790b79139?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/kashmir-yatra-790b79139?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                                target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
@@ -211,11 +212,13 @@
 
                         <a href="tel:+919149851190" style="color: #c5bfbf; margin-right: 15px;">
                             <i class="fas fa-phone-alt" style="margin-right: 5px;"></i> Call Us: +91 9149851190
-                        </a> <a href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#" target="_blank"><i
-                                class="fab fa-facebook-f"></i></a>
+                        </a> <a
+                            href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#"
+                            target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/kashmir_yatra/" target="_blank"><i
                                 class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/kashmir-yatra-790b79139?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/kashmir-yatra-790b79139?utm_source=share_via&utm_content=profile&utm_medium=member_android"
+                            target="_blank"><i class="fab fa-linkedin-in"></i></a>
                         <a href="https://www.google.com/search?q=Kashmir+Yatra" target="_blank"><i
                                 class="fab fa-google"></i></a>
                     </div>
@@ -391,7 +394,12 @@
                                     </p>
                                 </div>
 
-                                <!-- Dynamic Itinerary Section Removed -->
+                                <div id="tour-detail-itinerary-section" class="mt-5" style="display: none;">
+                                    <h4 class="mb-3">Tour Itinerary</h4>
+                                    <div class="accordion" id="itineraryAccordion">
+                                        <!-- Dynamic itinerary goes here -->
+                                    </div>
+                                </div>
 
                                 <!-- Booking Section (Bottom) -->
                                 <div class="tour-booking-section mt-5 p-4 border rounded bg-light glass-form">
@@ -486,8 +494,9 @@
                                     Gulmarg, Pahalgam, and beyond.
                                 </p>
                                 <div class="social-icon">
-                                    <a href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#" target="_blank"
-                                        aria-label="Follow us on Facebook"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.facebook.com/profile.php?id=100018135122530&rdid=zDIAkjw9zC5rxyLh&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F16qqkmyWJK%2F#"
+                                        target="_blank" aria-label="Follow us on Facebook"><i
+                                            class="fab fa-facebook-f"></i></a>
                                     <a href="https://wa.me/919149851190?text=Hi%20Kashmir%20Yatra%2C%0AI%27m%20planning%20a%20trip%20and%20would%20love%20details%20on%20your%20latest%20tour%20packages.%20Could%20you%20please%20share%20pricing%20and%20itineraries%3F"
                                         target="_blank" aria-label="Chat on WhatsApp"><i
                                             class="fab fa-whatsapp"></i></a>
@@ -637,7 +646,7 @@
     </div>
     <!-- Floating Social Icons Bar End -->
     <!--<< All JS Plugins >>-->
-<script src="assets/js/jquery-3.7.1.min.js" defer></script>
+    <script src="assets/js/jquery-3.7.1.min.js" defer></script>
     <!--<< Bootstrap Js >>-->
     <script src="assets/js/bootstrap.bundle.min.js" defer></script>
     <!--<< Nice Select Js >>-->
@@ -692,10 +701,10 @@
                 if (priceEl) {
                     const priceDisplay = tour.isSeasonalDeal && tour.discountPrice
                         ? `
-                            <span style="text-decoration: line-through; color: #888; font-size: 0.7em; margin-right: 10px;">&#8377;${tour.price}</span>
+                            <span style="text-decoration: line-through; color: #888; font-size: 0.7em; margin-right: 10px;">&#8377;${tour.price || ''}</span>
                             &#8377;<span id="tour-detail-price">${tour.discountPrice}</span>
                             `
-                        : `&#8377;<span id="tour-detail-price">${tour.price}</span>`;
+                        : (tour.price ? `&#8377;<span id="tour-detail-price">${tour.price}</span>` : '<span style="font-size:0.85em; color:#888; font-style:italic;">Contact for Best Price</span>');
 
                     // Update the parent element's innerHTML to include the new price display structure
                     // This assumes priceEl is within a container that can be updated.
@@ -717,6 +726,30 @@
                                 </div>
                             `);
                     }
+                }
+
+                // Handle Itinerary Array (Day-by-Day)
+                const itinerarySection = document.getElementById("tour-detail-itinerary-section");
+                const accordionContainer = document.getElementById("itineraryAccordion");
+                if (itinerarySection && accordionContainer && tour.itinerary && tour.itinerary.length > 0) {
+                    accordionContainer.innerHTML = tour.itinerary.map((item, index) => {
+                        const isFirst = index === 0;
+                        return `
+                            <div class="accordion-item mb-3" style="border: 1px solid #eee; border-radius: 8px; overflow: hidden;">
+                                <h2 class="accordion-header" id="heading${index}">
+                                    <button class="accordion-button ${isFirst ? '' : 'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse${index}" aria-expanded="${isFirst ? 'true' : 'false'}" aria-controls="collapse${index}" style="font-weight: 600; background: #f8f9fa;">
+                                        <i class="far fa-map-marker-alt me-2 text-primary"></i> Day ${item.day || index+1}: ${item.title || ''}
+                                    </button>
+                                </h2>
+                                <div id="collapse${index}" class="accordion-collapse collapse ${isFirst ? 'show' : ''}" aria-labelledby="heading${index}" data-bs-parent="#itineraryAccordion">
+                                    <div class="accordion-body" style="white-space: pre-line; color: var(--text-color);">
+                                        ${item.activity || 'No details provided.'}
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                    itinerarySection.style.display = 'block';
                 }
 
                 // Handle Image

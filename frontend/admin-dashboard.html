@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -84,7 +84,8 @@
 
                 <div class="header-actions">
                     <div class="user-profile">
-                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="Admin" loading="lazy">
+                        <img src="https://ui-avatars.com/api/?name=Admin+User&background=random" alt="Admin"
+                            loading="lazy">
                         <div class="user-info">
                             <h4 id="adminName">Admin</h4>
                             <p id="adminEmail">Traveler Pro</p>
@@ -299,7 +300,7 @@
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label>Price</label>
-                        <input type="number" class="form-control-custom" id="tourPrice" required>
+                        <input type="number" class="form-control-custom" id="tourPrice">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Duration</label>
@@ -308,25 +309,25 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Description</label>
+                    <label>Description (Overview)</label>
                     <!-- Quill Editor for Tour -->
                     <div id="tour-editor-container" style="height: 200px;"></div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label>Itinerary (Day-wise)</label>
+                    <div id="itineraryContainer" style="display:flex; flex-direction:column; gap:10px;"></div>
+                    <button type="button" class="btn btn-sm btn-outline-info mt-2" onclick="addItineraryDay()" style="border: 1px solid var(--primary-lime); color: var(--primary-lime); background: transparent; padding: 5px 15px; border-radius: 4px; cursor: pointer;">+ Add Itinerary Day</button>
                 </div>
                 <div class="form-group">
                     <label>Tour Images</label>
                     <input type="file" class="form-control-custom" id="tourImageInput" multiple accept="image/*">
                     <small>Upload up to 5 images</small>
+                    <div id="tourImagesPreview" style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;"></div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 form-group">
-                        <label>Is Featured?</label>
-                        <select class="form-control-custom" id="tourFeatured">
-                            <option value="false">No</option>
-                            <option value="true">Yes</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6 form-group">
+                    <div class="col-md-12 form-group">
                         <label>Is Seasonal Deal?</label>
                         <select class="form-control-custom" id="tourSeasonalDeal">
                             <option value="false">No</option>

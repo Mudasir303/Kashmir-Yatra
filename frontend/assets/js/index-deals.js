@@ -13,16 +13,33 @@ async function loadSeasonalDeals() {
 
     try {
         const response = await fetch(`${CONFIG.API_BASE_URL}/tours?isSeasonalDeal=true`);
-        if (!response.ok) throw new Error('Failed to fetch deals');
-
         const deals = await response.json();
+        const section = document.getElementById('seasonal-deals-section');
+        const slider = document.querySelector('.tour-slider');
+
+        if (section) section.style.display = 'block';
 
         if (deals.length === 0) {
-            // If no deals, we could hide the section or show a default message
-            // For now, let's keep the static content or show a "Check back soon"
+            if (slider) {
+                slider.style.transform = 'none';
+                slider.style.width = '100%';
+                slider.innerHTML = `
+                    <div class="no-deals-card" style="background: rgba(0,0,0,0.4); border: 2px dashed rgba(255,255,255,0.2); border-radius: 28px; padding: 80px 30px; text-align: center; backdrop-filter: blur(10px); width: 100%; max-width: 500px; margin: 0 auto; box-sizing: border-box;">
+                        <div class="content" style="background: transparent;">
+                            <h3 class="text-white mb-3" style="font-weight: 700; font-size: 1.8rem; line-height: 1.3; overflow-wrap: break-word;">Check Back for the <br> Best Offers!</h3>
+                            <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; line-height: 1.6; margin: 0 auto; overflow-wrap: break-word;">
+                                We're currently curating our next round of exclusive seasonal deals. 
+                                Stay tuned for unbeatable packages and special discounts!
+                            </p>
+                        </div>
+                    </div>
+                `;
+                slider.classList.remove('swiper');
+            }
             return;
         }
 
+        if (slider) slider.classList.add('swiper');
         renderDeals(deals, container);
     } catch (error) {
         console.error('Error loading seasonal deals:', error);
@@ -42,8 +59,8 @@ function renderDeals(deals, container) {
             : '';
 
         const priceDisplay = deal.discountPrice
-            ? `<span class="original-price">₹${deal.price}</span> <span class="deal-price">₹${deal.discountPrice}</span>`
-            : `<span class="deal-price">₹${deal.price}</span>`;
+            ? `<span class="original-price">₹${deal.price || ''}</span> <span class="deal-price">₹${deal.discountPrice}</span>`
+            : (deal.price ? `<span class="deal-price">₹${deal.price}</span>` : '<span class="deal-price" style="font-size:0.85em; font-style:italic;">Contact for Best Price</span>');
 
         return `
             <div class="swiper-slide">

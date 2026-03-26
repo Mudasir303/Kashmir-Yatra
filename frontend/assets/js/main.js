@@ -709,7 +709,7 @@ const showToast = (message, type = 'info') => {
 
         const hideLoader = () => {
             $(".preloader").addClass('loaded');
-            $(".preloader").fadeOut(400, function () {
+            $(".preloader").fadeOut(800, function () {
                 try {
                     document.documentElement.style.overflowX = '';
                     document.body.style.overflowX = '';
@@ -717,12 +717,12 @@ const showToast = (message, type = 'info') => {
             });
         };
 
-        // Fallback: hide loader after 1.5s to ensure it never blocks LCP for too long
-        const fallbackTimer = setTimeout(hideLoader, 1500);
+        // Fallback: hide loader after 3s to ensure it never blocks LCP for too long
+        const fallbackTimer = setTimeout(hideLoader, 500);
 
         $(window).on('load', function () {
             clearTimeout(fallbackTimer);
-            hideLoader();
+            setTimeout(hideLoader, 500); // Reduced delay for faster transition
         });
     }
 

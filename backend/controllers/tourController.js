@@ -15,8 +15,11 @@ exports.createTour = async (req, res) => {
     // Parse other fields if they come as strings (Multipart/Form-Data sends everything as string)
     const tourData = {
       ...req.body,
-      images: imagePaths
+      images: req.files ? req.files.map(file => file.path) : []
     };
+    // Sanitize tourData
+    if (tourData.price === '') tourData.price = null;
+    if (tourData.discountPrice === '') tourData.discountPrice = null;
 
     if (req.body.itinerary && typeof req.body.itinerary === 'string') {
       try {
@@ -92,6 +95,9 @@ exports.getTourById = async (req, res) => {
 exports.updateTour = async (req, res) => {
   try {
     const updateData = { ...req.body };
+    // Sanitize updateData: convert empty strings to null or remove them for optional numeric fields
+    if (updateData.price === '') updateData.price = null;
+    if (updateData.discountPrice === '') updateData.discountPrice = null;
 
     if (updateData.itinerary && typeof updateData.itinerary === 'string') {
       try {
@@ -101,11 +107,38 @@ exports.updateTour = async (req, res) => {
       }
     }
 
-    // If new files are uploaded, update images array
-    if (req.files && req.files.length > 0) {
-      const imagePaths = req.files.map(file => file.path);
-      updateData.images = imagePaths;
+    let finalImages = undefined;
+
+    if (req.body.existingImages !== undefined) {
+      let keptImages = [];
+      if (typeof req.body.existingImages === 'string') {
+        try {
+          keptImages = JSON.parse(req.body.existingImages);
+        } catch (e) {
+          if (req.body.existingImages.trim() !== "") {
+            keptImages = [req.body.existingImages];
+          }
+        }
+      } else if (Array.isArray(req.body.existingImages)) {
+        keptImages = req.body.existingImages;
+      }
+      finalImages = keptImages;
     }
+
+    // If new files are uploaded, append them or override if existingImages not provided
+    if (req.files && req.files.length > 0) {
+      const newImagePaths = req.files.map(file => file.path);
+      if (finalImages === undefined) {
+        finalImages = newImagePaths;
+      } else {
+        finalImages = [...finalImages, ...newImagePaths];
+      }
+    }
+
+    if (finalImages !== undefined) {
+      updateData.images = finalImages;
+    }
+    delete updateData.existingImages;
 
     const tour = await Tour.findByIdAndUpdate(
       req.params.id,

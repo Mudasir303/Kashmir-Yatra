@@ -769,7 +769,7 @@
     </div>
     <!-- Floating Social Icons Bar End -->
     <!--<< All JS Plugins >>-->
-<script src="assets/js/jquery-3.7.1.min.js" defer></script>
+    <script src="assets/js/jquery-3.7.1.min.js" defer></script>
     <!--<< Bootstrap Js >>-->
     <script src="assets/js/bootstrap.bundle.min.js" defer></script>
     <!--<< Nice Select Js >>-->
@@ -804,7 +804,7 @@
                 tourContainer.innerHTML = ""; // Clear loader
 
                 if (tours.length === 0) {
-                    tourContainer.innerHTML = '<p class="text-center">No domestic tours found.</p>';
+                    tourContainer.innerHTML = `<div class="text-center py-5"><i class="fas fa-plane-slash fa-3x mb-3" style="color:#ccc;"></i><h4 style="color:#999;">No packages listed yet.</h4><p style="color:#aaa;">We're working on exciting new domestic packages. Please check back soon or <a href="contact.html">contact us</a> for custom itineraries.</p></div>`;
                     return;
                 }
 
@@ -846,8 +846,8 @@
                             : '';
 
                         const priceDisplay = tour.isSeasonalDeal && tour.discountPrice
-                            ? `<span style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px;">&#8377;${tour.price}</span><span>&#8377;${tour.discountPrice}</span>`
-                            : `<span>&#8377;${tour.price}</span>`;
+                            ? `<span style="text-decoration: line-through; color: #888; font-size: 0.9em; margin-right: 8px;">&#8377;${tour.price || ''}</span><span>&#8377;${tour.discountPrice}</span>`
+                            : (tour.price ? `<span>&#8377;${tour.price}</span>` : '<em style="color:#888;font-size:0.9em;">Contact for Best Price</em>');
 
                         const tourHTML = `
                             <div class="col-xl-3 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
@@ -892,10 +892,6 @@
                 if (shouldRender("Ladakh")) renderGroup("Ladakh Adventures", groups["Ladakh"]);
                 if (shouldRender("Andaman")) renderGroup("Andaman & Nicobar Islands", groups["Andaman"]);
 
-                // For 'Other', maybe we want to show it only if no filter or if filter is something else?
-                // Or if filter is 'Other'.
-                // If filter is present and not matched above, it might be 'Other' or invalid.
-                // Simple logic: if filter is 'Other', show others. If no filter, show others.
                 if (!filterSub || filterSub === 'Other') renderGroup("Other Destinations", others);
 
             } catch (error) {

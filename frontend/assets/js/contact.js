@@ -10,7 +10,6 @@ const setupContactForm = (formId, defaultSubject = 'New Website Inquiry') => {
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalBtnText = submitBtn.innerHTML;
 
-            // Basic Validation
             const nameInput = contactForm.querySelector('input[name="name"]');
             const emailInput = contactForm.querySelector('input[name="email"]');
             const phoneInput = contactForm.querySelector('input[name="phone"]');
@@ -30,8 +29,22 @@ const setupContactForm = (formId, defaultSubject = 'New Website Inquiry') => {
                 message = `MICE Type: ${miceType || 'N/A'}\nCompany: ${company || 'N/A'}\n\nRequirements:\n${message}`;
             }
 
-            if (!name || !email || !phone || !message) {
-                showToast('Please fill in all fields including phone number.', 'error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!name) {
+                showToast('Please enter your name.', 'error');
+                return;
+            }
+            if (!email || !emailRegex.test(email)) {
+                showToast('Please enter a valid email address.', 'error');
+                return;
+            }
+            if (!phone || phone.length < 10) {
+                showToast('Please enter a valid 10-digit phone number.', 'error');
+                return;
+            }
+            if (!message || message.length < 5) {
+                showToast('Please enter a message (at least 5 characters).', 'error');
                 return;
             }
 
