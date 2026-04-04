@@ -6,18 +6,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let perPersonPrice = 0;
 
-    // 1. Unified function to update per-person price
     const syncPerPersonPrice = () => {
         const priceEl = document.getElementById("tour-detail-price");
+        let foundValidPrice = false;
+        
         if (priceEl && priceEl.textContent && priceEl.textContent !== "0" && priceEl.textContent !== "Loading price...") {
             const numericPrice = parseInt(priceEl.textContent.replace(/[^\d]/g, "")) || 0;
             if (numericPrice !== perPersonPrice) {
                 perPersonPrice = numericPrice;
                 updateTotalPrice();
             }
-            return true;
+            foundValidPrice = true;
+        } else if (perPersonPrice !== 0) {
+            perPersonPrice = 0;
+            updateTotalPrice();
         }
-        return false;
+
+        return foundValidPrice;
     };
 
     // Observe a stable container (the entire details content)
@@ -26,6 +31,28 @@ document.addEventListener("DOMContentLoaded", () => {
         syncPerPersonPrice();
     });
     observer.observe(container, { childList: true, subtree: true, characterData: true });
+
+    const updateTotalPrice = () => {
+        const persons = parseInt(personsInput.value) || 1;
+        const currentTotalPriceSp = document.getElementById("booking-total-price");
+        if (currentTotalPriceSp) {
+            const totalContainer = currentTotalPriceSp.closest('h4');
+            if (perPersonPrice > 0) {
+                if (totalContainer) {
+                    totalContainer.innerHTML = `Total: &#8377;<span id="booking-total-price">${(perPersonPrice * persons).toLocaleString()}</span>`;
+                    totalContainer.style.display = 'block';
+                }
+            } else {
+                if (totalContainer) {
+                    totalContainer.innerHTML = `<span style="font-size: 0.9em; color: #888; font-style: italic;">Contact for Pricing</span><span id="booking-total-price" style="display:none;">0</span>`;
+                    totalContainer.style.display = 'block';
+                }
+            }
+        }
+    };
+
+    // Initial load: set visibility based on initial perPersonPrice (which is 0)
+    updateTotalPrice();
 
     // Initial and Polling check as fallback
     syncPerPersonPrice();
@@ -37,13 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (++checkCount > 30) clearInterval(checkPrice);
     }, 300);
-
-    const updateTotalPrice = () => {
-        const persons = parseInt(personsInput.value) || 1;
-        if (totalPriceEl) {
-            totalPriceEl.textContent = (perPersonPrice * persons).toLocaleString();
-        }
-    };
 
     if (personsInput) {
         personsInput.addEventListener("input", updateTotalPrice);

@@ -5,6 +5,12 @@
     padding-top: 80px
 }
 
+@media (max-width:767px) {
+    .footer-section.dark-theme {
+        padding-top: 40px
+    }
+}
+
 .footer-section.dark-theme .footer-newsletter-items {
     display: none
 }
@@ -452,17 +458,31 @@
     flex-direction: column
 }
 
+.tour-box-items .content .tour-meta {
+    margin-top: auto !important;
+}
+
 .tour-box-items .content h4 {
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 18px !important;
-    color: var(--header);
     font-family: Prompt, sans-serif;
+    color: var(--header);
     line-height: 1.4;
     min-height: 56px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     overflow: hidden
+}
+
+.tour-box-items .content h4 a {
+    color: #4D40CA;
+    transition: color 0.3s ease;
+}
+
+.tour-box-items:hover .content h4 a,
+.tour-box-items .content h4 a:hover {
+    color: #4D40CA;
 }
 
 .tour-box-items .tour-info-list {
@@ -816,7 +836,7 @@
 .hero-section.hero-4 {
     position: relative;
     overflow: hidden;
-    min-height: 800px;
+    min-height: 600px;
     background-color: #000
 }
 
@@ -825,7 +845,7 @@
 .hero-slider .swiper-slide,
 .hero-slider .swiper-wrapper {
     height: 100% !important;
-    min-height: 800px
+    min-height: 600px
 }
 
 .tour-card-item .tour-image {
@@ -935,7 +955,7 @@
 
 .hero-static-overlay {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 0;
     width: 100%;
     transform: translateY(-50%);
@@ -960,10 +980,11 @@
 .hero-static-overlay .hero-content h6 {
     color: #fb5b32 !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, .3)
+    
 }
 
 .hero-static-overlay .hero-content h1 {
-    font-size: 70px;
+    font-size: 50px;
     line-height: 1.1;
     margin-bottom: 20px
 }
@@ -989,7 +1010,7 @@
 }
 
 .hero-static-overlay .hero-content p {
-    font-size: 18px;
+    font-size: 20px;
     max-width: 600px;
     margin-bottom: 30px
 }

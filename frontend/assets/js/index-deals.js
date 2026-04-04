@@ -59,8 +59,8 @@ function renderDeals(deals, container) {
             : '';
 
         const priceDisplay = deal.discountPrice
-            ? `<span class="original-price">₹${deal.price || ''}</span> <span class="deal-price">₹${deal.discountPrice}</span>`
-            : (deal.price ? `<span class="deal-price">₹${deal.price}</span>` : '<span class="deal-price" style="font-size:0.85em; font-style:italic;">Contact for Best Price</span>');
+            ? `<span class="original-price">₹${deal.price || ''}</span> <span class="deal-price">₹${deal.discountPrice}</span> <span style="font-size: 0.8em; font-weight: normal; color: #666;">per person</span>`
+            : (deal.price ? `<span class="deal-price">₹${deal.price}</span> <span style="font-size: 0.8em; font-weight: normal; color: #666;">per person</span>` : '<span class="deal-price" style="font-size:0.85em; font-style:italic;">Contact for Best Price</span>');
 
         return `
             <div class="swiper-slide">
