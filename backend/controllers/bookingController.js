@@ -16,6 +16,7 @@ exports.createBooking = async (req, res) => {
         }
 
         const totalPrice = tour.price * persons;
+        const priceDisplay = totalPrice > 0 ? `₹${totalPrice}` : 'Contact for Pricing';
 
         // 2. Save to Database
         const booking = await Booking.create({
@@ -42,7 +43,7 @@ exports.createBooking = async (req, res) => {
                 <p><strong>Phone:</strong> ${phone}</p>
                 <p><strong>Departure Date:</strong> ${departureDate}</p>
                 <p><strong>Persons:</strong> ${persons}</p>
-                <p><strong>Total Price Estimate:</strong> ₹${totalPrice}</p>
+                <p><strong>Total Price Estimate:</strong> ${priceDisplay}</p>
                 <hr>
                 <p><strong>Action Required:</strong> Please contact the customer directly via email or phone to confirm this booking and arrange payment details.</p>
             `,
@@ -59,7 +60,7 @@ exports.createBooking = async (req, res) => {
                 <ul>
                     <li>Date: ${departureDate}</li>
                     <li>Persons: ${persons}</li>
-                    <li>Estimate: ₹${totalPrice}</li>
+                    <li>Estimate: ${priceDisplay}</li>
                 </ul>
                 <p>Our team will contact you shortly on ${phone} to confirm the details and payment.</p>
                 <br>

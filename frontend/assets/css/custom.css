@@ -1049,6 +1049,45 @@
     }
 }
 
+.hero-items {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%
+}
+
+.hero-items .hero-bg {
+    width: 100%;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center center
+}
+
+@media (max-width:991px) {
+    .hero-items .hero-bg {
+        object-position: center center
+    }
+
+    .hero-slider,
+    .hero-slider .swiper-slide,
+    .hero-slider .swiper-wrapper {
+        min-height: 100% !important
+    }
+}
+
+@media (max-width:767px) {
+    .hero-items .hero-bg {
+        object-position: 60% center
+    }
+}
+
+@media (max-width:575px) {
+    .hero-items .hero-bg {
+        object-position: 65% center
+    }
+}
+
 .hero-static-overlay .container>.row {
     display: flex;
     align-items: stretch
