@@ -8,4 +8,4 @@ Disallow: /checkout.html
 Disallow: /shop-cart.html
 
 # Sitemap location
-Sitemap: https://www.kashmiryatra.com/sitemap.xml
+Sitemap: https://www.kashmiryatra.in/sitemap.xml

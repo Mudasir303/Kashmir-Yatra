@@ -164,7 +164,6 @@ async function loadStats() {
                         <td>${t.title}</td>
                         <td>${t.category || '-'} / ${t.subCategory || '-'}</td>
                         <td>₹${t.price || '-'}</td>
-                        <td>${t.location}</td>
                     </tr>
                 `).join('');
             }
@@ -229,7 +228,6 @@ async function loadTours() {
             </div>
             <div class="card-content">
                 <div class="card-meta">
-                    <span><i class="fa fa-map-marker-alt"></i> ${tour.location}</span>
                     <span style="color:var(--primary-lime); font-weight:600;">
                        ${tour.discountPrice ? `<span style="text-decoration:line-through; color:var(--text-gray); font-size:0.8rem; margin-right:5px;">₹${tour.price || ''}</span>₹${tour.discountPrice}` : (tour.price ? `₹${tour.price}` : '<em style="font-size:0.8rem; color:var(--text-gray);">Contact for Best Price</em>')}
                     </span>
@@ -286,9 +284,9 @@ window.editTour = async (id) => {
 
     document.getElementById('tourId').value = tour._id;
     document.getElementById('tourTitle').value = tour.title;
+    document.getElementById('tourLocation').value = tour.location || '';
     document.getElementById('tourPrice').value = tour.price || '';
     document.getElementById('tourDuration').value = tour.duration;
-    document.getElementById('tourLocation').value = tour.location || '';
 
     // Set Category & SubCategory
     if (tour.category) {

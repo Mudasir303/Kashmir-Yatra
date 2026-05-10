@@ -64,23 +64,21 @@ async function loadBlogs() {
 
             const blogHTML = `
             <div class="col-xl-4 col-lg-6 col-md-6 mb-4">
-                <div class="single-blog-post h-100 d-flex flex-column">
-                    <div class="post-content pb-0">
-                        <div class="post-meta">
+                <div class="card h-100 shadow-sm bg-light border-0">
+                    <div class="post-featured-thumb" style="height: 200px; overflow: hidden;">
+                        <img src="${imageSrc}" alt="${blog.title}" class="card-img-top" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <div class="card-body d-flex flex-column">
+                        <div class="post-meta mb-2">
                             <span><i class="fal fa-user"></i> ${blog.author || 'Admin'}</span>
                             <span><i class="fal fa-calendar-alt"></i> ${date}</span>
                         </div>
-                        <h2 class="h5">
-                            <a href="news-details.html?id=${blog._id}">
+                        <h2 class="h5 card-title">
+                            <a href="news-details.html?id=${blog._id}" class="text-decoration-none text-dark">
                                 ${displayTitle}
                             </a>
                         </h2>
-                    </div>
-                    <div class="post-featured-thumb" style="height: 200px; overflow: hidden;">
-                        <img src="${imageSrc}" alt="${blog.title}" style="width: 100%; height: 100%; object-fit: cover;">
-                    </div>
-                    <div class="post-content pt-3 d-flex flex-column flex-grow-1">
-                        <p class="mb-4">
+                        <p class="card-text mb-4 flex-grow-1">
                             ${snippet}
                         </p>
                         <a href="news-details.html?id=${blog._id}" class="theme-btn mt-auto">
