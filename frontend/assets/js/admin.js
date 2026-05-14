@@ -432,7 +432,6 @@ document.getElementById('tourForm').addEventListener('submit', async (e) => {
         const priceValue = document.getElementById('tourPrice').value;
 
         formData.append('title', document.getElementById('tourTitle').value);
-        formData.append('location', document.getElementById('tourLocation').value);
         // Only append price if it's not empty, or append empty string if backend handles it
         // The user says "without the price it should be save tour"
         formData.append('price', priceValue);

@@ -2,7 +2,7 @@ const isLocal = window.location.hostname === 'localhost' || window.location.host
 
 const BASE_SERVER_URL = isLocal
     ? 'http://localhost:3000'
-    : 'https://kashmir-yatra.onrender.com';
+    : 'https://kashmir-yatra-2026.onrender.com';
 
 const CONFIG = {
     API_BASE_URL: `${BASE_SERVER_URL}/api`
