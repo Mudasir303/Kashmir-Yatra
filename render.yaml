@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: kashmir-yatra
+    plan: free
+    runtime: node
+    region: oregon
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=512"
