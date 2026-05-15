@@ -34,7 +34,7 @@ try {
     });
     upload = multer({ storage });
 } catch (err) {
-    console.warn("Cloudinary upload unavailable, falling back to local disk storage:", err.message);
+    console.info("Cloudinary upload unavailable, using local disk storage.");
 
     const storage = multer.diskStorage({
         destination: uploadDir,
