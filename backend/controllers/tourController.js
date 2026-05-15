@@ -1,4 +1,17 @@
+const path = require("path");
 const Tour = require("../models/Tour");
+
+const uploadDirName = "uploads";
+
+const normalizeImagePaths = (files) => {
+  if (!files || files.length === 0) return [];
+  return files.map(file => {
+    if (file.path && file.path.includes(`${uploadDirName}`) && file.filename) {
+      return `${uploadDirName}/${file.filename}`;
+    }
+    return file.path;
+  });
+};
 
 /**
  * ADMIN: Create tour
@@ -8,18 +21,23 @@ exports.createTour = async (req, res) => {
     console.log("Create Tour Request Body:", req.body);
     console.log("Create Tour Request Files:", req.files);
 
-    if (req.files && req.files.length > 0) {
-      imagePaths = req.files.map(file => file.path);
-    }
-
-    // Parse other fields if they come as strings (Multipart/Form-Data sends everything as string)
     const tourData = {
       ...req.body,
-      images: req.files ? req.files.map(file => file.path) : []
+      images: normalizeImagePaths(req.files)
     };
-    // Sanitize tourData
+
     if (tourData.price === '') tourData.price = null;
     if (tourData.discountPrice === '') tourData.discountPrice = null;
+
+    tourData.isFeatured = tourData.isFeatured === 'true' || tourData.isFeatured === true;
+    tourData.isSeasonalDeal = tourData.isSeasonalDeal === 'true' || tourData.isSeasonalDeal === true;
+
+    if (tourData.price !== null && typeof tourData.price === 'string') {
+      tourData.price = Number(tourData.price) || null;
+    }
+    if (tourData.discountPrice !== null && typeof tourData.discountPrice === 'string') {
+      tourData.discountPrice = Number(tourData.discountPrice) || null;
+    }
 
     if (req.body.itinerary && typeof req.body.itinerary === 'string') {
       try {
@@ -127,7 +145,7 @@ exports.updateTour = async (req, res) => {
 
     // If new files are uploaded, append them or override if existingImages not provided
     if (req.files && req.files.length > 0) {
-      const newImagePaths = req.files.map(file => file.path);
+      const newImagePaths = normalizeImagePaths(req.files);
       if (finalImages === undefined) {
         finalImages = newImagePaths;
       } else {
