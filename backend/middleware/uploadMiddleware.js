@@ -10,32 +10,37 @@ if (!fs.existsSync(uploadDir)) {
 
 let upload;
 
-try {
-    const { CloudinaryStorage } = require("multer-storage-cloudinary");
-    const cloudinary = require("cloudinary").v2;
+const hasCloudinaryConfig =
+    process.env.CLOUDINARY_CLOUD_NAME &&
+    process.env.CLOUDINARY_API_KEY &&
+    process.env.CLOUDINARY_API_SECRET;
 
-    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
-        throw new Error("Cloudinary configuration is missing");
+if (hasCloudinaryConfig) {
+    try {
+        const { CloudinaryStorage } = require("multer-storage-cloudinary");
+        const cloudinary = require("cloudinary").v2;
+
+        cloudinary.config({
+            cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+            api_key: process.env.CLOUDINARY_API_KEY,
+            api_secret: process.env.CLOUDINARY_API_SECRET,
+        });
+
+        const storage = new CloudinaryStorage({
+            cloudinary,
+            params: {
+                folder: "kashmir-yatra",
+                allowed_formats: ["jpg", "png", "jpeg", "webp"],
+                public_id: (req, file) => Date.now() + "-" + Math.round(Math.random() * 1e9),
+            },
+        });
+        upload = multer({ storage });
+    } catch (err) {
+        upload = null;
     }
+}
 
-    cloudinary.config({
-        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-        api_key: process.env.CLOUDINARY_API_KEY,
-        api_secret: process.env.CLOUDINARY_API_SECRET,
-    });
-
-    const storage = new CloudinaryStorage({
-        cloudinary,
-        params: {
-            folder: "kashmir-yatra",
-            allowed_formats: ["jpg", "png", "jpeg", "webp"],
-            public_id: (req, file) => Date.now() + "-" + Math.round(Math.random() * 1e9),
-        },
-    });
-    upload = multer({ storage });
-} catch (err) {
-    console.info("Cloudinary upload unavailable, using local disk storage.");
-
+if (!upload) {
     const storage = multer.diskStorage({
         destination: uploadDir,
         filename: (req, file, cb) => {
