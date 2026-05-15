@@ -5,10 +5,10 @@ services:
     runtime: node
     region: oregon
     rootDir: backend
-    buildCommand: npm install
+    buildCommand: npm ci --omit=dev
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
       - key: NODE_OPTIONS
-        value: "--max-old-space-size=512"
+        value: "--max-old-space-size=256"
