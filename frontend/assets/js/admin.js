@@ -580,6 +580,13 @@ document.getElementById('blogForm').addEventListener('submit', async (e) => {
     const id = document.getElementById('blogId').value;
     const fileInput = document.getElementById('blogImage');
 
+    const submitBtn = e.target.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn ? submitBtn.innerHTML : null;
+    if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Saving...';
+    }
+
     // Create FormData for file upload
     const formData = new FormData();
 
@@ -620,6 +627,12 @@ document.getElementById('blogForm').addEventListener('submit', async (e) => {
     } catch (error) {
         console.error("Submission error:", error);
         alert("Failed to submit blog. See console.");
+    }
+    finally {
+        if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
+        }
     }
 });
 

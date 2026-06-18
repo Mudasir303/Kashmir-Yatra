@@ -21,6 +21,20 @@ exports.createTour = async (req, res) => {
     console.log("Create Tour Request Body:", req.body);
     console.log("Create Tour Request Files:", req.files);
 
+    // Prevent rapid duplicate submissions: if a tour with same title
+    // was created within the last 30 seconds, reject as duplicate.
+    const title = req.body.title || (req.body.title === '' ? '' : undefined);
+    if (title) {
+      const thirtySecondsAgo = new Date(Date.now() - 30 * 1000);
+      const existing = await Tour.findOne({
+        title: String(title).trim(),
+        createdAt: { $gt: thirtySecondsAgo }
+      });
+      if (existing) {
+        return res.status(409).json({ message: 'Duplicate submission detected' });
+      }
+    }
+
     const tourData = {
       ...req.body,
       images: normalizeImagePaths(req.files)

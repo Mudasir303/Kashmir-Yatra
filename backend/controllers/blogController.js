@@ -1,4 +1,5 @@
 const Blog = require("../models/Blog");
+const path = require("path");
 
 // @desc    Create a new blog
 // @route   POST /api/blogs
@@ -8,8 +9,31 @@ exports.createBlog = async (req, res) => {
         const { title, content, author, tags } = req.body;
         let image = req.body.image; // in case URL is sent
 
+        // Prevent rapid duplicate submissions: if a blog with same title
+        // was created within the last 30 seconds, reject as duplicate.
+        if (title) {
+            const thirtySecondsAgo = new Date(Date.now() - 30 * 1000);
+            const existing = await Blog.findOne({
+                title: title.trim(),
+                createdAt: { $gt: thirtySecondsAgo }
+            });
+            if (existing) {
+                return res.status(409).json({ message: 'Duplicate submission detected' });
+            }
+        }
+
         if (req.file) {
-            image = req.file.path;
+            // multer-storage-cloudinary sets a remote URL (starts with http)
+            if (req.file.path && String(req.file.path).startsWith("http")) {
+                image = req.file.path;
+            } else if (req.file.filename) {
+                // multer diskStorage: store a relative path under uploads/
+                image = path.join('uploads', req.file.filename).replace(/\\/g, '/');
+            } else if (req.file.path) {
+                // fallback: extract filename from absolute path
+                const filename = path.basename(req.file.path);
+                image = path.join('uploads', filename).replace(/\\/g, '/');
+            }
         }
 
         // If tags are sent as a string (from admin form), split them into an array
@@ -83,7 +107,14 @@ exports.updateBlog = async (req, res) => {
         let updateData = { title, content, author, tags: processedTags };
 
         if (req.file) {
-            updateData.image = req.file.path;
+            if (req.file.path && String(req.file.path).startsWith("http")) {
+                updateData.image = req.file.path;
+            } else if (req.file.filename) {
+                updateData.image = path.join('uploads', req.file.filename).replace(/\\/g, '/');
+            } else if (req.file.path) {
+                const filename = path.basename(req.file.path);
+                updateData.image = path.join('uploads', filename).replace(/\\/g, '/');
+            }
         } else if (req.body.image) {
             updateData.image = req.body.image;
         }
